@@ -4,7 +4,7 @@ Szakmai Vizsga Engedélyezett Jegyzetei
 
 ## Funkciók
 
-- **Szekciók**: C# Console App, WPF, HTML, Frontend (Angular, React), Backend (Laravel, ASP.NET, Node.js)
+- **Szekciók**: C# Console App, WPF, HTML, Frontend (Angular, React), Backend (Laravel, ASP.NET, Next.js)
 - **Keresés**: Szűrés a jegyzetek között
 - **Másolás**: Egy kattintással másolhatod a tartalmat
 - **Téma**: Világos/sötét mód váltó
