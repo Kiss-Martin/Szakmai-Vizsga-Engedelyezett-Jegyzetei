@@ -155,3 +155,23 @@
         font-size: 0.9rem;
         color: var(--text);
     }
+
+    .box.guide {
+        border-left: 4px solid #e67e22;
+    }
+
+    .box.guide .box-header {
+        background: #fff3e0;
+    }
+
+    [data-theme="dark"] .box.guide .box-header {
+        background: #3d2a1a;
+    }
+
+    .box.guide .copy-btn {
+        display: none;
+    }
+
+    .box.guide .box-title::before {
+        content: "📌 ";
+    }

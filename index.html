@@ -65,6 +65,14 @@
                 </div>
                 <div class="box-content">// Ide írd a jegyzetet</div>
             </div>
+
+            <div class="box guide" data-keywords="json config settings">
+                <div class="box-header">
+                    <span class="box-title">JSON konfiguráció - Paste Special</span>
+                </div>
+                <div class="box-content">// Visual Studio-ban: Edit → Paste Special → Paste JSON as Classes
+// Ez létrehozza a megfelelő C# osztályokat a JSON-ból</div>
+            </div>
         </div>
 
         <!-- WPF -->
@@ -93,6 +101,15 @@
                     <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
                 </div>
                 <div class="box-content">// Ide írd a jegyzetet</div>
+            </div>
+
+            <div class="box guide" data-keywords="xaml binding converter">
+                <div class="box-header">
+                    <span class="box-title">Binding Debug - Output Window</span>
+                </div>
+                <div class="box-content">// Debugoláshoz: VS Output Window → Show output from: Debug
+// System.Diagnostics.Debug.WriteLine() a kódban
+// Így láthatod a binding értékeket futás közben</div>
             </div>
         </div>
 
@@ -123,6 +140,20 @@
                 </div>
                 <div class="box-content">// Ide írd a jegyzetet</div>
             </div>
+
+            <div class="box guide" data-keywords="html5 semantic tag">
+                <div class="box-header">
+                    <span class="box-title">HTML5 Semantikus Tag-ek</span>
+                </div>
+                <div class="box-content">// &lt;header&gt; - Fejléc
+// &lt;nav&gt; - Navigáció
+// &lt;main&gt; - Fő tartalom
+// &lt;article&gt; - önálló tartalom
+// &lt;section&gt; - szekció
+// &lt;aside&gt; - oldalsó tartalom
+// &lt;footer&gt; - lábléc
+// &lt;figure&gt; - ábra + &lt;figcaption&gt;</div>
+            </div>
         </div>
 
         <!-- Frontend - Angular -->
@@ -151,6 +182,18 @@
                     <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
                 </div>
                 <div class="box-content">// Ide írd a jegyzetet</div>
+            </div>
+
+            <div class="box guide" data-keywords="angular cli ng">
+                <div class="box-header">
+                    <span class="box-title">Angular CLI Parancsok</span>
+                </div>
+                <div class="box-content">// Új projekt: ng new project-name
+// Komponens: ng g c components/name
+// Service: ng g s services/name
+// Router: ng g m modules/name --route name --module app.module
+// Build: ng build --prod
+// Serve: ng serve</div>
             </div>
         </div>
 
@@ -181,6 +224,16 @@
                 </div>
                 <div class="box-content">// Ide írd a jegyzetet</div>
             </div>
+
+            <div class="box guide" data-keywords="react hooks">
+                <div class="box-header">
+                    <span class="box-title">React Hook-ok Szabályai</span>
+                </div>
+                <div class="box-content">// 1. Csak a legfelső szinten hívd (ne ciklusban, feltételben)
+// 2. Csak React funkciókból hívd
+// useState, useEffect, useContext, useRef, useMemo, useCallback
+// Custom hook: useSomething() - use prefix, más hook-okat hív</div>
+            </div>
         </div>
 
         <!-- Backend - Laravel -->
@@ -209,6 +262,18 @@
                     <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
                 </div>
                 <div class="box-content">// Ide írd a jegyzetet</div>
+            </div>
+
+            <div class="box guide" data-keywords="laravel artisan tinker">
+                <div class="box-header">
+                    <span class="box-title">Laravel Artisan</span>
+                </div>
+                <div class="box-content">// Migráció: php artisan make:migration name
+// Model: php artisan make:model ModelName
+// Controller: php artisan make:controller NameController
+// Seed: php artisan db:seed
+// Tinker (REPL): php artisan tinker
+// Route list: php artisan route:list</div>
             </div>
         </div>
 
@@ -239,6 +304,18 @@
                 </div>
                 <div class="box-content">// Ide írd a jegyzetet</div>
             </div>
+
+            <div class="box guide" data-keywords="aspnet core cli dotnet">
+                <div class="box-header">
+                    <span class="box-title">.NET CLI Parancsok</span>
+                </div>
+                <div class="box-content">// Új projekt: dotnet new webapi -n ProjectName
+// Build: dotnet build
+// Run: dotnet run
+// Publish: dotnet publish -c Release
+// EF Migráció: dotnet ef migrations add Name
+// EF Update: dotnet ef database update</div>
+            </div>
         </div>
 
         <!-- Backend - Node.js -->
@@ -267,6 +344,18 @@
                     <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
                 </div>
                 <div class="box-content">// Ide írd a jegyzetet</div>
+            </div>
+
+            <div class="box guide" data-keywords="node npm package.json">
+                <div class="box-header">
+                    <span class="box-title">Node.js + npm</span>
+                </div>
+                <div class="box-content">// Init: npm init -y
+// Install: npm install package-name
+// Dev dep: npm install -D package-name
+// Global: npm install -g package-name
+// Script futtatás: npm run script-name
+// package.json scripts: start, test, dev</div>
             </div>
         </div>
     </div>
