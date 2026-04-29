@@ -6,7 +6,7 @@
     <title>Cheatsheet</title>
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body data-theme="light">
+  <body data-theme="dark">
     <div class="container">
       <header>
         <h1>Cheatsheet</h1>
@@ -19,7 +19,7 @@
               <option value="wpf">WPF</option>
               <option value="html">HTML</option>
               <option value="frontend-angular">Frontend - Angular</option>
-              <option value="frontend-react">Frontend - React</option>
+              <option value="frontend-next">Frontend - Next.js</option>
               <option value="backend-laravel">Backend - Laravel</option>
               <option value="backend-aspnet">Backend - ASP.NET</option>
               <option value="backend-next">Backend - Next.js</option>
@@ -31,7 +31,7 @@
             placeholder="Keresés..."
             aria-label="Keresés"
           />
-          <button class="theme-toggle" id="themeToggle">🌙</button>
+          <button class="theme-toggle" id="themeToggle">☀️</button>
         </div>
       </header>
 
@@ -150,9 +150,9 @@
             </div>
         </div>
 
-      <!-- Frontend - React -->
-      <div id="frontend-react" class="section">
-        <h2>Frontend - React</h2>
+      <!-- Frontend - Next -->
+      <div id="frontend-next" class="section">
+        <h2>Frontend - Next</h2>
 
         <div class="box" data-keywords="component hook state">
           <div class="box-header">
@@ -237,7 +237,7 @@
 
         <div class="box" data-keywords="next.js route">
           <div class="box-header">
-            <span class="box-title">Next.js</span>
+            <span class="box-title">REST végpontok</span>
           </div>
           <div class="box-content">
             <div class="snippet-header">
@@ -503,15 +503,16 @@ model Collection2 {
             <pre><code>npx prisma db push</code></pre>
           </div>
         </div>
-
-            <div class="box" data-keywords="jwt auth">
-                <div class="box-header">
-                    <span class="box-title">Auth</span>
-                    <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
-                </div>
-                <div class="box-content">// Ide írd a jegyzetet</div>
+        <div class="box" data-keywords="next.js">
+          <div class="box-header">
+            <span class="box-title">Egyéb</span>
+          </div>
+          <div class="box-content">
+            <div class="snippet-header">
+              <h3 class="snippet-title">Next.js backend struktúra</h3>
             </div>
-        </div>
+            <img src="pics/next_backend_structure.png" alt="Nem jelent meg a kép, ezer bocsánat!" />
+          </div>
     </div>
     <script src="script.js"></script>
   </body>
