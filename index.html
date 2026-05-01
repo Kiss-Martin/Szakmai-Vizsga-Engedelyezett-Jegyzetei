@@ -340,115 +340,124 @@ Route::put('/comments/{comment}', [CommentController::class, 'update']);</code><
         <div class="box-header">
           <span class="box-title">Példa végpontok</span>
         </div>
-        <div class="box-content">public function index(Request $request)
-    {
-        $search = $request->query('search');
-
-        $songs = Song::query()
-            ->when($search, function ($query, $search) {
-                $query->where('title', 'like', '%' . $search . '%');
-            })
-            ->with(['user:id,name', 'album:id,title'])
-            ->get();
-
-        return response()->json($songs, 200);
-    }
-    <br>
-  public function listByUser($id)
-    {
-        $user = User::find($id);
-
-        if (!$user) {
-            return response()->json(['message' => 'User not found!'], 404);
+        <div class="box-content">
+          <pre><code>
+      public function index(Request $request)
+      {
+          $search = $request->query('search');
+  
+          $songs = Song::query()
+              ->when($search, function ($query, $search) {
+                  $query->where('title', 'like', '%' . $search . '%');
+              })
+              ->with(['user:id,name', 'album:id,title'])
+              ->get();
+  
+          return response()->json($songs, 200);
+      }
+          </code></pre>
+    <pre><code>
+      public function listByUser($id)
+        {
+            $user = User::find($id);
+    
+            if (!$user) {
+                return response()->json(['message' => 'User not found!'], 404);
+            }
+    
+            // $songs = $user->songs;
+            $songs = Song::with('user:id,name')->where('user_id', $id)->get();
+    
+            return response()->json($songs, 200);
         }
+    </code></pre>
+<pre><code>
+  public function getNewSongs(Request $request) {
+      $count = $request->query('count', 10);
 
-        // $songs = $user->songs;
-        $songs = Song::with('user:id,name')->where('user_id', $id)->get();
+      $songs = Song::with('user:id,name')->orderBy('created_at', 'desc')->limit($count)->get();
 
-        return response()->json($songs, 200);
-    }
-<br>
-    public function getNewSongs(Request $request) {
-        $count = $request->query('count', 10);
-
-        $songs = Song::with('user:id,name')->orderBy('created_at', 'desc')->limit($count)->get();
-
-        return response()->json($songs);
-    }
-  <br>
-  public function random(Request $request)
-    {
-
-        $count = $request->query('count', 10);
-
-        $songs = Song::inRandomOrder()
-            ->limit($count)
-            ->with(['user:id,name', 'album:id,title'])
-            ->get();
-
-        return response()->json($songs);
-    }
-    <br>
-  public function logPlay(Request $request, $id)
-    {
-
-        $song = Song::find($id);
-
-        if (!$song) {
-            return response()->json(['error' => 'Song not found'], 404);
+      return response()->json($songs);
+  }
+</code></pre>
+  <pre><code>
+    public function random(Request $request)
+      {
+  
+          $count = $request->query('count', 10);
+  
+          $songs = Song::inRandomOrder()
+              ->limit($count)
+              ->with(['user:id,name', 'album:id,title'])
+              ->get();
+  
+          return response()->json($songs);
+      }
+  </code></pre>
+    <pre><code>
+      public function logPlay(Request $request, $id)
+        {
+    
+            $song = Song::find($id);
+    
+            if (!$song) {
+                return response()->json(['error' => 'Song not found'], 404);
+            }
+    
+            try {
+                DB::transaction(function () use ($request, $song) {
+                    $song->increment('plays');
+    
+                    $user = auth('sanctum')->user();
+    
+                    ListeningHistoryItem::create([
+                        'user_id'     => $user ? $user->id : null,
+                        'song_id'     => $song->id,
+                        'album_id'    => $song->album_id,
+                        'playlist_id' => $request->input('playlist_id'),
+                    ]);
+                });
+    
+                return response()->json(['message' => 'Play logged successfully'], 200);
+    
+            } catch (\Exception $e) {
+                return response()->json([
+                    'error' => 'Failed to log play',
+                    'message' => $e->getMessage()
+                ], 500);
+            }
         }
+    </code></pre>
+<pre><code>
+  /**
+   * Display the specified resource.
+   */
+  public function show($id)
+  {
+      $song = Song::with(['user:id,name', 'album:id,title'])->find($id);
 
-        try {
-            DB::transaction(function () use ($request, $song) {
-                $song->increment('plays');
+      if (!$song) {
+          return response()->json(['message' => 'Song not found!'], 404);
+      }
 
-                $user = auth('sanctum')->user();
-
-                ListeningHistoryItem::create([
-                    'user_id'     => $user ? $user->id : null,
-                    'song_id'     => $song->id,
-                    'album_id'    => $song->album_id,
-                    'playlist_id' => $request->input('playlist_id'),
-                ]);
-            });
-
-            return response()->json(['message' => 'Play logged successfully'], 200);
-
-        } catch (\Exception $e) {
-            return response()->json([
-                'error' => 'Failed to log play',
-                'message' => $e->getMessage()
-            ], 500);
-        }
-    }
-<br>
-    /**
-     * Display the specified resource.
-     */
-    public function show($id)
-    {
-        $song = Song::with(['user:id,name', 'album:id,title'])->find($id);
-
-        if (!$song) {
-            return response()->json(['message' => 'Song not found!'], 404);
-        }
-
-        return response()->json($song);
-    }
-  <br>
-  public function update(Request $request, Comment $comment)
-    {
-        $validatedData = $request->validate([
-            'body' => 'required|string|min:2', // Kötelező, szöveg, és legalább 2 karakter
-        ]);
-
-        $comment->update($validatedData);
-
-        return response()->json([
-            'message' => 'A hozzászólás sikeresen frissítve!',
-            'comment' => $comment
-        ], 200);
-    }</div>
+      return response()->json($song);
+  }
+</code></pre>
+  <pre><code>
+    public function update(Request $request, Comment $comment)
+      {
+          $validatedData = $request->validate([
+              'body' => 'required|string|min:2', // Kötelező, szöveg, és legalább 2 karakter
+          ]);
+  
+          $comment->update($validatedData);
+  
+          return response()->json([
+              'message' => 'A hozzászólás sikeresen frissítve!',
+              'comment' => $comment
+          ], 200);
+      }</div>
+  </code></pre>
       </div>
 </div>
     
