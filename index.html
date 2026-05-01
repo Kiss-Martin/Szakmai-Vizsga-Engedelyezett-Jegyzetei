@@ -63,8 +63,7 @@
         <div class="box-header">
           <span class="box-title">JSON konfiguráció - Paste Special</span>
         </div>
-        <div class="box-content">Visual Studio-ban: Edit → Paste Special → Paste JSON as Classes <br>Ez létrehozza a
-          megfelelő C# osztályokat a JSON-ból <br>.json file-ok "copy if newer/copy always" Property beállítása </div>
+        <div class="box-content">Visual Studio-ban: Edit → Paste Special → Paste JSON as Classes <br>Ez létrehozza a megfelelő C# osztályokat a JSON-ból <br>.json file-ok "copy if newer/copy always" Property beállítása </div>
       </div>
 
 
@@ -78,9 +77,9 @@
         <div class="box-header">
           <span class="box-title">Megfelelő Nuget csomagok listája</span>
         </div>
-        <div class="box-content">
-          MySql.EntityFrameworkCore (10.0.2)
-          Microsoft.EntityFrameworkCore.Tools (8.0.22)
+        <div class="box-content" style="text-align: left;">
+MySql.EntityFrameworkCore (10.0.2)
+Microsoft.EntityFrameworkCore.Tools (8.0.22)
         </div>
       </div>
 
@@ -115,14 +114,7 @@
         <div class="box-header">
           <span class="box-title">HTML5 Semantikus Tag-ek</span>
         </div>
-        <div class="box-content">&lt;header&gt; - Fejléc
-          &lt;nav&gt; - Navigáció
-          &lt;main&gt; - Fő tartalom
-          &lt;article&gt; - önálló tartalom
-          &lt;section&gt; - szekció
-          &lt;aside&gt; - oldalsó tartalom
-          &lt;footer&gt; - lábléc
-          &lt;figure&gt; - ábra + &lt;figcaption&gt;</div>
+        <div class="box-content"> &lt;header&gt; - Fejléc<br> &lt;nav&gt; - Navigáció<br> &lt;main&gt; - Fő tartalom<br> &lt;article&gt; - önálló tartalom<br> &lt;section&gt; - szekció<br> &lt;aside&gt; - oldalsó tartalom<br> &lt;footer&gt; - lábléc<br> &lt;figure&gt; - ábra + &lt;figcaption&gt;</div>
       </div>
 
       <div class="box" data-keywords="bootstrap grid">
@@ -131,10 +123,8 @@
         </div>
         <div class="box-content"><a target="_blank" rel="noopener"
             href="https://getbootstrap.com/docs/5.3/getting-started/introduction/">Bootstrap főoldal</a><br><a
-            target="_blank" rel="noopener" href="https://getbootstrap.com/docs/5.3/layout/grid/">Bootstrap Grid
-            Dokumentáció</a><br><a target="_blank" rel="noopener"
-            href="https://getbootstrap.com/docs/5.3/content/tables/#overview">Bootstrap Táblázatok Dokumentáció</a>
-        </div>
+            target="_blank" rel="noopener" href="https://getbootstrap.com/docs/5.3/layout/grid/">Bootstrap Grid Dokumentáció</a><br><a target="_blank" rel="noopener"
+            href="https://getbootstrap.com/docs/5.3/content/tables/#overview">Bootstrap Táblázatok Dokumentáció</a></div>
       </div>
 
       <div class="box" data-keywords="form input validation">
@@ -201,7 +191,7 @@
       <div class="box" data-keywords="redux context">
         <div class="box-header">
           <span class="box-title">State Management</span>
-          <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+          <button class="copy-btn" onclick="copySnippet(this)">Másolás</button>
         </div>
         <div class="box-content">// Ide írd a jegyzetet</div>
       </div>
@@ -210,34 +200,41 @@
     <!-- Backend - Laravel -->
     <div id="backend-laravel" class="section">
       <h2>Backend - Laravel</h2>
-
       <div class="box" data-keywords="artisan cli setup">
         <div class="box-header">
           <span class="box-title">Alapvető Artisan parancsok</span>
-          <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
         </div>
-        <code class="box-content">
+        <div class="box-content">
           <div class="snippet-header">
             <h3 class="snippet-title">API telepíítése</h3>
+            <button class="copy-snippet-btn" onclick="copySnippet(this)">Másolás</button>
           </div>
-          <pre><code>php artisan install:api</code></pre>
-
+            <pre><code>php artisan install:api</code></pre>
           <div class="snippet-header">
             <h3 class="snippet-title">Modellek generálása (Modell, Migráció, Controller)</h3>
+            <button class="copy-snippet-btn" onclick="copySnippet(this)">Másolás</button>
           </div>
-          <pre><code>php artisan make:model ModelName -mc --api</code></pre>
-
+            <pre><code>php artisan make:model ModelName -mc --api</code></pre>
           <div class="snippet-header">
             <h3 class="snippet-title">Migrációk kezelése</h3>
+            <button class="copy-snippet-btn" onclick="copySnippet(this)">Másolás</button>
           </div>
-          <pre><code>php artisan make:migration create_table_name_table
-
-php artisan migrate         // Futttatás
-php artisan migrate:refresh // Visszagörgetés és újra futtatás
-php artisan migrate:fresh   // Táblák törlése és migrációk újrafuttatása</code></pre>
-
-          
-          
+          <pre><code>php artisan make:migration create_table_name_table</code></pre>
+          <div class="snippet-header">
+            <h3 class="snippet-title">Futttatás</h3>
+            <button class="copy-snippet-btn" onclick="copySnippet(this)">Másolás</button>
+          </div>
+            <pre><code>php artisan migrate</code></pre>
+            <div class="snippet-header">
+              <h3 class="snippet-title">Visszagörgetés és újra futtatás</h3>
+              <button class="copy-snippet-btn" onclick="copySnippet(this)">Másolás</button>
+            </div>
+            <pre><code>php artisan migrate:refresh</code></pre>
+            <div class="snippet-header">
+              <h3 class="snippet-title">Táblák törlése és migrációk újrafuttatása</h3>
+              <button class="copy-snippet-btn" onclick="copySnippet(this)">Másolás</button>
+            </div>
+            <pre><code>php artisan migrate:fresh</code></pre>
         </div>
       </div>
 
@@ -248,9 +245,13 @@ php artisan migrate:fresh   // Táblák törlése és migrációk újrafuttatás
         <div class="box-content">
           <div class="snippet-header">
             <h3 class="snippet-title">Generálás és Példa</h3>
+            <button class="copy-snippet-btn" onclick="copySnippet(this)">Másolás</button>
           </div>
           <pre><code>php artisan make:resource ResourceName</code></pre>
-          <p>A Resource segítségével szabályozható a kimenő JSON szerkezete (mezők átnevezése, formázása):</p>
+          <div class="snippet-header">
+            <h3 class="snippet-title">A Resource segítségével szabályozható a kimenő JSON szerkezete (mezők átnevezése, formázása):</h3>
+            <button class="copy-snippet-btn" onclick="copySnippet(this)">Másolás</button>
+          </div>
           <pre><code>public function toArray(Request $request): array {
     return [
         'identifier'  => $this->id,
@@ -266,7 +267,11 @@ php artisan migrate:fresh   // Táblák törlése és migrációk újrafuttatás
           <span class="box-title">Kapcsolatok</span>
         </div>
         <div class="box-content">
-          <pre><code>// Egy a többhöz (1:N)
+            <div class="snippet-header">
+              <h3 class="snippet-title">Kapcsolatok definiálása a modellekben</h3>
+              <button class="copy-snippet-btn" onclick="copySnippet(this)">Másolás</button>
+            </div>
+          <pre><code>
 // "1" oldal:
 public function posts() {
     return $this->hasMany(Post::class);
@@ -275,17 +280,19 @@ public function posts() {
 public function user() {
     return $this->belongsTo(User::class);
 }
-
-// Több a többhöz kapcsolat (N:N)
-// Kapcsolótábla elnevezése: abc sorrendben, alulvonással elválasztva, pl.: playlist_song
-Song.php
+</code></pre>
+           <div class="snippet-header">
+              <h3 class="snippet-title">Több a többhöz kapcsolat (N:N)</h3>
+              <p>Kapcsolótábla elnevezése: abc sorrendben, alulvonással elválasztva, pl.: playlist_song</p>
+              <button class="copy-snippet-btn" onclick="copySnippet(this)">Másolás</button>
+            </div>
+          <pre><code>Song.php
 public function playlists() { return $this->belongsToMany(Playlist::class) }
 
 Playlist.php
 public function songs() { return $this->belongsToMany(Song::class) }</code></pre>
         </div>
       </div>
-
       <div class="box" data-keywords="seeder route api">
         <div class="box-header">
           <span class="box-title">Seeder és Végpontok</span>
@@ -293,8 +300,9 @@ public function songs() { return $this->belongsToMany(Song::class) }</code></pre
         <div class="box-content">
           <div class="snippet-header">
             <h3 class="snippet-title">DatabaseSeeder.php</h3>
+            <p>Mintaadatok generálása az adatbázisba:</p>
+            <button class="copy-snippet-btn" onclick="copySnippet(this)">Másolás</button>
           </div>
-          <p>Mintaadatok generálása az adatbázisba:</p>
           <pre><code>public function run(): void
     {
         User::factory(10)->create(); // 10 user generálása a factory segítségével
@@ -317,6 +325,7 @@ public function songs() { return $this->belongsToMany(Song::class) }</code></pre
 
           <div class="snippet-header">
             <h3 class="snippet-title">Végpontok (api.php)</h3>
+            <button class="copy-snippet-btn" onclick="copySnippet(this)">Másolás</button>
           </div>
           <pre><code>use App\Http\Controllers\SongController;
 
@@ -344,6 +353,7 @@ Route::put('/comments/{comment}', [CommentController::class, 'update']);</code><
 
         return response()->json($songs, 200);
     }
+    <br>
   public function listByUser($id)
     {
         $user = User::find($id);
@@ -357,7 +367,7 @@ Route::put('/comments/{comment}', [CommentController::class, 'update']);</code><
 
         return response()->json($songs, 200);
     }
-
+<br>
     public function getNewSongs(Request $request) {
         $count = $request->query('count', 10);
 
@@ -365,7 +375,7 @@ Route::put('/comments/{comment}', [CommentController::class, 'update']);</code><
 
         return response()->json($songs);
     }
-  
+  <br>
   public function random(Request $request)
     {
 
@@ -378,6 +388,7 @@ Route::put('/comments/{comment}', [CommentController::class, 'update']);</code><
 
         return response()->json($songs);
     }
+    <br>
   public function logPlay(Request $request, $id)
     {
 
@@ -410,7 +421,7 @@ Route::put('/comments/{comment}', [CommentController::class, 'update']);</code><
             ], 500);
         }
     }
-
+<br>
     /**
      * Display the specified resource.
      */
@@ -424,7 +435,7 @@ Route::put('/comments/{comment}', [CommentController::class, 'update']);</code><
 
         return response()->json($song);
     }
-  
+  <br>
   public function update(Request $request, Comment $comment)
     {
         $validatedData = $request->validate([
@@ -439,7 +450,7 @@ Route::put('/comments/{comment}', [CommentController::class, 'update']);</code><
         ], 200);
     }</div>
       </div>
-
+</div>
     
 
     <!-- Backend - ASP.NET -->
