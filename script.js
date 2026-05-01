@@ -55,3 +55,13 @@ function copySnippet(btn) {
     setTimeout(() => (btn.textContent = original), 1500);
   });
 }
+
+function copyBox(btn) {
+  const box = btn.closest(".box");
+  const content = box.querySelector(".box-content").textContent;
+  navigator.clipboard.writeText(content).then(() => {
+    const original = btn.textContent;
+    btn.textContent = "Másolva!";
+    setTimeout(() => (btn.textContent = original), 1500);
+  });
+}

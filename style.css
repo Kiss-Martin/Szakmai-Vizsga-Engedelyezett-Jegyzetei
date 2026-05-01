@@ -139,6 +139,21 @@
         gap: 10px;
     }
 
+
+    .copy-btn {
+        padding: 6px 12px;
+        font-size: 0.85rem;
+        background: var(--btn-bg);
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+
+    .copy-btn:hover {
+        background: var(--btn-hover);
+    }
+
     .copy-snippet-btn {
         display: inline-flex;
         align-items: center;
