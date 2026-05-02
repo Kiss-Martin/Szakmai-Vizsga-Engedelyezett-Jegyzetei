@@ -154,18 +154,85 @@
       <div id="frontend-next" class="section">
         <h2>Frontend - Next</h2>
 
-        <div class="box" data-keywords="component hook state">
+        <div class="box" data-keywords="next">
           <div class="box-header">
-            <span class="box-title">Komponensek</span>
+            <span class="box-title">Általános</span>
           </div>
           <div class="box-content">// Ide írd a jegyzetet</div>
         </div>
 
         <div class="box" data-keywords="router route">
           <div class="box-header">
-            <span class="box-title">Routing</span>
+            <span class="box-title">Hookok, globalState</span>
           </div>
-          <div class="box-content">// Ide írd a jegyzetet</div>
+          <div class="box-content">
+            <div class="snippet-header">
+              <h3 class="snippet-title">globalStore.ts kiinduló</h3>
+              <button class="copy-snippet-btn" onclick="copySnippet(this)">
+                Másolás
+              </button>
+            </div>
+            <pre><code>import { create } from "zustand";
+
+type GlobalStateData = {
+  globalVariable?: string;
+};
+
+type GlobalStore = {
+  gs: GlobalStateData;
+  set: &lt;K extends keyof GlobalStateData&gt;(key: K, value: GlobalStateData[K]) =&gt; void;
+};
+
+export const useGlobalStore = create&lt;GlobalStore&gt;()((set) =&gt; ({
+  gs: {
+    globalVariable: "valami"
+  },
+
+  set: (key, value) =&gt;
+    set((state) =&gt; ({
+      gs: {
+        ...state.gs,
+        [key]: value,
+      },
+    })),
+}));</code></pre>
+
+            <div class="snippet-header">
+              <h3 class="snippet-title">globalStore használata example</h3>
+              <button class="copy-snippet-btn" onclick="copySnippet(this)">
+                Másolás
+              </button>
+            </div>
+            <pre><code>const { gs, set } = useGlobalStore();
+set("globalVariable", "valami más");</code></pre>
+            <p>Ez egy globális változó (bármelyik komponensben elérhető változó) értékét frissíti, gyakorlati haszna pl. UI state, light/dark mode, keresési paraméter</p>
+
+            <div class="snippet-header">
+              <h3 class="snippet-title">useState</h3>
+              <button class="copy-snippet-btn" onclick="copySnippet(this)">
+                Másolás
+              </button>
+            </div>
+            <pre><code>const [array, setArray] = useState&lt;Model[]&gt;([]);
+setArray(apiLekeresResponse.data);</code></pre>
+            <p>Ez a useState hook, amivel egy állapotváltozót hozol létre. Az array tartalmaz egy Model típusú tömböt, a setArray pedig egy függvény, amivel ezt az állapotot tudod később módosítani.</p>
+
+            <div class="snippet-header">
+              <h3 class="snippet-title">useEffect</h3>
+              <button class="copy-snippet-btn" onclick="copySnippet(this)">
+                Másolás
+              </button>
+            </div>
+            <pre><code>useEffect(() =&gt; {
+  async function getData() {
+    const parameter = gs.searchParameter ? gs.searchParameter : "*";
+    const response = await axios.get(`url/${parameter}/valami`);
+    setArray(response.data);
+  }
+  getData();
+}, [dependencyValami]);</code></pre>
+            <p>A useEffect hook minden alkalommal lefut, ha a "dependenyValami" frissül, üresen hagyott dependency array esetén csak az oldal betöltésekor fut le</p>
+          </div>
         </div>
 
             <div class="box" data-keywords="redux context">
