@@ -1,158 +1,178 @@
 <!doctype html>
 <html lang="hu">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cheatsheet</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body data-theme="dark">
-    <div class="container">
-      <header>
-        <h1>Cheatsheet</h1>
-        <div class="controls">
-          <div class="dropdown-group">
-            <label for="sectionSelect">Szekció:</label>
-            <select aria-label="Select Section" id="sectionSelect">
-              <option value="">Minden szekció</option>
-              <option value="csharp">C# Console App</option>
-              <option value="wpf">WPF</option>
-              <option value="html">HTML</option>
-              <option value="frontend-angular">Frontend - Angular</option>
-              <option value="frontend-next">Frontend - Next.js</option>
-              <option value="backend-laravel">Backend - Laravel</option>
-              <option value="backend-aspnet">Backend - ASP.NET</option>
-              <option value="backend-next">Backend - Next.js</option>
-            </select>
-          </div>
-          <input
-            type="search"
-            id="searchInput"
-            placeholder="Keresés..."
-            aria-label="Keresés"
-          />
-          <button class="theme-toggle" id="themeToggle">☀️</button>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cheatsheet</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body data-theme="dark">
+  <div class="container">
+    <header>
+      <h1>Cheatsheet</h1>
+      <small>Forrás: <a target="_blank" rel="noopener" href="https://net.jedlik.eu/">net.jedlik.eu</a> dokumentáció
+        linkek</small>
+      <div class="controls">
+        <div class="dropdown-group">
+          <label for="sectionSelect">Szekció:</label>
+          <select aria-label="Select Section" id="sectionSelect">
+            <option value="">Minden szekció</option>
+            <option value="csharp">C# Console App</option>
+            <option value="wpf">WPF</option>
+            <option value="html">HTML</option>
+            <option value="frontend-angular">Frontend - Angular</option>
+            <option value="frontend-next">Frontend - Next.js</option>
+            <option value="backend-laravel">Backend - Laravel</option>
+            <option value="backend-aspnet">Backend - ASP.NET</option>
+            <option value="backend-next">Backend - Next.js</option>
+          </select>
         </div>
-      </header>
+        <input type="search" id="searchInput" placeholder="Keresés..." aria-label="Keresés" />
+        <button class="theme-toggle" id="themeToggle">☀️</button>
+      </div>
+    </header>
 
-      <!-- C# Console App -->
-      <div id="csharp" class="section">
-        <h2>C# Console App</h2>
+    <!-- C# Console App -->
+    <div id="csharp" class="section">
+      <h2>C# Console App</h2>
 
-        <div class="box" data-keywords="console write readline">
-          <div class="box-header">
-            <span class="box-title">Console Input/Output</span>
-          </div>
-          <div class="box-content">// Ide írd a jegyzetet</div>
+      <div class="box" data-keywords="console write readline">
+        <div class="box-header">
+          <span class="box-title">Console Input/Output</span>
         </div>
+        <div class="box-content">// Ide írd a jegyzetet</div>
+      </div>
 
-        <div class="box" data-keywords="string int array list">
-          <div class="box-header">
-            <span class="box-title">Adattípusok és kollekciók</span>
-          </div>
-          <div class="box-content">// Ide írd a jegyzetet</div>
+      <div class="box" data-keywords="string int array list">
+        <div class="box-header">
+          <span class="box-title">Adattípusok és kollekciók</span>
         </div>
+        <div class="box-content">// Ide írd a jegyzetet</div>
+      </div>
 
-        <div class="box" data-keywords="class method namespace">
-          <div class="box-header">
-            <span class="box-title">OOP Alapok</span>
-          </div>
-          <div class="box-content">// Ide írd a jegyzetet</div>
+      <div class="box" data-keywords="class method namespace">
+        <div class="box-header">
+          <span class="box-title">OOP Alapok</span>
         </div>
+        <div class="box-content">// Ide írd a jegyzetet</div>
+      </div>
 
-            <div class="box" data-keywords="file stream read write">
-                <div class="box-header">
-                    <span class="box-title">File I/O</span>
-                    <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
-                </div>
-                <div class="box-content">// Ide írd a jegyzetet</div>
-            </div>
+      <div class="box guide" data-keywords="json config settings">
+        <div class="box-header">
+          <span class="box-title">JSON konfiguráció - Paste Special</span>
         </div>
+        <div class="box-content">Visual Studio-ban: Edit → Paste Special → Paste JSON as Classes <br>Ez létrehozza a megfelelő C# osztályokat a JSON-ból <br>.json file-ok "copy if newer/copy always" Property beállítása </div>
+      </div>
 
-      <!-- WPF -->
-      <div id="wpf" class="section">
-        <h2>WPF</h2>
 
-        <div class="box" data-keywords="xaml binding">
-          <div class="box-header">
-            <span class="box-title">XAML Alapok</span>
-          </div>
-          <div class="box-content">// Ide írd a jegyzetet</div>
+    </div>
+
+    <!-- WPF -->
+    <div id="wpf" class="section">
+      <h2>WPF</h2>
+
+      <div class="box guide" data-keywords="json config settings">
+        <div class="box-header">
+          <span class="box-title">Megfelelő Nuget csomagok listája</span>
         </div>
-
-        <div class="box" data-keywords="mvvm viewmodel command">
-          <div class="box-header">
-            <span class="box-title">MVVM Pattern</span>
-          </div>
-          <div class="box-content">// Ide írd a jegyzetet</div>
+        <div class="box-content" style="text-align: left;">
+MySql.EntityFrameworkCore (10.0.2)
+Microsoft.EntityFrameworkCore.Tools (8.0.22)
         </div>
+      </div>
 
-            <div class="box" data-keywords="control event">
-                <div class="box-header">
-                    <span class="box-title">Controk és események</span>
-                    <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
-                </div>
-                <div class="box-content">// Ide írd a jegyzetet</div>
-            </div>
+      <div class="box" data-keywords="xaml binding">
+        <div class="box-header">
+          <span class="box-title">XAML Alapok</span>
         </div>
+        <div class="box-content">// Ide írd a jegyzetet</div>
+      </div>
 
-      <!-- HTML -->
-      <div id="html" class="section">
-        <h2>HTML</h2>
-
-        <div class="box" data-keywords="tag element semantic">
-          <div class="box-header">
-            <span class="box-title">HTML Tag-ek</span>
-          </div>
-          <div class="box-content">// Ide írd a jegyzetet</div>
+      <div class="box" data-keywords="mvvm viewmodel command">
+        <div class="box-header">
+          <span class="box-title">MVVM Pattern</span>
         </div>
+        <div class="box-content">// Ide írd a jegyzetet</div>
+      </div>
 
-        <div class="box" data-keywords="form input validation">
-          <div class="box-header">
-            <span class="box-title">Űrlapok</span>
-          </div>
-          <div class="box-content">// Ide írd a jegyzetet</div>
+      <div class="box" data-keywords="control event">
+        <div class="box-header">
+          <span class="box-title">Controk és események</span>
+          <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
         </div>
+        <div class="box-content">// Ide írd a jegyzetet</div>
+      </div>
+    </div>
 
-            <div class="box" data-keywords="table list link image">
-                <div class="box-header">
-                    <span class="box-title">Média és táblázatok</span>
-                    <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
-                </div>
-                <div class="box-content">// Ide írd a jegyzetet</div>
-            </div>
+    <!-- HTML -->
+    <div id="html" class="section">
+      <h2>HTML</h2>
+
+      <div class="box guide" data-keywords="html5 semantic tag">
+        <div class="box-header">
+          <span class="box-title">HTML5 Semantikus Tag-ek</span>
         </div>
+        <div class="box-content"> &lt;header&gt; - Fejléc<br> &lt;nav&gt; - Navigáció<br> &lt;main&gt; - Fő tartalom<br> &lt;article&gt; - önálló tartalom<br> &lt;section&gt; - szekció<br> &lt;aside&gt; - oldalsó tartalom<br> &lt;footer&gt; - lábléc<br> &lt;figure&gt; - ábra + &lt;figcaption&gt;</div>
+      </div>
 
-      <!-- Frontend - Angular -->
-      <div id="frontend-angular" class="section">
-        <h2>Frontend - Angular</h2>
-
-        <div class="box" data-keywords="component service module">
-          <div class="box-header">
-            <span class="box-title">Komponensek</span>
-          </div>
-          <div class="box-content">// Ide írd a jegyzetet</div>
+      <div class="box" data-keywords="bootstrap grid">
+        <div class="box-header">
+          <span class="box-title">Bootstrap Gyors linkek</span>
         </div>
+        <div class="box-content"><a target="_blank" rel="noopener"
+            href="https://getbootstrap.com/docs/5.3/getting-started/introduction/">Bootstrap főoldal</a><br><a
+            target="_blank" rel="noopener" href="https://getbootstrap.com/docs/5.3/layout/grid/">Bootstrap Grid Dokumentáció</a><br><a target="_blank" rel="noopener"
+            href="https://getbootstrap.com/docs/5.3/content/tables/#overview">Bootstrap Táblázatok Dokumentáció</a></div>
+      </div>
 
-        <div class="box" data-keywords="router outlet">
-          <div class="box-header">
-            <span class="box-title">Routing</span>
-          </div>
-          <div class="box-content">// Ide írd a jegyzetet</div>
+      <div class="box" data-keywords="form input validation">
+        <div class="box-header">
+          <span class="box-title">Űrlapok</span>
         </div>
+        <div class="box-content">// Ide írd a jegyzetet</div>
+      </div>
 
-            <div class="box" data-keywords="http api">
-                <div class="box-header">
-                    <span class="box-title">HTTP</span>
-                    <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
-                </div>
-                <div class="box-content">// Ide írd a jegyzetet</div>
-            </div>
+      <div class="box" data-keywords="table list link image">
+        <div class="box-header">
+          <span class="box-title">Média és táblázatok</span>
+          <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
         </div>
+        <div class="box-content">// Ide írd a jegyzetet</div>
+      </div>
+    </div>
 
-      <!-- Frontend - Next -->
-      <div id="frontend-next" class="section">
-        <h2>Frontend - Next</h2>
+    <!-- Frontend - Angular -->
+    <div id="frontend-angular" class="section">
+      <h2>Frontend - Angular</h2>
+
+      <div class="box" data-keywords="component service module">
+        <div class="box-header">
+          <span class="box-title">Komponensek</span>
+        </div>
+        <div class="box-content">// Ide írd a jegyzetet</div>
+      </div>
+
+      <div class="box" data-keywords="router outlet">
+        <div class="box-header">
+          <span class="box-title">Routing</span>
+        </div>
+        <div class="box-content">// Ide írd a jegyzetet</div>
+      </div>
+
+      <div class="box" data-keywords="http api">
+        <div class="box-header">
+          <span class="box-title">HTTP</span>
+          <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+        </div>
+        <div class="box-content">// Ide írd a jegyzetet</div>
+      </div>
+    </div>
+
+    <!-- Frontend - Next -->
+    <div id="frontend-next" class="section">
+      <h2>Frontend - Next</h2>
 
         <div class="box" data-keywords="next">
           <div class="box-header">
@@ -235,85 +255,323 @@ setArray(apiLekeresResponse.data);</code></pre>
           </div>
         </div>
 
-            <div class="box" data-keywords="redux context">
-                <div class="box-header">
-                    <span class="box-title">State Management</span>
-                    <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
-                </div>
-                <div class="box-content">// Ide írd a jegyzetet</div>
-            </div>
+      <div class="box" data-keywords="redux context">
+        <div class="box-header">
+          <span class="box-title">State Management</span>
+          <button class="copy-btn" onclick="copySnippet(this)">Másolás</button>
         </div>
+        <div class="box-content">// Ide írd a jegyzetet</div>
+      </div>
+    </div>
 
-      <!-- Backend - Laravel -->
-      <div id="backend-laravel" class="section">
-        <h2>Backend - Laravel</h2>
-
-        <div class="box" data-keywords="route controller">
-          <div class="box-header">
-            <span class="box-title">Routing és controller</span>
+    <!-- Backend - Laravel -->
+    <div id="backend-laravel" class="section">
+      <h2>Backend - Laravel</h2>
+      <div class="box" data-keywords="artisan cli setup">
+        <div class="box-header">
+          <span class="box-title">Alapvető Artisan parancsok</span>
+        </div>
+        <div class="box-content">
+          <div class="snippet-header">
+            <h3 class="snippet-title">API telepíítése</h3>
+            <button class="copy-snippet-btn" onclick="copySnippet(this)">Másolás</button>
           </div>
-          <div class="box-content">// Ide írd a jegyzetet</div>
-        </div>
-
-        <div class="box" data-keywords="model migration seeder">
-          <div class="box-header">
-            <span class="box-title">Eloquent</span>
+            <pre><code>php artisan install:api</code></pre>
+          <div class="snippet-header">
+            <h3 class="snippet-title">Modellek generálása (Modell, Migráció, Controller)</h3>
+            <button class="copy-snippet-btn" onclick="copySnippet(this)">Másolás</button>
           </div>
-          <div class="box-content">// Ide írd a jegyzetet</div>
-        </div>
-
-            <div class="box" data-keywords="blade template">
-                <div class="box-header">
-                    <span class="box-title">Blade</span>
-                    <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
-                </div>
-                <div class="box-content">// Ide írd a jegyzetet</div>
-            </div>
-        </div>
-
-      <!-- Backend - ASP.NET -->
-      <div id="backend-aspnet" class="section">
-        <h2>Backend - ASP.NET</h2>
-
-        <div class="box" data-keywords="controller action">
-          <div class="box-header">
-            <span class="box-title">Controller</span>
+            <pre><code>php artisan make:model ModelName -mc --api</code></pre>
+          <div class="snippet-header">
+            <h3 class="snippet-title">Migrációk kezelése</h3>
+            <button class="copy-snippet-btn" onclick="copySnippet(this)">Másolás</button>
           </div>
-          <div class="box-content">// Ide írd a jegyzetet</div>
-        </div>
-
-        <div class="box" data-keywords="entity framework core">
-          <div class="box-header">
-            <span class="box-title">Entity Framework</span>
+          <pre><code>php artisan make:migration create_table_name_table</code></pre>
+          <div class="snippet-header">
+            <h3 class="snippet-title">Futttatás</h3>
+            <button class="copy-snippet-btn" onclick="copySnippet(this)">Másolás</button>
           </div>
-          <div class="box-content">// Ide írd a jegyzetet</div>
-        </div>
-
-            <div class="box" data-keywords="view razor">
-                <div class="box-header">
-                    <span class="box-title">Razor</span>
-                    <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
-                </div>
-                <div class="box-content">// Ide írd a jegyzetet</div>
-            </div>
-        </div>
-
-      <!-- Backend - Node.js -->
-      <div id="backend-next" class="section">
-        <h2>Backend - Next.js</h2>
-
-        <div class="box" data-keywords="next.js route">
-          <div class="box-header">
-            <span class="box-title">REST végpontok</span>
-          </div>
-          <div class="box-content">
+            <pre><code>php artisan migrate</code></pre>
             <div class="snippet-header">
-              <h3 class="snippet-title">standard GET</h3>
-              <button class="copy-snippet-btn" onclick="copySnippet(this)">
-                Másolás
-              </button>
+              <h3 class="snippet-title">Visszagörgetés és újra futtatás</h3>
+              <button class="copy-snippet-btn" onclick="copySnippet(this)">Másolás</button>
             </div>
-            <pre><code>export async function GET() {
+            <pre><code>php artisan migrate:refresh</code></pre>
+            <div class="snippet-header">
+              <h3 class="snippet-title">Táblák törlése és migrációk újrafuttatása</h3>
+              <button class="copy-snippet-btn" onclick="copySnippet(this)">Másolás</button>
+            </div>
+            <pre><code>php artisan migrate:fresh</code></pre>
+        </div>
+      </div>
+
+      <div class="box" data-keywords="resource json transformation">
+        <div class="box-header">
+          <span class="box-title">Resource-ok (Adat transzformáció)</span>
+        </div>
+        <div class="box-content">
+          <div class="snippet-header">
+            <h3 class="snippet-title">Generálás és Példa</h3>
+            <button class="copy-snippet-btn" onclick="copySnippet(this)">Másolás</button>
+          </div>
+          <pre><code>php artisan make:resource ResourceName</code></pre>
+          <div class="snippet-header">
+            <h3 class="snippet-title">A Resource segítségével szabályozható a kimenő JSON szerkezete (mezők átnevezése, formázása):</h3>
+            <button class="copy-snippet-btn" onclick="copySnippet(this)">Másolás</button>
+          </div>
+          <pre><code>public function toArray(Request $request): array {
+    return [
+        'identifier'  => $this->id,
+        'title_of_something'  => strtoupper($this->title),
+        'things'   => ThingResource::collection($this->whenLoaded('things')),
+    ];
+}</code></pre>
+        </div>
+      </div>
+
+      <div class="box" data-keywords="relationship model eloquent">
+        <div class="box-header">
+          <span class="box-title">Kapcsolatok</span>
+        </div>
+        <div class="box-content">
+            <div class="snippet-header">
+              <h3 class="snippet-title">Kapcsolatok definiálása a modellekben</h3>
+              <button class="copy-snippet-btn" onclick="copySnippet(this)">Másolás</button>
+            </div>
+          <pre><code>
+// "1" oldal:
+public function posts() {
+    return $this->hasMany(Post::class);
+}
+// "N" oldal:
+public function user() {
+    return $this->belongsTo(User::class);
+}
+</code></pre>
+           <div class="snippet-header">
+              <h3 class="snippet-title">Több a többhöz kapcsolat (N:N)</h3>
+              <p>Kapcsolótábla elnevezése: abc sorrendben, alulvonással elválasztva, pl.: playlist_song</p>
+              <button class="copy-snippet-btn" onclick="copySnippet(this)">Másolás</button>
+            </div>
+          <pre><code>Song.php
+public function playlists() { return $this->belongsToMany(Playlist::class) }
+
+Playlist.php
+public function songs() { return $this->belongsToMany(Song::class) }</code></pre>
+        </div>
+      </div>
+      <div class="box" data-keywords="seeder route api">
+        <div class="box-header">
+          <span class="box-title">Seeder és Végpontok</span>
+        </div>
+        <div class="box-content">
+          <div class="snippet-header">
+            <h3 class="snippet-title">DatabaseSeeder.php</h3>
+            <p>Mintaadatok generálása az adatbázisba:</p>
+            <button class="copy-snippet-btn" onclick="copySnippet(this)">Másolás</button>
+          </div>
+          <pre><code>public function run(): void
+    {
+        User::factory(10)->create(); // 10 user generálása a factory segítségével
+
+        $user1 = User::create(['name' => 'Name1', 'email' => 'name1@domain.hu']);
+
+        $post1 = Post::create([
+            'user_id' => $user1->id,
+            'title' => 'Title',
+            'content' => 'Content'
+        ]);
+
+        Comment::create([
+            'post_id' => $post1->id,
+            'user_name' => 'Guest',
+            'body' => 'Body'
+        ]);
+    }
+</code></pre>
+
+          <div class="snippet-header">
+            <h3 class="snippet-title">Végpontok (api.php)</h3>
+            <button class="copy-snippet-btn" onclick="copySnippet(this)">Másolás</button>
+          </div>
+          <pre><code>use App\Http\Controllers\SongController;
+
+Route::apiResource('songs', SongController::class);
+// Ez létrehozza: GET /api/songs, POST /api/songs, GET /api/songs/{id}, stb.
+
+Route::put('/comments/{comment}', [CommentController::class, 'update']);</code></pre>
+        </div>
+      </div>
+
+      <div class="box" data-keywords="example endpoints">
+        <div class="box-header">
+          <span class="box-title">Példa végpontok</span>
+        </div>
+        <div class="box-content">
+          <pre><code>
+      public function index(Request $request)
+      {
+          $search = $request->query('search');
+  
+          $songs = Song::query()
+              ->when($search, function ($query, $search) {
+                  $query->where('title', 'like', '%' . $search . '%');
+              })
+              ->with(['user:id,name', 'album:id,title'])
+              ->get();
+  
+          return response()->json($songs, 200);
+      }
+          </code></pre>
+    <pre><code>
+      public function listByUser($id)
+        {
+            $user = User::find($id);
+    
+            if (!$user) {
+                return response()->json(['message' => 'User not found!'], 404);
+            }
+    
+            // $songs = $user->songs;
+            $songs = Song::with('user:id,name')->where('user_id', $id)->get();
+    
+            return response()->json($songs, 200);
+        }
+    </code></pre>
+<pre><code>
+  public function getNewSongs(Request $request) {
+      $count = $request->query('count', 10);
+
+      $songs = Song::with('user:id,name')->orderBy('created_at', 'desc')->limit($count)->get();
+
+      return response()->json($songs);
+  }
+</code></pre>
+  <pre><code>
+    public function random(Request $request)
+      {
+  
+          $count = $request->query('count', 10);
+  
+          $songs = Song::inRandomOrder()
+              ->limit($count)
+              ->with(['user:id,name', 'album:id,title'])
+              ->get();
+  
+          return response()->json($songs);
+      }
+  </code></pre>
+    <pre><code>
+      public function logPlay(Request $request, $id)
+        {
+    
+            $song = Song::find($id);
+    
+            if (!$song) {
+                return response()->json(['error' => 'Song not found'], 404);
+            }
+    
+            try {
+                DB::transaction(function () use ($request, $song) {
+                    $song->increment('plays');
+    
+                    $user = auth('sanctum')->user();
+    
+                    ListeningHistoryItem::create([
+                        'user_id'     => $user ? $user->id : null,
+                        'song_id'     => $song->id,
+                        'album_id'    => $song->album_id,
+                        'playlist_id' => $request->input('playlist_id'),
+                    ]);
+                });
+    
+                return response()->json(['message' => 'Play logged successfully'], 200);
+    
+            } catch (\Exception $e) {
+                return response()->json([
+                    'error' => 'Failed to log play',
+                    'message' => $e->getMessage()
+                ], 500);
+            }
+        }
+    </code></pre>
+<pre><code>
+  /**
+   * Display the specified resource.
+   */
+  public function show($id)
+  {
+      $song = Song::with(['user:id,name', 'album:id,title'])->find($id);
+
+      if (!$song) {
+          return response()->json(['message' => 'Song not found!'], 404);
+      }
+
+      return response()->json($song);
+  }
+</code></pre>
+  <pre><code>
+    public function update(Request $request, Comment $comment)
+      {
+          $validatedData = $request->validate([
+              'body' => 'required|string|min:2', // Kötelező, szöveg, és legalább 2 karakter
+          ]);
+  
+          $comment->update($validatedData);
+  
+          return response()->json([
+              'message' => 'A hozzászólás sikeresen frissítve!',
+              'comment' => $comment
+          ], 200);
+      }</div>
+  </code></pre>
+      </div>
+</div>
+    
+
+    <!-- Backend - ASP.NET -->
+    <div id="backend-aspnet" class="section">
+      <h2>Backend - ASP.NET</h2>
+
+      <div class="box" data-keywords="controller action">
+        <div class="box-header">
+          <span class="box-title">Controller</span>
+        </div>
+        <div class="box-content">// Ide írd a jegyzetet</div>
+      </div>
+
+      <div class="box" data-keywords="entity framework core">
+        <div class="box-header">
+          <span class="box-title">Entity Framework</span>
+        </div>
+        <div class="box-content">// Ide írd a jegyzetet</div>
+      </div>
+
+      <div class="box" data-keywords="view razor">
+        <div class="box-header">
+          <span class="box-title">Razor</span>
+          <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+        </div>
+        <div class="box-content">// Ide írd a jegyzetet</div>
+      </div>
+    </div>
+
+    <!-- Backend - Node.js -->
+    <div id="backend-next" class="section">
+      <h2>Backend - Next.js</h2>
+
+      <div class="box" data-keywords="next.js route">
+        <div class="box-header">
+          <span class="box-title">REST végpontok</span>
+        </div>
+        <div class="box-content">
+          <div class="snippet-header">
+            <h3 class="snippet-title">standard GET</h3>
+            <button class="copy-snippet-btn" onclick="copySnippet(this)">
+              Másolás
+            </button>
+          </div>
+          <pre><code>export async function GET() {
   try {
     const data = await prisma.table.findMany({});
     return NextResponse.json(data);
@@ -325,13 +583,13 @@ setArray(apiLekeresResponse.data);</code></pre>
   }
 }</code></pre>
 
-            <div class="snippet-header">
-              <h3 class="snippet-title">standard GET by Id</h3>
-              <button class="copy-snippet-btn" onclick="copySnippet(this)">
-                Másolás
-              </button>
-            </div>
-            <pre><code>export async function GET(
+          <div class="snippet-header">
+            <h3 class="snippet-title">standard GET by Id</h3>
+            <button class="copy-snippet-btn" onclick="copySnippet(this)">
+              Másolás
+            </button>
+          </div>
+          <pre><code>export async function GET(
   request: NextRequest,
   { params }: { params: Promise&lt;{ id: string }&gt; }
 ) {
@@ -349,13 +607,13 @@ setArray(apiLekeresResponse.data);</code></pre>
   }
 }</code></pre>
 
-            <div class="snippet-header">
-              <h3 class="snippet-title">standard POST</h3>
-              <button class="copy-snippet-btn" onclick="copySnippet(this)">
-                Másolás
-              </button>
-            </div>
-            <pre><code>export async function POST(request: Request) {
+          <div class="snippet-header">
+            <h3 class="snippet-title">standard POST</h3>
+            <button class="copy-snippet-btn" onclick="copySnippet(this)">
+              Másolás
+            </button>
+          </div>
+          <pre><code>export async function POST(request: Request) {
   try {
     const body = await request.json();
     const newOne = await prisma.table.create({
@@ -370,13 +628,13 @@ setArray(apiLekeresResponse.data);</code></pre>
   }
 }</code></pre>
 
-            <div class="snippet-header">
-              <h3 class="snippet-title">standard PATCH</h3>
-              <button class="copy-snippet-btn" onclick="copySnippet(this)">
-                Másolás
-              </button>
-            </div>
-            <pre><code>export async function PATCH(
+          <div class="snippet-header">
+            <h3 class="snippet-title">standard PATCH</h3>
+            <button class="copy-snippet-btn" onclick="copySnippet(this)">
+              Másolás
+            </button>
+          </div>
+          <pre><code>export async function PATCH(
   request: NextRequest,
   { params }: { params: Promise&lt;{ id: string }&gt; }
 ) {
@@ -396,13 +654,13 @@ setArray(apiLekeresResponse.data);</code></pre>
   }
 }</code></pre>
 
-            <div class="snippet-header">
-              <h3 class="snippet-title">standard PUT</h3>
-              <button class="copy-snippet-btn" onclick="copySnippet(this)">
-                Másolás
-              </button>
-            </div>
-            <pre><code>export async function PUT(
+          <div class="snippet-header">
+            <h3 class="snippet-title">standard PUT</h3>
+            <button class="copy-snippet-btn" onclick="copySnippet(this)">
+              Másolás
+            </button>
+          </div>
+          <pre><code>export async function PUT(
   request: NextRequest,
   { params }: { params: Promise&lt;{ id: string }&gt; }
 ) {
@@ -422,13 +680,13 @@ setArray(apiLekeresResponse.data);</code></pre>
   }
 }</code></pre>
 
-            <div class="snippet-header">
-              <h3 class="snippet-title">standard DELETE</h3>
-              <button class="copy-snippet-btn" onclick="copySnippet(this)">
-                Másolás
-              </button>
-            </div>
-            <pre><code>export async function DELETE(
+          <div class="snippet-header">
+            <h3 class="snippet-title">standard DELETE</h3>
+            <button class="copy-snippet-btn" onclick="copySnippet(this)">
+              Másolás
+            </button>
+          </div>
+          <pre><code>export async function DELETE(
   request: NextRequest,
   { params }: { params: Promise&lt;{ id: string }&gt; }
 ) {
@@ -443,31 +701,31 @@ setArray(apiLekeresResponse.data);</code></pre>
     );
   }
 }</code></pre>
-          </div>
         </div>
+      </div>
 
-        <div class="box" data-keywords="mongodb mongoose">
-          <div class="box-header">
-            <span class="box-title">MongoDB - Prisma</span>
+      <div class="box" data-keywords="mongodb mongoose">
+        <div class="box-header">
+          <span class="box-title">MongoDB - Prisma</span>
+        </div>
+        <div class="box-content">
+          <div class="snippet-header">
+            <h3 class="snippet-title">start Mongo szerver</h3>
+            <button class="copy-snippet-btn" onclick="copySnippet(this)">
+              Másolás
+            </button>
           </div>
-          <div class="box-content">
-            <div class="snippet-header">
-              <h3 class="snippet-title">start Mongo szerver</h3>
-              <button class="copy-snippet-btn" onclick="copySnippet(this)">
-                Másolás
-              </button>
-            </div>
-            <pre><code>if not exist "c:\data\" mkdir "c:\data"
+          <pre><code>if not exist "c:\data\" mkdir "c:\data"
 if not exist "c:\data\db" mkdir "c:\data\db"
 "c:\Program Files\MongoDB\Server\8.2\bin\mongod.exe" --dbpath="c:\data\db" --replSet "rs0"</code></pre>
 
-            <div class="snippet-header">
-              <h3 class="snippet-title">json file jsonArray formátumban</h3>
-              <button class="copy-snippet-btn" onclick="copySnippet(this)">
-                Másolás
-              </button>
-            </div>
-            <pre><code>[
+          <div class="snippet-header">
+            <h3 class="snippet-title">json file jsonArray formátumban</h3>
+            <button class="copy-snippet-btn" onclick="copySnippet(this)">
+              Másolás
+            </button>
+          </div>
+          <pre><code>[
   {
     "_id": 1,
     "unique_something": "alpha",
@@ -480,13 +738,13 @@ if not exist "c:\data\db" mkdir "c:\data\db"
   }
 ]</code></pre>
 
-            <div class="snippet-header">
-              <h3 class="snippet-title">másik collection example</h3>
-              <button class="copy-snippet-btn" onclick="copySnippet(this)">
-                Másolás
-              </button>
-            </div>
-            <pre><code>[
+          <div class="snippet-header">
+            <h3 class="snippet-title">másik collection example</h3>
+            <button class="copy-snippet-btn" onclick="copySnippet(this)">
+              Másolás
+            </button>
+          </div>
+          <pre><code>[
   {
     "_id": 1,
     "date": {
@@ -501,40 +759,40 @@ if not exist "c:\data\db" mkdir "c:\data\db"
     "relation_id": 2
   }
 ]</code></pre>
-            <div class="snippet-header">
-              <h3 class="snippet-title">Mongo db feltöltése a json fájlokkal</h3>
-              <button class="copy-snippet-btn" onclick="copySnippet(this)">
-                Másolás
-              </button>
-            </div>
-            <pre><code>@echo off
+          <div class="snippet-header">
+            <h3 class="snippet-title">Mongo db feltöltése a json fájlokkal</h3>
+            <button class="copy-snippet-btn" onclick="copySnippet(this)">
+              Másolás
+            </button>
+          </div>
+          <pre><code>@echo off
 chcp 65001
 "mongoimport.exe" --uri="mongodb://localhost:27017" --db=dbname --collection=collectionname --drop --file=filename.json --jsonArray
 "mongoimport.exe" --uri="mongodb://localhost:27017" --db=dbname --collection=collectionname --drop --file=filename.json --jsonArray
 echo PLEASE KILL AND RESTART YOUR BACKEND SERVER DEV TASK IF RUNNING!</code></pre>
 
-            <div class="snippet-header">
-              <h3 class="snippet-title">.env fájl tartalma</h3>
-              <button class="copy-snippet-btn" onclick="copySnippet(this)">
-                Másolás
-              </button>
-            </div>
-            <pre><code>DATABASE_URL="mongodb://localhost:27017/dbname"</code></pre>
-            <div class="snippet-header">
-              <h3 class="snippet-title">prisma schema létrehozása</h3>
-              <button class="copy-snippet-btn" onclick="copySnippet(this)">
-                Másolás
-              </button>
-            </div>
-            <pre><code>npx prisma db pull --force</code></pre>
+          <div class="snippet-header">
+            <h3 class="snippet-title">.env fájl tartalma</h3>
+            <button class="copy-snippet-btn" onclick="copySnippet(this)">
+              Másolás
+            </button>
+          </div>
+          <pre><code>DATABASE_URL="mongodb://localhost:27017/dbname"</code></pre>
+          <div class="snippet-header">
+            <h3 class="snippet-title">prisma schema létrehozása</h3>
+            <button class="copy-snippet-btn" onclick="copySnippet(this)">
+              Másolás
+            </button>
+          </div>
+          <pre><code>npx prisma db pull --force</code></pre>
 
-            <div class="snippet-header">
-              <h3 class="snippet-title">prisma schema example</h3>
-              <button class="copy-snippet-btn" onclick="copySnippet(this)">
-                Másolás
-              </button>
-            </div>
-            <pre><code>datasource db {
+          <div class="snippet-header">
+            <h3 class="snippet-title">prisma schema example</h3>
+            <button class="copy-snippet-btn" onclick="copySnippet(this)">
+              Másolás
+            </button>
+          </div>
+          <pre><code>datasource db {
   provider = "mongodb"
   url      = env("DATABASE_URL")
 }
@@ -561,26 +819,27 @@ model Collection2 {
 }
 </code></pre>
 
-            <div class="snippet-header">
-              <h3 class="snippet-title">prisma schema pusholása</h3>
-              <button class="copy-snippet-btn" onclick="copySnippet(this)">
-                Másolás
-              </button>
-            </div>
-            <pre><code>npx prisma db push</code></pre>
+          <div class="snippet-header">
+            <h3 class="snippet-title">prisma schema pusholása</h3>
+            <button class="copy-snippet-btn" onclick="copySnippet(this)">
+              Másolás
+            </button>
           </div>
+          <pre><code>npx prisma db push</code></pre>
         </div>
-        <div class="box" data-keywords="next.js">
-          <div class="box-header">
-            <span class="box-title">Egyéb</span>
+      </div>
+      <div class="box" data-keywords="next.js">
+        <div class="box-header">
+          <span class="box-title">Egyéb</span>
+        </div>
+        <div class="box-content">
+          <div class="snippet-header">
+            <h3 class="snippet-title">Next.js backend struktúra</h3>
           </div>
-          <div class="box-content">
-            <div class="snippet-header">
-              <h3 class="snippet-title">Next.js backend struktúra</h3>
-            </div>
-            <img src="pics/next_backend_structure.png" alt="Nem jelent meg a kép, ezer bocsánat!" />
-          </div>
-    </div>
-    <script src="script.js"></script>
-  </body>
+          <img src="pics/next_backend_structure.png" alt="Nem jelent meg a kép, ezer bocsánat!" />
+        </div>
+      </div>
+      <script src="script.js"></script>
+</body>
+
 </html>
