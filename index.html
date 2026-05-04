@@ -55,7 +55,7 @@
             try
             {
                 string jsonAsStr = File.ReadAllText(fileName);
-                return JsonSerializer.Deserialize&lt;List&lt;Flight&gt;&gt;(jsonAsStr);
+                return JsonSerializer.Deserialize&lt;List&lt;Classname&gt;&gt;(jsonAsStr);
             }
             catch (Exception)
             {
@@ -67,9 +67,23 @@
 
       <div class="box" data-keywords="string int array list">
         <div class="box-header">
-          <span class="box-title">Adattípusok és kollekciók</span>
+          <span class="box-title">Listák, fájlbeolvasás sikerességének ellenőrzése</span>
+          <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
         </div>
-        <div class="box-content">// Ide írd a jegyzetet</div>
+        <div class="box-content">        List&lt;Mintaclass&gt; mintaclass = null;
+        List&lt;Mintaclass2&gt; mintaclass2 = null;
+
+        try
+        {
+            mintaclass = Mintaclass.LoadFromJSON("mintaFile.json");
+            mintaclass2 = Mintaclass2.LoadFromJSON("mintaFile2.json");
+            Console.WriteLine("Sikeres fájlolvasás!");
+        }
+        catch
+        {
+            Console.WriteLine("Hiba a fájlok beolvasása közben!");
+            return;
+        }</div>
       </div>
 
       <div class="box" data-keywords="class method namespace">
