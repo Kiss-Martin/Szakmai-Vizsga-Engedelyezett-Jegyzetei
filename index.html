@@ -38,11 +38,31 @@
     <div id="csharp" class="section">
       <h2>C# Console App</h2>
 
+      <div class="box guide" data-keywords="json config settings">
+        <div class="box-header">
+          <span class="box-title">JSON konfiguráció - Paste Special</span>
+        </div>
+        <div class="box-content">Visual Studio-ban: Edit → Paste Special → Paste JSON as Classes <br>Ez létrehozza a megfelelő C# osztályokat a JSON-ból <br>.json file-ok "copy if newer/copy always" Property beállítása </div>
+      </div>
+
       <div class="box" data-keywords="console write readline">
         <div class="box-header">
-          <span class="box-title">Console Input/Output</span>
+          <span class="box-title">Class vége Json használata esetén</span>
+          <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
         </div>
-        <div class="box-content">// Ide írd a jegyzetet</div>
+        <div class="box-content">        public static List&lt;Classname&gt;? LoadFromJSON(string fileName)
+        {
+            try
+            {
+                string jsonAsStr = File.ReadAllText(fileName);
+                return JsonSerializer.Deserialize&lt;List&lt;Flight&gt;&gt;(jsonAsStr);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            
+        }</div>
       </div>
 
       <div class="box" data-keywords="string int array list">
@@ -59,12 +79,6 @@
         <div class="box-content">// Ide írd a jegyzetet</div>
       </div>
 
-      <div class="box guide" data-keywords="json config settings">
-        <div class="box-header">
-          <span class="box-title">JSON konfiguráció - Paste Special</span>
-        </div>
-        <div class="box-content">Visual Studio-ban: Edit → Paste Special → Paste JSON as Classes <br>Ez létrehozza a megfelelő C# osztályokat a JSON-ból <br>.json file-ok "copy if newer/copy always" Property beállítása </div>
-      </div>
 
 
     </div>
