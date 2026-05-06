@@ -48,22 +48,16 @@
 
       <div class="box" data-keywords="console write readline">
         <div class="box-header">
-          <span class="box-title">Class vége Json használata esetén</span>
+          <span class="box-title">Class vége Json beolvasás használata esetén</span>
           <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
         </div>
-        <div class="box-content">        public static List&lt;Classname&gt;? LoadFromJSON(string fileName)
-        {
-            try
-            {
-                string jsonAsStr = File.ReadAllText(fileName);
-                return JsonSerializer.Deserialize&lt;List&lt;Classname&gt;&gt;(jsonAsStr);
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-            
-        }</div>
+        <div class="box-content">
+          public static List&lt;MintaClass&gt; LoadFromJSON(string fileName = "minta.json")
+          {
+              var jsonText = File.ReadAllText(fileName);
+              return JsonSerializer.Deserialize&lt;List&lt;MintaClass&gt;&gt;(jsonText) ?? new List&lt;MintaClass&gt;();
+          }
+        </div>
       </div>
 
       <div class="box" data-keywords="string int array list">
@@ -71,20 +65,21 @@
           <span class="box-title">Listák, fájlbeolvasás sikerességének ellenőrzése</span>
           <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
         </div>
-        <div class="box-content">        List&lt;Mintaclass&gt; mintaclass = null!;
-        List&lt;Mintaclass2&gt; mintaclass2 = null!;
+        <div class="box-content">
 
-        try
-        {
-            mintaclass = Mintaclass.LoadFromJSON("mintaFile.json");
-            mintaclass2 = Mintaclass2.LoadFromJSON("mintaFile2.json");
-            Console.WriteLine("Sikeres fájlolvasás!");
-        }
-        catch
-        {
-            Console.WriteLine("Hiba a fájlok beolvasása közben!");
-            return;
-        }</div>
+          List&lt;MintaClass&gt; minta = new List&lt;MintaClass&gt;(); //lehet var is
+          var minta = new List&lt;MintaClass&gt;(); 
+
+          try
+          {
+            minta = MintaClass.LoadFromJSON();                           
+          }
+          catch
+          {
+              Console.WriteLine("Hiba");
+          }
+
+        </div>
       </div>
 
       <div class="box" data-keywords="class property nullable">
@@ -177,6 +172,83 @@ Microsoft.EntityFrameworkCore.Tools (8.0.22)
           <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
         </div>
         <div class="box-content">Scaffold-DbContext -Connection "server=localhost;database=adatbazis-nev;uid=root;pwd=;" -Provider Mysql.EntityFrameworkCore</div>
+      </div>
+
+      <div class="box" data-keywords="xaml binding">
+        <div class="box-header">
+          <span class="box-title">Datagrid felépítése</span>
+          <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+        </div>
+        <div class="box-content">      
+
+          &lt;DataGrid Name="dgMinta" IsReadOnly="True" AutoGenerateColumns="False"&gt;
+            &lt;DataGrid.Columns&gt;
+                &lt;DataGridTextColumn Header="Id" Width="30" Binding="{Binding Id}"&gt;                
+            &lt;/DataGrid.Columns&gt;
+          &lt;/DataGrid&gt;
+        </div>
+      </div>
+
+      <div class="box" data-keywords="mvvm viewmodel command">
+        <div class="box-header">
+          <span class="box-title">Adatok formázása</span>
+        </div>
+        <div class="box-content">
+            Binding="{Binding Date, StringFormat=yyyy.MM.dd HH:mm}"
+            Binding="{Binding Price, StringFormat={}{0:# ###} Ft}"
+            Binding="{Binding Adat, TargetNullValue='N/A'}"
+        </div>
+      </div>
+
+      <div class="box" data-keywords="mvvm viewmodel command">
+        <div class="box-header">
+          <span class="box-title">Context létrehozása</span>
+        </div>
+        <div class="box-content">
+            private MintaContext dbContext = new MintaContext();
+        </div>
+      </div>
+
+      <div class="box" data-keywords="mvvm viewmodel command">
+        <div class="box-header">
+          <span class="box-title">ComboBox feltöltése</span>
+        </div>
+        <div class="box-content">
+          cboMinta.ItemSource = tömb változó ami feltölti ComboBox-t pl: adatok;
+          cboMinta.DisplayMemberPath = Osztályban lévő mező megjelenítése pl: "Név";
+          cboMinta.SelectedValuePath = Osztályban lévő azonosító megadása pl: "Id";
+          cboMinta.SelectedIndex = hányadik elem legyen alapból kiválasztva pl: 0;
+        </div>
+      </div>
+
+      <div class="box" data-keywords="mvvm viewmodel command">
+        <div class="box-header">
+          <span class="box-title">Combobox létrehozása</span>
+        </div>
+        <div class="box-content">
+            &lt;ComboBox Name="cboMinta"&gt;
+        </div>
+      </div>
+
+      <div class="box" data-keywords="mvvm viewmodel command">
+        <div class="box-header">
+          <span class="box-title">Combobox létrehozása</span>
+        </div>
+        <div class="box-content">                      
+                var adatok = dbContext.Set&lt;MintaClass&gt;().ToList();
+                                           
+
+                dgMinta.ItemsSource = dbContext.Set&lt;MintaClass&gt;().ToList();            
+        </div>
+      </div>
+
+      
+
+      <div class="box" data-keywords="mvvm viewmodel command">
+        <div class="box-header">
+          <span class="box-title">Elem beszúra</span>
+        </div>
+        <div class="box-content">adatok.Insert(0, new MintaClass {}); </div>
       </div>
 
       <div class="box" data-keywords="mvvm viewmodel command">
