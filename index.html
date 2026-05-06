@@ -87,7 +87,7 @@
         }</div>
       </div>
 
-      <div class="box" data-keywords="class method namespace">
+      <div class="box" data-keywords="class property nullable">
         <div class="box-header">
           <span class="box-title">Classoknál érdemes figyelni</span>
         </div>
@@ -95,7 +95,46 @@
 public int? Valami { get; set; }   // lehet null</div>
       </div>
 
+            <div class="box" data-keywords="date format decimal">
+        <div class="box-header">
+          <span class="box-title">Dátum és tizedesjegy formázás</span>
+        </div>
+        <div class="box-content">
+          {x:f0} -> nincs tizedesjegy
+          {x:f1} -> 1 tizedesjegy stb...
+          
+          {d:F} -> teljes dátum és idő (pl. 2024. június 29. 14:30:00)
+          {d:d} -> rövid dátum (pl. 2024/06/29.)
+        </div>
+      </div>
 
+      <div class="box" data-keywords="linq">
+        <div class="box-header">
+          <span class="box-title">Gyors Linq</span>
+        </div>
+        <div class="box-content"><ul>
+      <li>Where(x => ...) → szűrés</li>
+      <li>Select(x => ...) → átalakítás</li>
+      <li>SelectMany(...) → lapítás (lista a listából)</li>
+      <li>OrderBy(x => ...) → növekvő rendezés</li>
+      <li>OrderByDescending(...) → csökkenő</li>
+      <li>GroupBy(x => ...) → csoportosítás kulcs szerint</li>
+      <li>ToList() → listává alakít</li>
+      <li>ToArray() → tömbbé alakít</li>
+      <li>First() → első elem (hiba ha nincs)</li>
+      <li>FirstOrDefault() → első vagy null/default</li>
+      <li>Single() → pontosan 1 elem kell</li>
+      <li>SingleOrDefault() → 0 vagy 1 elem</li>
+      <li>Count() → elemszám</li>
+      <li>Sum(x => ...) → összeg</li>
+      <li>Max() / Min() → legnagyobb / legkisebb</li>
+      <li>Average() → átlag</li>
+      <li>Distinct() → duplikátumok eltávolítása</li>
+      <li>Skip(n) → első n kihagyása</li>
+      <li>Zip(a, b, (x,y)=>...) → párosítás két lista között</li>
+      <li>Join(...) → összekapcsolás kulcs alapján</li>
+      </div>
+      </div>
 
     </div>
 

@@ -257,3 +257,6 @@
     .box.guide .box-title::before {
         content: "📌 ";
     }
+    li{
+        margin-left: 10%;
+    }
