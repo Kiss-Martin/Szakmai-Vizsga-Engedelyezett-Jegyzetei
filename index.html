@@ -934,6 +934,46 @@ public class AdatbazisContext: DbContext
     }
 }</code></pre></div>
 </div>
+<div class="box" data-keywords="model entity data annotations table required stringlength column notmapped range">
+  <div class="box-header">
+    <span class="box-title">Model - Data Annotations (Adatbázis beállítások)</span>
+    <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+  </div>
+  <div class="box-content"><pre><code>using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+[Table("konyvek")]
+public class Konyv
+{
+    // [Key] - akkor kellene ha nem 'Id' lenne 
+    public int Id { get; set; }
+
+    [Required]
+    [StringLength(150)]
+    //Unique-t a contextben lehet csak!
+    public string Cim { get; set; } = "";
+
+    [Range(1, 5000)]
+    public int Oldalszam { get; set; }
+
+    [Column(TypeName = "decimal(10, 2)")]
+    //Pontos adattípus megadása az adatbázisban
+    public decimal Ar { get; set; }
+
+    public int SzerzoId { get; set; }
+
+    [Required]
+    // [ForeignKey("SzerzoId")] - csak akkor kellene ha nem 'SzerzoId' mező lenne hanem 'ValamiMásNév' 
+    public Szerzo? Szerzo { get; set; }
+
+    [StringLength(2000)]
+    public string? Leiras { get; set; }
+
+    [NotMapped]
+    //Ezt a mezőt kihagyja az adatbázis generálásakor! (Csak C#-ban létezik)
+    public string KonyvAdatai => $"{Cim} ({Oldalszam} oldal)";
+}</code></pre></div>
+</div>
 
     </div>
 
