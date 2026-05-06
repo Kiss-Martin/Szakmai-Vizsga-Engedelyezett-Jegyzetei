@@ -694,27 +694,247 @@ Route::put('/comments/{comment}', [CommentController::class, 'update']);</code><
     <div id="backend-aspnet" class="section">
       <h2>Backend - ASP.NET</h2>
 
-      <div class="box" data-keywords="controller action">
-        <div class="box-header">
-          <span class="box-title">Controller</span>
-        </div>
-        <div class="box-content">// Ide írd a jegyzetet</div>
-      </div>
+      <div class="box" data-keywords="controller alapok setup using">
+  <div class="box-header">
+    <span class="box-title">Controller Alapok (Fejléc)</span>
+    <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+  </div>
+  <div class="box-content"><pre><code>using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Text.Json;
 
-      <div class="box" data-keywords="entity framework core">
-        <div class="box-header">
-          <span class="box-title">Entity Framework</span>
-        </div>
-        <div class="box-content">// Ide írd a jegyzetet</div>
-      </div>
+namespace VizsgaProject.Controllers
+{
+    [Route("api")]
+    [ApiController]
+    public class VizsgaController : ControllerBase
+    {
+        AdatbazisContext dbContext = new AdatbazisContext();</code></pre></div>
+</div>
 
-      <div class="box" data-keywords="view razor">
-        <div class="box-header">
-          <span class="box-title">Razor</span>
-          <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
-        </div>
-        <div class="box-content">// Ide írd a jegyzetet</div>
-      </div>
+<div class="box" data-keywords="get lista query route include theninclude">
+  <div class="box-header">
+    <span class="box-title">GET - Listázás és Szűrés</span>
+    <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+  </div>
+  <div class="box-content"><pre><code>        // Route("api") miatt ez ilyen lesz:
+        // &lt;ipcím&gt;/api/konyvek/{orszagNev}/lista
+        
+        [HttpGet("konyvek/{orszagNev}/lista")]
+        public IActionResult GetKonyvek([FromRoute] string orszagNev, [FromQuery] int? minOldalszam)
+        {
+            var query = dbContext.Set&lt;Konyv&gt;()
+                                 .Include(k =&gt; k.Szerzo)
+                                 // A ThenInclude arra való, hogy a már behozott (Include-olt) tábla egy további kapcsolódó al-tábláját is hozzáfűzzük a lekérdezéshez. Itt a Könyvhöz bekértük a Szerzőt, majd a Szerzőhöz a hazáját (Ország).
+                                 .ThenInclude(sz =&gt; sz.Orszag)
+                                 .Where(k =&gt; k.Szerzo.Orszag.Nev.ToLower() == orszagNev.ToLower());
+
+            if (minOldalszam.HasValue)
+            {
+                query = query.Where(k =&gt; k.Oldalszam &gt;= minOldalszam.Value);
+            }
+
+            var eredmeny = query.Select(k =&gt; new
+            {
+                k.Cim,
+                k.Oldalszam,
+                Szerzo = k.Szerzo.Nev,
+                Orszag = k.Szerzo.Orszag.Nev
+            });
+
+            if (eredmeny.Count() == 0)
+            {
+                return NotFound(new { Message = "Nincs találat...." });
+            }
+
+            return Ok(eredmeny);
+        }</code></pre></div>
+</div>
+
+<div class="box" data-keywords="get by id egy elem">
+  <div class="box-header">
+    <span class="box-title">GET - Egy Elem Lekérése (ID alapján)</span>
+    <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+  </div>
+  <div class="box-content"><pre><code>        [HttpGet("konyvek/{id}")]
+        public IActionResult GetById([FromRoute] string id)
+        {
+            Konyv? elem = dbContext.Set&lt;Konyv&gt;().SingleOrDefault(k =&gt; k.Id.ToString() == id);
+
+            if (elem == null)
+            {
+                return NotFound(new { Message = "Nincs ilyen elem...." });
+            }
+
+            return Ok(elem);
+        }</code></pre></div>
+</div>
+
+<div class="box" data-keywords="post letrehozas uj add frombody dynamic json">
+  <div class="box-header">
+    <span class="box-title">POST - Új Elem Létrehozása</span>
+    <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+  </div>
+  <div class="box-content"><pre><code>        [HttpPost("konyvek")]
+        public IActionResult CreateKonyv([FromBody] dynamic body)
+        {
+            try
+            {
+                Konyv model = JsonSerializer.Deserialize&lt;Konyv&gt;(body.ToString());
+
+                if (model.Oldalszam &lt; 1)
+                {
+                    return BadRequest(new { Message = "Hibás oldalszám" });
+                }
+
+                dbContext.Set&lt;Konyv&gt;().Add(model);
+                dbContext.SaveChanges();
+
+                return StatusCode(201, model);
+            }
+            catch
+            {
+                return StatusCode(400, new { Message = "Hiba van..." });
+            }
+        }</code></pre></div>
+</div>
+
+<div class="box" data-keywords="put modositas update frombody dynamic json">
+  <div class="box-header">
+    <span class="box-title">PUT - Meglévő Elem Módosítása</span>
+    <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+  </div>
+  <div class="box-content"><pre><code>        [HttpPut("konyvek/{id}")]
+        public IActionResult UpdateKonyv([FromRoute] string id, [FromBody] dynamic body)
+        {
+            try
+            {
+                Konyv? itemToUpdate = dbContext.Set&lt;Konyv&gt;().SingleOrDefault(k =&gt; k.Id.ToString() == id);
+
+                if (itemToUpdate == null)
+                {
+                    return BadRequest(new { Message = "Ilyen könyv nincs..." });
+                }
+
+                Konyv model = JsonSerializer.Deserialize&lt;Konyv&gt;(body.ToString());
+
+                if (model.Oldalszam &lt; 1)
+                {
+                    return BadRequest(new { Message = "Túl rövid..." });
+                }
+
+                itemToUpdate.Cim = model.Cim;
+                itemToUpdate.Oldalszam = model.Oldalszam;
+                itemToUpdate.SzerzoId = model.SzerzoId;
+
+                dbContext.Update(itemToUpdate);
+                dbContext.SaveChanges();
+
+                return Ok(itemToUpdate);
+            }
+            catch
+            {
+                return StatusCode(400, new { Message = "Hiba van..." });
+            }
+        }</code></pre></div>
+</div>
+
+<div class="box" data-keywords="delete torles remove">
+  <div class="box-header">
+    <span class="box-title">DELETE - Elem Törlése</span>
+    <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+  </div>
+  <div class="box-content"><pre><code>        [HttpDelete("konyvek/{id}")]
+        public IActionResult DeleteKonyv([FromRoute] string id)
+        {
+            try
+            {
+                Konyv? itemToDelete = dbContext.Set&lt;Konyv&gt;().SingleOrDefault(k =&gt; k.Id.ToString() == id);
+
+                if (itemToDelete == null)
+                {
+                    return BadRequest(new { Message = "Ilyen könyv nincs..." });
+                }
+
+                dbContext.Set&lt;Konyv&gt;().Remove(itemToDelete);
+                dbContext.SaveChanges();
+
+                return Ok(new { Message = "Sikeres törlés" });
+                //return NoContent();
+            }
+            catch
+            {
+                return StatusCode(400, new { Message = "Hiba van..." });
+            }
+        }
+    }
+}</code></pre></div>
+</div>
+
+      <div class="box" data-keywords="dbcontext dbset onconfiguring mysql">
+  <div class="box-header">
+    <span class="box-title">DbContext Alapok és Kapcsolat</span>
+    <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+  </div>
+  <div class="box-content"><pre><code>using Microsoft.EntityFrameworkCore;
+using System.Text.Json;
+using System.IO;
+using System.Collections.Generic;
+
+public class AdatbazisContext: DbContext
+{
+    public DbSet&lt;Konyv&gt; Konyvek { get; set; }
+    public DbSet&lt;Szerzo&gt; Szerzok { get; set; }
+    public DbSet&lt;Orszag&gt; Orszagok { get; set; }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        if (!optionsBuilder.IsConfigured)
+        {
+            optionsBuilder.UseMySQL("server=localhost;database=konyvtar_db;uid=root;pwd=;");
+        }
+    }</code></pre></div>
+</div>
+
+<div class="box" data-keywords="onmodelcreating hasindex isunique hasdata seed">
+  <div class="box-header">
+    <span class="box-title">OnModelCreating - Indexek és Normál HasData</span>
+    <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+  </div>
+  <div class="box-content"><pre><code>    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity&lt;Orszag&gt;().HasIndex(o =&gt; o.Nev).IsUnique();
+        modelBuilder.Entity&lt;Konyv&gt;().HasIndex(k =&gt; new { k.Cim, k.SzerzoId }).IsUnique();
+
+        modelBuilder.Entity&lt;Orszag&gt;().HasData(
+            new Orszag() { Id = 1, Nev = "Magyarország" },
+            new Orszag() { Id = 2, Nev = "Egyesült Királyság" },
+            new Orszag() { Id = 3, Nev = "Amerikai Egyesült Államok" }
+        );
+
+        modelBuilder.Entity&lt;Szerzo&gt;().HasData(
+            new Szerzo() { Id = 1, Nev = "Gárdonyi Géza", OrszagId = 1 },
+            new Szerzo() { Id = 2, Nev = "J.K. Rowling", OrszagId = 2 },
+            new Szerzo() { Id = 3, Nev = "Stephen King", OrszagId = 3 }
+        );</code></pre></div>
+</div>
+
+<div class="box" data-keywords="hasdata json jsonserializer file readalltext seed">
+  <div class="box-header">
+    <span class="box-title">HasData - Feltöltés JSON Fájlból</span>
+    <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+  </div>
+  <div class="box-content"><pre><code>        string jsonTartalom = File.ReadAllText("konyvek.json");
+        var konyvekLista = JsonSerializer.Deserialize&lt;List&lt;Konyv&gt;&gt;(jsonTartalom);
+        
+        if (konyvekLista != null)
+        {
+            modelBuilder.Entity&lt;Konyv&gt;().HasData(konyvekLista);
+        }
+    }
+}</code></pre></div>
+</div>
+
     </div>
 
     <!-- Backend - Node.js -->
