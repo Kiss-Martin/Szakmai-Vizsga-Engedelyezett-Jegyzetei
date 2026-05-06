@@ -136,6 +136,25 @@ public int? Valami { get; set; }   // lehet null</div>
       </div>
       </div>
 
+      <div class="box" data-keywords="zip">
+        <div class="box-header">
+          <span class="box-title">Zip Példa</span>
+          <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+        </div>
+        <div class="box-content">int[] numbers = { 1, 2, 3, 4 };
+
+var pairs = numbers.Zip(numbers.Skip(1), (a, b) => a + " -> " + b);
+
+foreach (var item in pairs)
+    Console.WriteLine(item);
+
+// This code produces the following output:
+
+// 1 -> 2
+// 2 -> 3
+// 3 -> 4</div>
+      </div>
+
     </div>
 
     <!-- WPF -->
