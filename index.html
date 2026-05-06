@@ -4,14 +4,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cheatsheet</title>
+  <title>Vizsgajegyzetek</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body data-theme="dark">
   <div class="container">
     <header>
-      <h1>Cheatsheet</h1>
+      <h1>Vizsgajegyzetek</h1>
       <small>Forrás: <a target="_blank" rel="noopener" href="https://net.jedlik.eu/">net.jedlik.eu</a> dokumentáció
         linkek</small>
       <div class="controls">
@@ -70,8 +70,8 @@
           <span class="box-title">Listák, fájlbeolvasás sikerességének ellenőrzése</span>
           <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
         </div>
-        <div class="box-content">        List&lt;Mintaclass&gt; mintaclass = null;
-        List&lt;Mintaclass2&gt; mintaclass2 = null;
+        <div class="box-content">        List&lt;Mintaclass&gt; mintaclass = null!;
+        List&lt;Mintaclass2&gt; mintaclass2 = null!;
 
         try
         {
@@ -88,9 +88,10 @@
 
       <div class="box" data-keywords="class method namespace">
         <div class="box-header">
-          <span class="box-title">OOP Alapok</span>
+          <span class="box-title">Classoknál érdemes figyelni</span>
         </div>
-        <div class="box-content">// Ide írd a jegyzetet</div>
+        <div class="box-content">public int Valami { get; set; }      // nem lehet null → default: 0
+public int? Valami { get; set; }   // lehet null</div>
       </div>
 
 
