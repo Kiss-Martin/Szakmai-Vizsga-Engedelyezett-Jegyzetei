@@ -987,6 +987,91 @@ model Collection2 {
             </button>
           </div>
           <pre><code>npx prisma db push</code></pre>
+          <div class="snippet-header">
+            <h3 class="snippet-title">prisma lekérés example</h3>
+            <button class="copy-snippet-btn" onclick="copySnippet(this)">
+              Másolás
+            </button>
+          </div>
+          <pre><code>// példa 1 - egyszerű lekérés
+const example1 = await prisma.exampleModel.findMany()
+
+// példa 2 - where használata
+const example2 = await prisma.exampleModel.findMany({
+  where: {
+    exampleField: "value"
+  }
+})
+
+// példa 3 - select használata
+const example3 = await prisma.exampleModel.findMany({
+  select: {
+    exampleField: true
+  }
+})
+
+// példa 4 - create
+const example4 = await prisma.exampleModel.create({
+  data: {
+    exampleField: "value"
+  }
+})
+
+// példa 5 - update
+const example5 = await prisma.exampleModel.update({
+  where: {
+    id: 1
+  },
+  data: {
+    exampleField: "newValue"
+  }
+})
+
+// példa 6 - delete
+const example6 = await prisma.exampleModel.delete({
+  where: {
+    id: 1
+  }
+})</code></pre>
+          <div class="snippet-header">
+            <h3 class="snippet-title">prisma operátorok</h3>
+            <button class="copy-snippet-btn" onclick="copySnippet(this)">
+              Másolás
+            </button>
+          </div>
+          <pre><code>where - itt adsz meg feltételeket pl. id: 1 vagy name: "John"
+
+data - itt adod meg a létrehozandó vagy módosítandó adatokat pl. name: "Anna"
+
+select - megadod, hogy mely mezőket akarod visszakapni pl. { id: true, name: true }
+
+include - kapcsolt (relációs) adatokat kérsz le pl. { posts: true }
+
+omit - megadod, mit NE adjon vissza pl. { password: true }
+
+orderBy - rendezés pl. { createdAt: "desc" }
+
+take - hány rekordot kérsz le (limit) pl. 10
+
+skip - hány rekordot hagyjon ki (offset) pl. 5
+
+distinct - csak egyedi értékeket ad vissza pl. ["email"]
+
+create - új kapcsolt rekord létrehozása relációban
+
+update - kapcsolt rekord frissítése
+
+upsert - ha létezik frissít, ha nem, létrehoz
+
+delete - rekord törlése
+
+deleteMany - több rekord törlése feltétel alapján
+
+updateMany - több rekord frissítése feltétel alapján
+
+createMany - több rekord létrehozása egyszerre
+
+count - megszámolja a rekordokat</code></pre>
         </div>
       </div>
       <div class="box" data-keywords="next.js">
