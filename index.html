@@ -95,12 +95,86 @@ public int? Valami { get; set; }   // lehet null</div>
           <span class="box-title">Dátum és tizedesjegy formázás</span>
         </div>
         <div class="box-content">
-          {x:f0} -> nincs tizedesjegy
-          {x:f1} -> 1 tizedesjegy stb...
-          
-          {d:F} -> teljes dátum és idő (pl. 2024. június 29. 14:30:00)
-          {d:d} -> rövid dátum (pl. 2024/06/29.)
-        </div>
+  <ul>
+    <li>
+      <b>{x:F0}</b> → nincs tizedesjegy<br>
+      <small>
+        Pl: <code>12.78 → 13</code>
+      </small>
+    </li>
+
+    <li>
+      <b>{x:F1}</b> → 1 tizedesjegy<br>
+      <small>
+        Pl: <code>12.78 → 12.8</code>
+      </small>
+    </li>
+
+    <li>
+      <b>{x:F2}</b> → 2 tizedesjegy<br>
+      <small>
+        Pl: <code>12.78 → 12.78</code>
+      </small>
+    </li>
+
+    <li>
+      <b>{d:F}</b> → teljes dátum és idő<br>
+      <small>
+        Pl: <code>2024. június 29. 14:30:00</code>
+      </small>
+    </li>
+
+    <li>
+      <b>{d:d}</b> → rövid dátum<br>
+      <small>
+        Pl: <code>2024.06.29.</code>
+      </small>
+    </li>
+
+    <li>
+      <b>{d:t}</b> → rövid idő formátum<br>
+      <small>
+        Pl: <code>14:30</code>
+      </small>
+    </li>
+
+    <li>
+      <b>{d:T}</b> → teljes idő formátum<br>
+      <small>
+        Pl: <code>14:30:00</code>
+      </small>
+    </li>
+
+    <li>
+      <b>{d:yyyy.MM.dd HH:mm}</b> → egyedi dátum + idő formátum<br>
+      <small>
+        Pl: <code>2024.06.29 14:30</code>
+      </small>
+    </li>
+  </ul>
+
+  <h3>Formázás példa</h3>
+
+  <pre><code>
+double x = 12.786;
+DateTime d = DateTime.Now;
+
+Console.WriteLine($"{x:F1}");
+Console.WriteLine($"{d:yyyy.MM.dd HH:mm}");
+  </code></pre>
+
+  <h3>Vizualizálva</h3>
+
+  <pre>
+12.786
+   ↓ F1
+12.8
+
+2024.06.29 14:30:45
+        ↓ yyyy.MM.dd HH:mm
+2024.06.29 14:30
+  </pre>
+</div>
       </div>
 
       <div class="box" data-keywords="linq">
@@ -108,26 +182,130 @@ public int? Valami { get; set; }   // lehet null</div>
           <span class="box-title">Gyors Linq</span>
         </div>
         <div class="box-content"><ul>
-      <li>Where(x => ...) → szűrés</li>
-      <li>Select(x => ...) → átalakítás</li>
-      <li>SelectMany(...) → lapítás (lista a listából)</li>
-      <li>OrderBy(x => ...) → növekvő rendezés</li>
-      <li>OrderByDescending(...) → csökkenő</li>
-      <li>GroupBy(x => ...) → csoportosítás kulcs szerint</li>
-      <li>ToList() → listává alakít</li>
-      <li>ToArray() → tömbbé alakít</li>
-      <li>First() → első elem (hiba ha nincs)</li>
-      <li>FirstOrDefault() → első vagy null/default</li>
-      <li>Single() → pontosan 1 elem kell</li>
-      <li>SingleOrDefault() → 0 vagy 1 elem</li>
-      <li>Count() → elemszám</li>
-      <li>Sum(x => ...) → összeg</li>
-      <li>Max() / Min() → legnagyobb / legkisebb</li>
-      <li>Average() → átlag</li>
-      <li>Distinct() → duplikátumok eltávolítása</li>
-      <li>Skip(n) → első n kihagyása</li>
-      <li>Zip(a, b, (x,y)=>...) → párosítás két lista között</li>
-      <li>Join(...) → összekapcsolás kulcs alapján</li>
+  <li>
+    <b>Where(x => ...)</b> → Szűrés feltétel alapján<br>
+    <small>Pl: csak a 18 év felettiek → <code>people.Where(p => p.Age >= 18)</code></small>
+  </li>
+
+  <li>
+    <b>Select(x => ...)</b> → Adatok átalakítása más formára<br>
+    <small>Pl: csak neveket kérsz le → <code>people.Select(p => p.Name)</code></small>
+  </li>
+
+  <li>
+    <b>SelectMany(...)</b> → Lista a listából → egy nagy lista<br>
+    <small><code>[[1,2],[3,4]] => [1,2,3,4]</code></small>
+  </li>
+
+  <li>
+    <b>OrderBy(x => ...)</b> → Növekvő rendezés<br>
+    <small>Pl: név szerint A-Z → <code>people.OrderBy(p => p.Name)</code></small>
+  </li>
+
+  <li>
+    <b>OrderByDescending(...)</b> → Csökkenő rendezés<br>
+    <small>Pl: legnagyobb pontszámtól → <code>scores.OrderByDescending(x => x)</code></small>
+  </li>
+
+  <li>
+    <b>GroupBy(x => ...)</b> → Csoportosítás kulcs szerint<br>
+    <small>Pl: diákok osztály szerint → <code>students.GroupBy(s => s.Class)</code></small>
+  </li>
+
+  <li>
+    <b>ToList()</b> → IEnumerable → List<br>
+    <small>Pl: módosítható lista kell → <code>query.ToList()</code></small>
+  </li>
+
+  <li>
+    <b>ToArray()</b> → Tömbbé alakítás<br>
+    <small>Pl: fix méretű tömb kell → <code>query.ToArray()</code></small>
+  </li>
+
+  <li>
+    <b>First()</b> → Első elem<br>
+    <small>Hiba, ha nincs elem → <code>numbers.First()</code></small>
+  </li>
+
+  <li>
+    <b>FirstOrDefault()</b> → Első elem vagy default/null<br>
+    <small>Biztonságosabb üres listánál → <code>numbers.FirstOrDefault()</code></small>
+  </li>
+
+  <li>
+    <b>Single()</b> → Pontosan 1 elem kell<br>
+    <small>Hiba, ha 0 vagy több van → <code>users.Single(u => u.Id == 5)</code></small>
+  </li>
+
+  <li>
+    <b>SingleOrDefault()</b> → 0 vagy 1 elem lehet<br>
+    <small>Hiba, ha több van → <code>users.SingleOrDefault(u => u.Id == 5)</code></small>
+  </li>
+
+  <li>
+    <b>Count()</b> → Elemszám<br>
+    <small>Pl: hány elem van? → <code>numbers.Count()</code></small>
+  </li>
+
+  <li>
+    <b>Sum(x => ...)</b> → Összegzés<br>
+    <small>Pl: fizetések összege → <code>employees.Sum(e => e.Salary)</code></small>
+  </li>
+
+  <li>
+    <b>Max() / Min()</b> → Legnagyobb / legkisebb elem<br>
+    <small>Pl: legmagasabb pont → <code>scores.Max()</code></small>
+  </li>
+
+  <li>
+    <b>Average()</b> → Átlag számítás<br>
+    <small>Pl: átlag életkor → <code>people.Average(p => p.Age)</code></small>
+  </li>
+
+  <li>
+    <b>Distinct()</b> → Duplikátumok eltávolítása<br>
+    <small><code>[1,1,2,2] => [1,2]</code></small>
+  </li>
+
+  <li>
+    <b>Skip(n)</b> → Első n elem kihagyása<br>
+    <small>Pl: lapozás → <code>numbers.Skip(10)</code></small>
+  </li>
+
+  <li>
+    <b>Zip(a,b,(x,y)=>...)</b> → Két lista párosítása<br>
+    <small><code>["A","B"] + [1,2] => A1,B2</code></small>
+  </li>
+
+  <li>
+    <b>Join(...)</b> → Két lista összekapcsolása kulcs alapján<br>
+    <small>Pl: users + orders → <code>users.Join(...)</code></small>
+  </li>
+</ul>
+
+<h3>LINQ folyamat vizuálisan</h3>
+
+<pre>
+[összes ember]
+       ↓ Where
+[felnőttek]
+       ↓ OrderBy
+[rendezett felnőttek]
+       ↓ Select
+[csak nevek]
+       ↓ ToList
+[List&lt;string&gt;]
+</pre>
+
+<h3>Példa pipeline</h3>
+
+<pre><code>
+var result = people
+    .Where(p => p.Age > 18)
+    .OrderBy(p => p.Name)
+    .Select(p => p.Name)
+    .ToList();
+</code></pre>
       </div>
       </div>
 
@@ -1461,6 +1639,8 @@ public class Konyv
     );
   }
 }</code></pre>
+
+
         </div>
       </div>
 
@@ -1470,7 +1650,7 @@ public class Konyv
         </div>
         <div class="box-content">
           <div class="snippet-header">
-            <h3 class="snippet-title">start Mongo szerver</h3>
+            <h3 class="snippet-title">start Mongo szerver -  startMongoDB.bat</h3>
             <button class="copy-snippet-btn" onclick="copySnippet(this)">
               Másolás
             </button>
@@ -1478,6 +1658,29 @@ public class Konyv
           <pre><code>if not exist "c:\data\" mkdir "c:\data"
 if not exist "c:\data\db" mkdir "c:\data\db"
 "c:\Program Files\MongoDB\Server\8.2\bin\mongod.exe" --dbpath="c:\data\db" --replSet "rs0"</code></pre>
+
+<div class="snippet-header">
+            <h3 class="snippet-title">Extract data fájl -  extract-data.bat</h3>
+            <button class="copy-snippet-btn" onclick="copySnippet(this)">
+              Másolás
+            </button>
+          </div>
+          <pre><code>if exist "C:\data" (
+    rmdir /s /q "C:\data"
+)
+
+tar -xf data.zip -C C:\
+pause</code></pre>
+
+<div class="snippet-header">
+            <h3 class="snippet-title">Extract data fájl -  extract-data.bat</h3>
+            <button class="copy-snippet-btn" onclick="copySnippet(this)">
+              Másolás
+            </button>
+          </div>
+          <h1>1.Json fájlok megírása. 2. .env fájl és mongo.bat -> megírása 2.Extract data 3. startMongoDB 4. Mongo.bat 5. terminalban: npx prsima db pull --force 6. a schema elkészítése után terminalban: npx prisma db push</h1>
+
+
 
           <div class="snippet-header">
             <h3 class="snippet-title">json file jsonArray formátumban</h3>
@@ -1520,7 +1723,7 @@ if not exist "c:\data\db" mkdir "c:\data\db"
   }
 ]</code></pre>
           <div class="snippet-header">
-            <h3 class="snippet-title">Mongo db feltöltése a json fájlokkal</h3>
+            <h3 class="snippet-title">Mongo db feltöltése a json fájlokkal - mongo.bat</h3>
             <button class="copy-snippet-btn" onclick="copySnippet(this)">
               Másolás
             </button>
@@ -1564,7 +1767,7 @@ model Collection1 {
 
   viewpoints Collection2[]
 
-  @@index([default_something])
+  @@index([default_something])  //keresésnél gyorsabb adatelérés - nem kötelező
   @@map("collection1name")
 }
 
