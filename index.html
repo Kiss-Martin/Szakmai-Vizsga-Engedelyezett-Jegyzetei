@@ -308,27 +308,341 @@ Microsoft.EntityFrameworkCore.Tools (8.0.22)
     <div id="frontend-angular" class="section">
       <h2>Frontend - Angular</h2>
 
-      <div class="box" data-keywords="component service module">
-        <div class="box-header">
-          <span class="box-title">Komponensek</span>
-        </div>
-        <div class="box-content">// Ide írd a jegyzetet</div>
-      </div>
 
-      <div class="box" data-keywords="router outlet">
-        <div class="box-header">
-          <span class="box-title">Routing</span>
-        </div>
-        <div class="box-content">// Ide írd a jegyzetet</div>
-      </div>
+      <div class="box" data-keywords="angular 20 binding adatkotes interpolation property event twoway ngmodel formsmodule">
+  <div class="box-header">
+    <span class="box-title">Adatkötések (Bindings) és Komponens Alapok</span>
+    <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+  </div>
+  <div class="box-content">
+    <p><strong>TypeScript (termek-kezelo.ts):</strong></p>
+<pre><code>import { Component, OnInit } from '@angular/core';
+  import { FormsModule } from '@angular/forms'; 
+  import { CommonModule } from '@angular/common';
+  
+  @Component({
+  selector: 'app-termek-kezelo',
+  // FONTOS: A FormsModule kötelező a kétirányú [(ngModel)] adatkötéshez!
+  imports: [CommonModule, FormsModule], 
+  templateUrl: './termek-kezelo.html'
+})
+export class TermekKezelo implements OnInit {
+  oldalCim: string = 'Termékek Kezelése';
+  isLetiltva: boolean = false;
+  kepEleresiUt: string = 'assets/pelda.jpg';
+  keresoSzo: string = '';
 
-      <div class="box" data-keywords="http api">
-        <div class="box-header">
-          <span class="box-title">HTTP</span>
-          <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
-        </div>
-        <div class="box-content">// Ide írd a jegyzetet</div>
-      </div>
+  ngOnInit(): void {
+    // Komponens betöltésekor lefutó kód
+  }
+
+  kattintasKezelo(): void {
+    this.isLetiltva = !this.isLetiltva; // Gomb letiltásának váltogatása
+    console.log('Gombra kattintottak, a jelenlegi keresőszó:', this.keresoSzo);
+  }
+}</code></pre>
+    <p><strong>HTML (termek-kezelo.html):</strong></p>
+<pre><code>&lt;!-- 1. Interpolation (Szöveges behelyettesítés): {{ }} --&gt;
+&lt;h1&gt;{{ oldalCim }}&lt;/h1&gt;
+
+&lt;!-- 2. Property Binding (Tulajdonság kötés egyirányú): [ ] --&gt;
+&lt;!-- A TS változó értékét átadja a HTML elem tulajdonságának --&gt;
+&lt;button [disabled]="isLetiltva"&gt;Mentés gomb&lt;/button&gt;
+&lt;img [src]="kepEleresiUt" alt="Termék képe"&gt;
+
+&lt;!-- 3. Event Binding (Esemény kötés egyirányú): ( ) --&gt;
+&lt;!-- A HTML esemény (pl. click, change) meghív egy TS függvényt --&gt;
+&lt;button (click)="kattintasKezelo()"&gt;Kattints ide!&lt;/button&gt;
+
+&lt;!-- 4. Two-Way Binding (Kétirányú adatkötés): [(ngModel)] --&gt;
+&lt;!-- "Banán a dobozban" szintaxis. Automatikusan frissül mindkét oldalon. --&gt;
+&lt;input type="text" [(ngModel)]="keresoSzo" placeholder="Írj be valamit..."&gt;
+
+&lt;!-- Ha beírsz valamit az inputba, az alábbi szöveg azonnal frissül! --&gt;
+&lt;p&gt;Keresett kifejezés: {{ keresoSzo }}&lt;/p&gt;</code></pre>
+  </div>
+</div>
+
+<div class="box" data-keywords="angular 20 routing routerlink route params">
+  <div class="box-header">
+    <span class="box-title">Navigáció HTML-ből (RouterLink)</span>
+    <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+  </div>
+  <div class="box-content">
+    <p><strong>TypeScript (fejlec.ts):</strong></p>
+<pre><code>import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
+
+@Component({
+  selector: 'app-fejlec',
+  // FONTOS: Kell a routerLink-hez a RouterModule!
+  imports: [RouterModule],
+  templateUrl: './fejlec.html'
+})
+export class Fejlec {
+  termekId: number = 5;
+}</code></pre>
+    <p><strong>HTML (fejlec.html):</strong></p>
+<pre><code>&lt;nav&gt;
+  &lt;!-- Sima útvonalra navigálás --&gt;
+  &lt;a routerLink="/termekek"&gt;Terméklista&lt;/a&gt;
+
+  &lt;!-- Dinamikus útvonal (pl. id átadása paraméterként: /termek/5) --&gt;
+  &lt;a [routerLink]="['/termek', termekId]"&gt;Részletek&lt;/a&gt;
+  
+  &lt;!-- Aktív link stílusozása (ha ezen az oldalon vagyunk, ráteszi a class-t) --&gt;
+  &lt;a routerLink="/kapcsolat" routerLinkActive="aktiv-menu"&gt;Kapcsolat&lt;/a&gt;
+&lt;/nav&gt;</code></pre>
+  </div>
+</div>
+
+<div class="box" data-keywords="angular 20 config appconfig providehttpclient router">
+  <div class="box-header">
+    <span class="box-title">App Config (app.config.ts) - HttpClient és Router beállítása</span>
+    <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+  </div>
+  <div class="box-content">
+    <p><strong>TypeScript (app.config.ts):</strong></p>
+<pre><code>import { ApplicationConfig } from '@angular/core';
+import { provideRouter } from '@angular/router';
+import { routes } from './app.routes';
+// Ez kell a HTTP kérésekhez (pl. DataService-ben)
+import { provideHttpClient } from '@angular/common/http';
+
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideRouter(routes),
+    provideHttpClient() 
+  ]
+};</code></pre>
+  </div>
+</div>
+
+<div class="box" data-keywords="angular 20 routes approutes path component loadcomponent">
+  <div class="box-header">
+    <span class="box-title">Útvonalak (app.routes.ts)</span>
+    <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+  </div>
+  <div class="box-content">
+    <p><strong>TypeScript (app.routes.ts):</strong></p>
+<pre><code>import { Routes } from '@angular/router';
+import { Home } from './home/home';
+
+export const routes: Routes = [
+  // Sima komponens betöltése
+  { path: '', component: Home }, 
+  
+  { path: 'termekek', component: TermekLista }, 
+  
+  // Paraméteres útvonal (pl. /termek/5)
+  { path: 'termek/:id', component: TermekReszletek }, 
+  
+  // Fallback (minden más esetben ide visz, pl. 404 helyett)
+  { path: '**', redirectTo: '' } 
+];</code></pre>
+  </div>
+</div>
+
+<div class="box" data-keywords="angular 20 service dataservice httpclient get post put delete httpparams observable">
+  <div class="box-header">
+    <span class="box-title">DataService (data.service.ts) - CRUD Műveletek</span>
+    <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+  </div>
+  <div class="box-content">
+    <p><strong>TypeScript (data.service.ts):</strong></p>
+<pre><code>import { Injectable, inject } from '@angular/core';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+// Backendből jövő DTO model
+import { Termek } from './models/termek.model'; 
+
+@Injectable({
+  providedIn: 'root'
+})
+export class DataService {
+  private http = inject(HttpClient); 
+  private apiUrl = 'http://localhost:5000/api/termekek';
+
+  // GET MANY - Opcionális Query paraméterek bemutatásával (?minAr=...)
+  getMany(minAr?: number){
+    let params = new HttpParams();
+    if (minAr) {
+      params = params.set('minAr', minAr.toString());
+    }
+
+    return this.http.get&lt;Termek[]&gt;(this.apiUrl, { params });
+  }
+
+  // GET ONE
+  getById(id: number | string){
+    return this.http.get&lt;Termek&gt;(`${this.apiUrl}/${id}`);
+  }
+
+  // POST
+  post(ujTermek: Termek){
+    return this.http.post&lt;Termek&gt;(this.apiUrl, ujTermek);
+  }
+
+  // PUT
+  put(id: number | string, modositottTermek: Termek){
+    return this.http.put&lt;Termek&gt;(`${this.apiUrl}/${id}`, modositottTermek);
+  }
+
+  // DELETE
+  delete(id: number | string){
+    return this.http.delete(`${this.apiUrl}/${id}`);
+  }
+}</code></pre>
+  </div>
+</div>
+
+<div class="box" data-keywords="angular 20 component router navigate subscribe inject adatlekeres">
+  <div class="box-header">
+    <span class="box-title">Komponens (komponens) - Navigálás és Subscribe</span>
+    <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+  </div>
+  <div class="box-content">
+    <p><strong>TypeScript (termek-lista.ts):</strong></p>
+<pre><code>import { Component, inject, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { DataService } from '../data.service';
+import { Termek } from '../models/termek.model';
+import { CommonModule } from '@angular/common';
+
+@Component({
+  selector: 'app-termek-lista',
+  imports: [CommonModule],
+  templateUrl: './termek-lista.html'
+})
+export class TermekLista implements OnInit {
+  private dataService = inject(DataService);
+  private router = inject(Router);
+  
+  termekek: Termek[] = [];
+
+  ngOnInit(): void {
+    this.adatokLekeres();
+  }
+
+  adatokLekeres() {
+    this.dataService.getMany(5000).subscribe({
+      next: (adatok) =&gt; {
+        this.termekek = adatok;
+        console.log('Sikeres lekérdezés:', adatok);
+      },
+      error: (hiba) =&gt; {
+        console.error('Hiba történt a lekérdezés során:', hiba);
+      }
+    });
+  }
+
+  reszletekhezNavigal(id: number) {
+    // Router használata a kódból történő navigáláshoz
+    this.router.navigate(['/termek', id]); 
+    // Ez a következőt nyitja meg: localhost:4200/termek/5
+  }
+}</code></pre>
+    <p><strong>HTML (termek-lista.html):</strong></p>
+<pre><code>&lt;!-- Gomb, ami kódból navigál --&gt;
+&lt;button (click)="reszletekhezNavigal(5)"&gt;Kattints ide a részletekhez&lt;/button&gt;</code></pre>
+  </div>
+</div>
+<div class="box" data-keywords="angular 20 input output eventemitter child gyerek komponens">
+  <div class="box-header">
+    <span class="box-title">Gyerek Komponens (@Input és @Output definiálása)</span>
+    <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+  </div>
+  <div class="box-content">
+    <p><strong>TypeScript (termek-kartya.ts):</strong></p>
+<pre><code>import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Termek } from '../models/termek.model';
+
+@Component({
+  selector: 'app-termek-kartya',
+  templateUrl: './termek-kartya.html'
+})
+export class TermekKartya {
+  // @Input: A szülő komponenstől kapott adat (kívülről jön befelé)
+  @Input() termek!: Termek; 
+  @Input() hatterSzin: string = 'white';
+
+  // @Output: Esemény küldése a szülő komponens felé (belülről megy kifelé)
+  // Itt egy number-t (termék ID) fogunk kilőni a szülőnek
+  @Output() kosarbaTesz = new EventEmitter&lt;number&gt;();
+
+  kosarbaGombKattintas(): void {
+    // Amikor lefut ez a függvény, az EventEmitter "kilövi" (emit) az értéket
+    this.kosarbaTesz.emit(this.termek.id);
+  }
+}</code></pre>
+    <p><strong>HTML (termek-kartya.html):</strong></p>
+<pre><code>&lt;!-- A kapott @Input változók használata --&gt;
+&lt;div [style.backgroundColor]="hatterSzin" class="kartya-stilus"&gt;
+  
+  &lt;h3&gt;{{ termek.nev }}&lt;/h3&gt;
+  &lt;p&gt;Ár: {{ termek.ar }} Ft&lt;/p&gt;
+
+  &lt;!-- Belső esemény, ami kiváltja az @Output emitálását --&gt;
+  &lt;button (click)="kosarbaGombKattintas()"&gt;Kosárba rakom&lt;/button&gt;
+
+&lt;/div&gt;</code></pre>
+  </div>
+</div>
+
+<div class="box" data-keywords="angular 20 parent szulo komponens input output hasznalat event">
+  <div class="box-header">
+    <span class="box-title">Szülő Komponens (Gyerek használata és adatkötése)</span>
+    <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+  </div>
+  <div class="box-content">
+    <p><strong>TypeScript (szulo-oldal.ts):</strong></p>
+<pre><code>import { Component } from '@angular/core';
+import { TermekKartya } from '../termek-kartya/termek-kartya';
+import { Termek } from '../models/termek.model';
+
+@Component({
+  selector: 'app-szulo-oldal',
+  // FONTOS: Be kell importálni a gyerek komponenst, hogy használhassuk a HTML-ben!
+  imports: [TermekKartya], 
+  templateUrl: './szulo-oldal.html'
+})
+export class SzuloOldal {
+  kosarTartalma: number[] = [];
+
+  // Ezt az adatot fogjuk átadni a gyereknek
+  peldaTermek: Termek = {
+    id: 101,
+    nev: 'Mechanikus Billentyűzet',
+    ar: 25000,
+    kategoriaId: 2
+  };
+
+  // Ezt a függvényt hívja meg a gyerek @Output eseménye
+  kosarbaKezelo(kapottTermekId: number) {
+    this.kosarTartalma.push(kapottTermekId);
+    console.log('Termék sikeresen a kosárban! ID:', kapottTermekId);
+  }
+}</code></pre>
+    <p><strong>HTML (szulo-oldal.html):</strong></p>
+<pre><code>&lt;h2&gt;Kiemelt Termék Ajánlatunk&lt;/h2&gt;
+
+&lt;!-- 
+  1. [termek]="peldaTermek" -> @Input() kötés: a szülő 'peldaTermek' objektumát átadjuk a gyerek 'termek' bemenetének
+  2. [hatterSzin]="'#f0f8ff'" -> @Input() kötés: sima stringet adunk át
+  3. (kosarbaTesz)="kosarbaKezelo($event)" -> @Output() kötés: figyeljük a gyerek eseményét.
+      A $event egy beépített Angular változó, ami pontosan azt az értéket tartalmazza, amit a gyerek az .emit() metódusba tett!
+--&gt;
+
+&lt;app-termek-kartya
+  [termek]="peldaTermek"
+  [hatterSzin]="'#f0f8ff'"
+  (kosarbaTesz)="kosarbaKezelo($event)"&gt;
+&lt;/app-termek-kartya&gt;
+
+&lt;p&gt;Kosárban lévő tételek száma: {{ kosarTartalma.length }} db&lt;/p&gt;</code></pre>
+  </div>
+</div>
     </div>
 
     <!-- Frontend - Next -->
@@ -694,27 +1008,287 @@ Route::put('/comments/{comment}', [CommentController::class, 'update']);</code><
     <div id="backend-aspnet" class="section">
       <h2>Backend - ASP.NET</h2>
 
-      <div class="box" data-keywords="controller action">
-        <div class="box-header">
-          <span class="box-title">Controller</span>
-        </div>
-        <div class="box-content">// Ide írd a jegyzetet</div>
-      </div>
+      <div class="box" data-keywords="controller alapok setup using">
+  <div class="box-header">
+    <span class="box-title">Controller Alapok (Fejléc)</span>
+    <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+  </div>
+  <div class="box-content"><pre><code>using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Text.Json;
 
-      <div class="box" data-keywords="entity framework core">
-        <div class="box-header">
-          <span class="box-title">Entity Framework</span>
-        </div>
-        <div class="box-content">// Ide írd a jegyzetet</div>
-      </div>
+namespace VizsgaProject.Controllers
+{
+    [Route("api")]
+    [ApiController]
+    public class VizsgaController : ControllerBase
+    {
+        AdatbazisContext dbContext = new AdatbazisContext();</code></pre></div>
+</div>
 
-      <div class="box" data-keywords="view razor">
-        <div class="box-header">
-          <span class="box-title">Razor</span>
-          <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
-        </div>
-        <div class="box-content">// Ide írd a jegyzetet</div>
-      </div>
+<div class="box" data-keywords="get lista query route include theninclude">
+  <div class="box-header">
+    <span class="box-title">GET - Listázás és Szűrés</span>
+    <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+  </div>
+  <div class="box-content"><pre><code>        // Route("api") miatt ez ilyen lesz:
+        // &lt;ipcím&gt;/api/konyvek/{orszagNev}/lista
+        
+        [HttpGet("konyvek/{orszagNev}/lista")]
+        public IActionResult GetKonyvek([FromRoute] string orszagNev, [FromQuery] int? minOldalszam)
+        {
+            var query = dbContext.Set&lt;Konyv&gt;()
+                                 .Include(k =&gt; k.Szerzo)
+                                 // A ThenInclude arra való, hogy a már behozott (Include-olt) tábla egy további kapcsolódó al-tábláját is hozzáfűzzük a lekérdezéshez. Itt a Könyvhöz bekértük a Szerzőt, majd a Szerzőhöz a hazáját (Ország).
+                                 .ThenInclude(sz =&gt; sz.Orszag)
+                                 .Where(k =&gt; k.Szerzo.Orszag.Nev.ToLower() == orszagNev.ToLower());
+
+            if (minOldalszam.HasValue)
+            {
+                query = query.Where(k =&gt; k.Oldalszam &gt;= minOldalszam.Value);
+            }
+
+            var eredmeny = query.Select(k =&gt; new
+            {
+                k.Cim,
+                k.Oldalszam,
+                Szerzo = k.Szerzo.Nev,
+                Orszag = k.Szerzo.Orszag.Nev
+            });
+
+            if (eredmeny.Count() == 0)
+            {
+                return NotFound(new { Message = "Nincs találat...." });
+            }
+
+            return Ok(eredmeny);
+        }</code></pre></div>
+</div>
+
+<div class="box" data-keywords="get by id egy elem">
+  <div class="box-header">
+    <span class="box-title">GET - Egy Elem Lekérése (ID alapján)</span>
+    <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+  </div>
+  <div class="box-content"><pre><code>        [HttpGet("konyvek/{id}")]
+        public IActionResult GetById([FromRoute] string id)
+        {
+            Konyv? elem = dbContext.Set&lt;Konyv&gt;().SingleOrDefault(k =&gt; k.Id.ToString() == id);
+
+            if (elem == null)
+            {
+                return NotFound(new { Message = "Nincs ilyen elem...." });
+            }
+
+            return Ok(elem);
+        }</code></pre></div>
+</div>
+
+<div class="box" data-keywords="post letrehozas uj add frombody dynamic json">
+  <div class="box-header">
+    <span class="box-title">POST - Új Elem Létrehozása</span>
+    <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+  </div>
+  <div class="box-content"><pre><code>        [HttpPost("konyvek")]
+        public IActionResult CreateKonyv([FromBody] dynamic body)
+        {
+            try
+            {
+                Konyv model = JsonSerializer.Deserialize&lt;Konyv&gt;(body.ToString());
+
+                if (model.Oldalszam &lt; 1)
+                {
+                    return BadRequest(new { Message = "Hibás oldalszám" });
+                }
+
+                dbContext.Set&lt;Konyv&gt;().Add(model);
+                dbContext.SaveChanges();
+
+                return StatusCode(201, model);
+            }
+            catch
+            {
+                return StatusCode(400, new { Message = "Hiba van..." });
+            }
+        }</code></pre></div>
+</div>
+
+<div class="box" data-keywords="put modositas update frombody dynamic json">
+  <div class="box-header">
+    <span class="box-title">PUT - Meglévő Elem Módosítása</span>
+    <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+  </div>
+  <div class="box-content"><pre><code>        [HttpPut("konyvek/{id}")]
+        public IActionResult UpdateKonyv([FromRoute] string id, [FromBody] dynamic body)
+        {
+            try
+            {
+                Konyv? itemToUpdate = dbContext.Set&lt;Konyv&gt;().SingleOrDefault(k =&gt; k.Id.ToString() == id);
+
+                if (itemToUpdate == null)
+                {
+                    return BadRequest(new { Message = "Ilyen könyv nincs..." });
+                }
+
+                Konyv model = JsonSerializer.Deserialize&lt;Konyv&gt;(body.ToString());
+
+                if (model.Oldalszam &lt; 1)
+                {
+                    return BadRequest(new { Message = "Túl rövid..." });
+                }
+
+                itemToUpdate.Cim = model.Cim;
+                itemToUpdate.Oldalszam = model.Oldalszam;
+                itemToUpdate.SzerzoId = model.SzerzoId;
+
+                dbContext.Update(itemToUpdate);
+                dbContext.SaveChanges();
+
+                return Ok(itemToUpdate);
+            }
+            catch
+            {
+                return StatusCode(400, new { Message = "Hiba van..." });
+            }
+        }</code></pre></div>
+</div>
+
+<div class="box" data-keywords="delete torles remove">
+  <div class="box-header">
+    <span class="box-title">DELETE - Elem Törlése</span>
+    <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+  </div>
+  <div class="box-content"><pre><code>        [HttpDelete("konyvek/{id}")]
+        public IActionResult DeleteKonyv([FromRoute] string id)
+        {
+            try
+            {
+                Konyv? itemToDelete = dbContext.Set&lt;Konyv&gt;().SingleOrDefault(k =&gt; k.Id.ToString() == id);
+
+                if (itemToDelete == null)
+                {
+                    return BadRequest(new { Message = "Ilyen könyv nincs..." });
+                }
+
+                dbContext.Set&lt;Konyv&gt;().Remove(itemToDelete);
+                dbContext.SaveChanges();
+
+                return Ok(new { Message = "Sikeres törlés" });
+                //return NoContent();
+            }
+            catch
+            {
+                return StatusCode(400, new { Message = "Hiba van..." });
+            }
+        }
+    }
+}</code></pre></div>
+</div>
+
+      <div class="box" data-keywords="dbcontext dbset onconfiguring mysql">
+  <div class="box-header">
+    <span class="box-title">DbContext Alapok és Kapcsolat</span>
+    <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+  </div>
+  <div class="box-content"><pre><code>using Microsoft.EntityFrameworkCore;
+using System.Text.Json;
+using System.IO;
+using System.Collections.Generic;
+
+public class AdatbazisContext: DbContext
+{
+    public DbSet&lt;Konyv&gt; Konyvek { get; set; }
+    public DbSet&lt;Szerzo&gt; Szerzok { get; set; }
+    public DbSet&lt;Orszag&gt; Orszagok { get; set; }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        if (!optionsBuilder.IsConfigured)
+        {
+            optionsBuilder.UseMySQL("server=localhost;database=konyvtar_db;uid=root;pwd=;");
+        }
+    }</code></pre></div>
+</div>
+
+<div class="box" data-keywords="onmodelcreating hasindex isunique hasdata seed">
+  <div class="box-header">
+    <span class="box-title">OnModelCreating - Indexek és Normál HasData</span>
+    <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+  </div>
+  <div class="box-content"><pre><code>    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity&lt;Orszag&gt;().HasIndex(o =&gt; o.Nev).IsUnique();
+        modelBuilder.Entity&lt;Konyv&gt;().HasIndex(k =&gt; new { k.Cim, k.SzerzoId }).IsUnique();
+
+        modelBuilder.Entity&lt;Orszag&gt;().HasData(
+            new Orszag() { Id = 1, Nev = "Magyarország" },
+            new Orszag() { Id = 2, Nev = "Egyesült Királyság" },
+            new Orszag() { Id = 3, Nev = "Amerikai Egyesült Államok" }
+        );
+
+        modelBuilder.Entity&lt;Szerzo&gt;().HasData(
+            new Szerzo() { Id = 1, Nev = "Gárdonyi Géza", OrszagId = 1 },
+            new Szerzo() { Id = 2, Nev = "J.K. Rowling", OrszagId = 2 },
+            new Szerzo() { Id = 3, Nev = "Stephen King", OrszagId = 3 }
+        );</code></pre></div>
+</div>
+
+<div class="box" data-keywords="hasdata json jsonserializer file readalltext seed">
+  <div class="box-header">
+    <span class="box-title">HasData - Feltöltés JSON Fájlból</span>
+    <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+  </div>
+  <div class="box-content"><pre><code>        string jsonTartalom = File.ReadAllText("konyvek.json");
+        var konyvekLista = JsonSerializer.Deserialize&lt;List&lt;Konyv&gt;&gt;(jsonTartalom);
+        
+        if (konyvekLista != null)
+        {
+            modelBuilder.Entity&lt;Konyv&gt;().HasData(konyvekLista);
+        }
+    }
+}</code></pre></div>
+</div>
+<div class="box" data-keywords="model entity data annotations table required stringlength column notmapped range">
+  <div class="box-header">
+    <span class="box-title">Model - Data Annotations (Adatbázis beállítások)</span>
+    <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+  </div>
+  <div class="box-content"><pre><code>using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+[Table("konyvek")]
+public class Konyv
+{
+    // [Key] - akkor kellene ha nem 'Id' lenne 
+    public int Id { get; set; }
+
+    [Required]
+    [StringLength(150)]
+    //Unique-t a contextben lehet csak!
+    public string Cim { get; set; } = "";
+
+    [Range(1, 5000)]
+    public int Oldalszam { get; set; }
+
+    [Column(TypeName = "decimal(10, 2)")]
+    //Pontos adattípus megadása az adatbázisban
+    public decimal Ar { get; set; }
+
+    public int SzerzoId { get; set; }
+
+    [Required]
+    // [ForeignKey("SzerzoId")] - csak akkor kellene ha nem 'SzerzoId' mező lenne hanem 'ValamiMásNév' 
+    public Szerzo? Szerzo { get; set; }
+
+    [StringLength(2000)]
+    public string? Leiras { get; set; }
+
+    [NotMapped]
+    //Ezt a mezőt kihagyja az adatbázis generálásakor! (Csak C#-ban létezik)
+    public string KonyvAdatai => $"{Cim} ({Oldalszam} oldal)";
+}</code></pre></div>
+</div>
+
     </div>
 
     <!-- Backend - Node.js -->
@@ -987,6 +1561,91 @@ model Collection2 {
             </button>
           </div>
           <pre><code>npx prisma db push</code></pre>
+          <div class="snippet-header">
+            <h3 class="snippet-title">prisma lekérés example</h3>
+            <button class="copy-snippet-btn" onclick="copySnippet(this)">
+              Másolás
+            </button>
+          </div>
+          <pre><code>// példa 1 - egyszerű lekérés
+const example1 = await prisma.exampleModel.findMany()
+
+// példa 2 - where használata
+const example2 = await prisma.exampleModel.findMany({
+  where: {
+    exampleField: "value"
+  }
+})
+
+// példa 3 - select használata
+const example3 = await prisma.exampleModel.findMany({
+  select: {
+    exampleField: true
+  }
+})
+
+// példa 4 - create
+const example4 = await prisma.exampleModel.create({
+  data: {
+    exampleField: "value"
+  }
+})
+
+// példa 5 - update
+const example5 = await prisma.exampleModel.update({
+  where: {
+    id: 1
+  },
+  data: {
+    exampleField: "newValue"
+  }
+})
+
+// példa 6 - delete
+const example6 = await prisma.exampleModel.delete({
+  where: {
+    id: 1
+  }
+})</code></pre>
+          <div class="snippet-header">
+            <h3 class="snippet-title">prisma operátorok</h3>
+            <button class="copy-snippet-btn" onclick="copySnippet(this)">
+              Másolás
+            </button>
+          </div>
+          <pre><code>where - itt adsz meg feltételeket pl. id: 1 vagy name: "John"
+
+data - itt adod meg a létrehozandó vagy módosítandó adatokat pl. name: "Anna"
+
+select - megadod, hogy mely mezőket akarod visszakapni pl. { id: true, name: true }
+
+include - kapcsolt (relációs) adatokat kérsz le pl. { posts: true }
+
+omit - megadod, mit NE adjon vissza pl. { password: true }
+
+orderBy - rendezés pl. { createdAt: "desc" }
+
+take - hány rekordot kérsz le (limit) pl. 10
+
+skip - hány rekordot hagyjon ki (offset) pl. 5
+
+distinct - csak egyedi értékeket ad vissza pl. ["email"]
+
+create - új kapcsolt rekord létrehozása relációban
+
+update - kapcsolt rekord frissítése
+
+upsert - ha létezik frissít, ha nem, létrehoz
+
+delete - rekord törlése
+
+deleteMany - több rekord törlése feltétel alapján
+
+updateMany - több rekord frissítése feltétel alapján
+
+createMany - több rekord létrehozása egyszerre
+
+count - megszámolja a rekordokat</code></pre>
         </div>
       </div>
       <div class="box" data-keywords="next.js">
