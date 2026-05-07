@@ -162,7 +162,32 @@ foreach (var item in pairs)
         </div>
         <div class="box-content" style="text-align: left;">
 MySql.EntityFrameworkCore (10.0.2)
+CommunityToolkit.Mvvm (8.0.4)
 Microsoft.EntityFrameworkCore.Tools (8.0.22)
+        </div>
+      </div>
+
+      <div class="box" data-keywords="xamarin entityframework navigation">
+        <div class="box-header">
+          <span class="box-title">Entitás kapcsolatok EF Core-ban (class végére)</span>
+        </div>
+        <div class="box-content" style="text-align: left;">
+Egy objektumhoz több kapcsolódó elem tartozhat
+<pre><code>public virtual ICollection&lt;PeldaClass&gt; PeldaCollection { get; set; } = new List&lt;PeldaClass&gt;();
+</code></pre>
+
+Az objektum egy másik objektumhoz tartozik
+<pre><code>public virtual PeldaSzuloClass Szulo { get; set; } = null!;
+</code></pre>
+
+<h3>ICollection → több kapcsolódó adat tárolása listában</h3>
+<h3>new List&lt;&gt;() → üres lista létrehozása</h3>
+<h3>Szulo → egyetlen kapcsolódó objektum</h3>
+<h3>null! → az érték később lesz beállítva</h3>
+
+<h3>Példa:</h3>
+1 légitársaság → több járat
+1 járat → 1 légitársaság
         </div>
       </div>
 
