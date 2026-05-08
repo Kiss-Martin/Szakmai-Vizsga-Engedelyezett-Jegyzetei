@@ -311,6 +311,28 @@ var result = people
 
       <div class="box" data-keywords="zip">
         <div class="box-header">
+          <span class="box-title">Adatbekérés ismétléssel</span>
+          <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+        </div>
+        <div class="box-content">
+    var ertek = 0
+    do
+    {
+        try
+        {
+            ertek = szám_beolvasása;
+        }
+        catch
+        {
+            ertek = 0;
+        }
+
+    } while (ertek <= 0);
+        </div>
+      </div>
+
+      <div class="box" data-keywords="zip">
+        <div class="box-header">
           <span class="box-title">Zip Példa</span>
           <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
         </div>
@@ -326,6 +348,89 @@ foreach (var item in pairs)
 // 1 -> 2
 // 2 -> 3
 // 3 -> 4</div>
+      </div>
+
+      <div class="box" data-keywords="zip">
+        <div class="box-header">
+          <span class="box-title">Lista szűrése több feltétellel</span>
+          <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+        </div>
+        <div class="box-content">// 
+lista?.Where(x => feltétel1 && feltétel2)
+
+      // Rendezés
+      .OrderBy(x => x.tulajdonsag)
+
+      // További szűrés
+      .Where(x => feltétel3)
+
+      // Lista készítése
+      .ToList()
+
+      // Bejárás
+      .ForEach(x =>
+{
+    Console.WriteLine($"{x.adat1} - {x.adat2}");
+});</div>
+      </div>
+
+      <div class="box" data-keywords="zip">
+        <div class="box-header">
+          <span class="box-title">Egyszerű adatbekérések</span>
+          <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+        </div>
+        <div class="box-content">
+          // Szöveg bekérés
+          Console.Write("Szöveg: ");
+          string text = Console.ReadLine();
+
+          // Egész szám bekérés
+          Console.Write("Szám: ");
+          int number = int.Parse(Console.ReadLine());
+
+          // Tört szám bekérés
+          Console.Write("Érték: ");
+          decimal value = decimal.Parse(Console.ReadLine().Replace(",", "."));
+
+          // Dátum bekérés
+          Console.Write("Dátum: ");
+          DateTime date = DateTime.Parse(Console.ReadLine());
+        </div>
+      </div>
+
+      <div class="box" data-keywords="zip">
+        <div class="box-header">
+          <span class="box-title">Anonym osztály létrehozása</span>
+          <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+        </div>
+        <div class="box-content">
+          var groups = lista
+                  .GroupBy(x => x.azonosito)
+                  .Select(g => new
+                  {
+                      id = g.Key,
+                      //esetleg id-k összehasonlítása
+                      elemek = g.OrderBy(x => x.valami).ToList()
+                  });
+        </div>
+      </div>
+
+      <div class="box" data-keywords="zip">
+        <div class="box-header">
+          <span class="box-title">Foreach és Zip használata</span>
+          <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+        </div>
+        <div class="box-content">
+              foreach (var item in lista)
+              {
+                  var eredmeny = item.adatok
+                      .Zip(item.adatok.Skip(1),
+                          (a, b) => szamitas)
+                      .Max();
+
+                  Console.WriteLine(eredmeny);
+              }
+        </div>
       </div>
 
     </div>
