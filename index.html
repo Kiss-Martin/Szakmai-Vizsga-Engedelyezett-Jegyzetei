@@ -1887,6 +1887,90 @@ model Collection2 {
 }
 </code></pre>
 
+<div class="snippet-header">
+            <h3 class="snippet-title">Prisma relation fieldek használata 1:N tábláknál</h3>
+            <button class="copy-snippet-btn" onclick="copySnippet(this)">
+              Másolás
+            </button>
+          </div>
+          <pre><code>
+1:N kapcsolat (egy a többhöz)
+
+Jelentése:
+Egy rekordhoz több másik rekord tartozhat,
+de a másik oldal egy rekordja csak egyhez kapcsolódhat.
+
+Példa:
+1 kategóriához több ingatlan tartozhat,
+de 1 ingatlan csak 1 kategóriához tartozik.
+
+────────────────────────────
+
+Prisma szabály:
+
+Az "N" oldalon van:
+- a foreign key mező
+- a @relation kapcsolat
+
+Példa:
+kategoria_id Int
+
+kategora Kategora? @relation(fields: [kategoria_id], references: [id])
+
+────────────────────────────
+
+Az "1" oldalon van:
+- a virtuális tömb mező
+
+Példa:
+ingatlanok Ingatlan[]
+
+────────────────────────────
+
+Mit jelent a virtuális mező?
+
+Nem valódi adatbázismező.
+A Prisma automatikusan kezeli.
+Arra szolgál, hogy egyszerűen el lehessen érni
+az összetartozó rekordokat.
+
+────────────────────────────
+</code></pre>
+
+<div class="snippet-header">
+            <h3 class="snippet-title">Try-catch általános használata és a Nodejs alap visszatérése</h3>
+            <button class="copy-snippet-btn" onclick="copySnippet(this)">
+              Másolás
+            </button>
+          </div>
+          <pre><code>
+  try {
+
+        kód...
+
+      } catch (error) {
+        return NextResponse.json(
+          { message: error instanceof Error ? error.message : "Ismeretlen hiba!" },
+          { status: 500 },
+        );
+      }
+    
+</code></pre>
+
+<div class="snippet-header">
+            <h3 class="snippet-title">Hibakezelés hibaüzenetkor a Nodejs szerint</h3>
+            <button class="copy-snippet-btn" onclick="copySnippet(this)">
+              Másolás
+            </button>
+          </div>
+          <pre><code>
+  } catch (error) {
+    if (error instanceof Error && error.message.includes("Mintaszöveg")) {
+      return NextResponse.json({ message: "Mintaszöveg" }, { status: feladatban meghatározott hibaüzenet pl: 404 });
+    }
+    
+</code></pre>
+
           <div class="snippet-header">
             <h3 class="snippet-title">prisma schema pusholása</h3>
             <button class="copy-snippet-btn" onclick="copySnippet(this)">
