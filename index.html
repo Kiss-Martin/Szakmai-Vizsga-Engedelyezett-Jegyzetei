@@ -1000,6 +1000,48 @@ export const useGlobalStore = create&lt;GlobalStore&gt;()((set) =&gt; ({
     })),
 }));</code></pre>
 
+<div class="snippet-header">
+              <h3 class="snippet-title">UseEffect használata pl végpont kéréseknék</h3>
+              <button class="copy-snippet-btn" onclick="copySnippet(this)">
+                Másolás
+              </button>
+            </div>
+            <pre><code>
+              useEffect(() => {
+                async function MintaData() {
+                  kód...
+                }
+                MintaData();
+              }, []);
+            </code></pre>
+
+            <div class="snippet-header">
+              <h3 class="snippet-title">Fontos!!! "use client" használata az oldal tetején</h3>
+              <button class="copy-snippet-btn" onclick="copySnippet(this)">
+                Másolás
+              </button>
+            </div>
+            <pre><code>
+              "use client"
+            </code></pre>
+
+            <div class="snippet-header">
+              <h3 class="snippet-title">Fontos!!! "use client" használata az oldal tetején</h3>
+              <button class="copy-snippet-btn" onclick="copySnippet(this)">
+                Másolás
+              </button>
+            </div>
+            <pre><code>
+              export default function HomePage() {
+
+                kód...
+
+                return (
+                  JSX kód tartalma... pl HTML tagek for ciklusok hívások stb
+                )
+              }
+            </code></pre>
+
             <div class="snippet-header">
               <h3 class="snippet-title">globalStore használata example</h3>
               <button class="copy-snippet-btn" onclick="copySnippet(this)">
@@ -1038,6 +1080,28 @@ setArray(apiLekeresResponse.data);</code></pre>
           </div>
         </div>
 
+        <div class="snippet-header">
+              <h3 class="snippet-title">Végpontok elérése pl GET</h3>
+              <button class="copy-snippet-btn" onclick="copySnippet(this)">
+                Másolás
+              </button>
+            </div>
+            <pre><code>
+              const res = await axios.get("http://localhost:3000/api/mintaVégpont");
+            </code></pre>
+
+            <div class="snippet-header">
+              <h3 class="snippet-title">Next Link használata</h3>
+              <button class="copy-snippet-btn" onclick="copySnippet(this)">
+                Másolás
+              </button>
+            </div>
+            <pre><code>
+              &lt;Link className="btn" href="/mintaOldal">
+                MintaFelirat
+              &lt;/Link&gt;
+            </code></pre>
+
       <div class="box" data-keywords="redux context">
         <div class="box-header">
           <span class="box-title">State Management</span>
@@ -1046,6 +1110,8 @@ setArray(apiLekeresResponse.data);</code></pre>
         <div class="box-content">// Ide írd a jegyzetet</div>
       </div>
     </div>
+
+    
 
     <!-- Backend - Laravel -->
     <div id="backend-laravel" class="section">
