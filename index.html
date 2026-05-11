@@ -619,347 +619,104 @@ var result = people
       </div>
 
       <!-- Frontend - Angular -->
-      <div id="frontend-angular" class="section">
-        <h2>Frontend - Angular</h2>
-
-
-        <div class="box"
-          data-keywords="angular 20 binding adatkotes interpolation property event twoway ngmodel formsmodule">
-          <div class="box-header">
-            <span class="box-title">Adatkötések (Bindings) és Komponens Alapok</span>
-            <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
-          </div>
-          <div class="box-content">
-            <p><strong>TypeScript (termek-kezelo.ts):</strong></p>
-            <pre><code>import { Component, OnInit } from '@angular/core';
-  import { FormsModule } from '@angular/forms'; 
-  import { CommonModule } from '@angular/common';
-  
-  @Component({
-  selector: 'app-termek-kezelo',
-  // FONTOS: A FormsModule kötelező a kétirányú [(ngModel)] adatkötéshez!
-  imports: [CommonModule, FormsModule], 
-  templateUrl: './termek-kezelo.html'
-})
-export class TermekKezelo implements OnInit {
-  oldalCim: string = 'Termékek Kezelése';
-  isLetiltva: boolean = false;
-  kepEleresiUt: string = 'assets/pelda.jpg';
-  keresoSzo: string = '';
-
-  ngOnInit(): void {
-    // Komponens betöltésekor lefutó kód
-  }
-
-  kattintasKezelo(): void {
-    this.isLetiltva = !this.isLetiltva; // Gomb letiltásának váltogatása
-    console.log('Gombra kattintottak, a jelenlegi keresőszó:', this.keresoSzo);
-  }
-}</code></pre>
-            <p><strong>HTML (termek-kezelo.html):</strong></p>
-            <pre><code>&lt;!-- 1. Interpolation (Szöveges behelyettesítés): {{ }} --&gt;
-&lt;h1&gt;{{ oldalCim }}&lt;/h1&gt;
-
-&lt;!-- 2. Property Binding (Tulajdonság kötés egyirányú): [ ] --&gt;
-&lt;!-- A TS változó értékét átadja a HTML elem tulajdonságának --&gt;
-&lt;button [disabled]="isLetiltva"&gt;Mentés gomb&lt;/button&gt;
-&lt;img [src]="kepEleresiUt" alt="Termék képe"&gt;
-
-&lt;!-- 3. Event Binding (Esemény kötés egyirányú): ( ) --&gt;
-&lt;!-- A HTML esemény (pl. click, change) meghív egy TS függvényt --&gt;
-&lt;button (click)="kattintasKezelo()"&gt;Kattints ide!&lt;/button&gt;
-
-&lt;!-- 4. Two-Way Binding (Kétirányú adatkötés): [(ngModel)] --&gt;
-&lt;!-- "Banán a dobozban" szintaxis. Automatikusan frissül mindkét oldalon. --&gt;
-&lt;input type="text" [(ngModel)]="keresoSzo" placeholder="Írj be valamit..."&gt;
-
-&lt;!-- Ha beírsz valamit az inputba, az alábbi szöveg azonnal frissül! --&gt;
-&lt;p&gt;Keresett kifejezés: {{ keresoSzo }}&lt;/p&gt;</code></pre>
-          </div>
-        </div>
-
-        <div class="box" data-keywords="angular 20 routing routerlink route params">
-          <div class="box-header">
-            <span class="box-title">Navigáció HTML-ből (RouterLink)</span>
-            <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
-          </div>
-          <div class="box-content">
-            <p><strong>TypeScript (fejlec.ts):</strong></p>
-            <pre><code>import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
-
-@Component({
-  selector: 'app-fejlec',
-  // FONTOS: Kell a routerLink-hez a RouterModule!
-  imports: [RouterModule],
-  templateUrl: './fejlec.html'
-})
-export class Fejlec {
-  termekId: number = 5;
-}</code></pre>
-            <p><strong>HTML (fejlec.html):</strong></p>
-            <pre><code>&lt;nav&gt;
-  &lt;!-- Sima útvonalra navigálás --&gt;
-  &lt;a routerLink="/termekek"&gt;Terméklista&lt;/a&gt;
-
-  &lt;!-- Dinamikus útvonal (pl. id átadása paraméterként: /termek/5) --&gt;
-  &lt;a [routerLink]="['/termek', termekId]"&gt;Részletek&lt;/a&gt;
-  
-  &lt;!-- Aktív link stílusozása (ha ezen az oldalon vagyunk, ráteszi a class-t) --&gt;
-  &lt;a routerLink="/kapcsolat" routerLinkActive="aktiv-menu"&gt;Kapcsolat&lt;/a&gt;
-&lt;/nav&gt;</code></pre>
-          </div>
-        </div>
-
-        <div class="box" data-keywords="angular 20 config appconfig providehttpclient router">
-          <div class="box-header">
-            <span class="box-title">App Config (app.config.ts) - HttpClient és Router beállítása</span>
-            <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
-          </div>
-          <div class="box-content">
-            <p><strong>TypeScript (app.config.ts):</strong></p>
-            <pre><code>import { ApplicationConfig } from '@angular/core';
-import { provideRouter } from '@angular/router';
-import { routes } from './app.routes';
-// Ez kell a HTTP kérésekhez (pl. DataService-ben)
-import { provideHttpClient } from '@angular/common/http';
-
-export const appConfig: ApplicationConfig = {
-  providers: [
-    provideRouter(routes),
-    provideHttpClient() 
-  ]
-};</code></pre>
-          </div>
-        </div>
-
-        <div class="box" data-keywords="angular 20 routes approutes path component loadcomponent">
-          <div class="box-header">
-            <span class="box-title">Útvonalak (app.routes.ts)</span>
-            <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
-          </div>
-          <div class="box-content">
-            <p><strong>TypeScript (app.routes.ts):</strong></p>
-            <pre><code>import { Routes } from '@angular/router';
-import { Home } from './home/home';
-
-export const routes: Routes = [
-  // Sima komponens betöltése
-  { path: '', component: Home }, 
-  
-  { path: 'termekek', component: TermekLista }, 
-  
-  // Paraméteres útvonal (pl. /termek/5)
-  { path: 'termek/:id', component: TermekReszletek }, 
-  
-  // Fallback (minden más esetben ide visz, pl. 404 helyett)
-  { path: '**', redirectTo: '' } 
-];</code></pre>
-          </div>
-        </div>
-
-        <div class="box"
-          data-keywords="angular 20 service dataservice httpclient get post put delete httpparams observable">
-          <div class="box-header">
-            <span class="box-title">DataService (data.service.ts) - CRUD Műveletek</span>
-            <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
-          </div>
-          <div class="box-content">
-            <p><strong>TypeScript (data.service.ts):</strong></p>
-            <pre><code>import { Injectable, inject } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
-
-// Backendből jövő DTO model
-import { Termek } from './models/termek.model'; 
-
-@Injectable({
-  providedIn: 'root'
-})
-export class DataService {
-  private http = inject(HttpClient); 
-  private apiUrl = 'http://localhost:5000/api/termekek';
-
-  // GET MANY - Opcionális Query paraméterek bemutatásával (?minAr=...)
-  getMany(minAr?: number){
-    let params = new HttpParams();
-    if (minAr) {
-      params = params.set('minAr', minAr.toString());
-    }
-
-    return this.http.get&lt;Termek[]&gt;(this.apiUrl, { params });
-  }
-
-  // GET ONE
-  getById(id: number | string){
-    return this.http.get&lt;Termek&gt;(`${this.apiUrl}/${id}`);
-  }
-
-  // POST
-  post(ujTermek: Termek){
-    return this.http.post&lt;Termek&gt;(this.apiUrl, ujTermek);
-  }
-
-  // PUT
-  put(id: number | string, modositottTermek: Termek){
-    return this.http.put&lt;Termek&gt;(`${this.apiUrl}/${id}`, modositottTermek);
-  }
-
-  // DELETE
-  delete(id: number | string){
-    return this.http.delete(`${this.apiUrl}/${id}`);
-  }
-}</code></pre>
-          </div>
-        </div>
-
-        <div class="box" data-keywords="angular 20 component router navigate subscribe inject adatlekeres">
-          <div class="box-header">
-            <span class="box-title">Komponens (komponens) - Navigálás és Subscribe</span>
-            <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
-          </div>
-          <div class="box-content">
-            <p><strong>TypeScript (termek-lista.ts):</strong></p>
-            <pre><code>import { Component, inject, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { DataService } from '../data.service';
-import { Termek } from '../models/termek.model';
-import { CommonModule } from '@angular/common';
-
-@Component({
-  selector: 'app-termek-lista',
-  imports: [CommonModule],
-  templateUrl: './termek-lista.html'
-})
-export class TermekLista implements OnInit {
-  private dataService = inject(DataService);
-  private router = inject(Router);
-  
-  termekek: Termek[] = [];
-
-  ngOnInit(): void {
-    this.adatokLekeres();
-  }
-
-  adatokLekeres() {
-    this.dataService.getMany(5000).subscribe({
-      next: (adatok) =&gt; {
-        this.termekek = adatok;
-        console.log('Sikeres lekérdezés:', adatok);
-      },
-      error: (hiba) =&gt; {
-        console.error('Hiba történt a lekérdezés során:', hiba);
-      }
-    });
-  }
-
-  reszletekhezNavigal(id: number) {
-    // Router használata a kódból történő navigáláshoz
-    this.router.navigate(['/termek', id]); 
-    // Ez a következőt nyitja meg: localhost:4200/termek/5
-  }
-}</code></pre>
-            <p><strong>HTML (termek-lista.html):</strong></p>
-            <pre><code>&lt;!-- Gomb, ami kódból navigál --&gt;
-&lt;button (click)="reszletekhezNavigal(5)"&gt;Kattints ide a részletekhez&lt;/button&gt;</code></pre>
-          </div>
-        </div>
-        <div class="box" data-keywords="angular 20 input output eventemitter child gyerek komponens">
-          <div class="box-header">
-            <span class="box-title">Gyerek Komponens (@Input és @Output definiálása)</span>
-            <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
-          </div>
-          <div class="box-content">
-            <p><strong>TypeScript (termek-kartya.ts):</strong></p>
-            <pre><code>import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Termek } from '../models/termek.model';
-
-@Component({
-  selector: 'app-termek-kartya',
-  templateUrl: './termek-kartya.html'
-})
-export class TermekKartya {
-  // @Input: A szülő komponenstől kapott adat (kívülről jön befelé)
-  @Input() termek!: Termek; 
-  @Input() hatterSzin: string = 'white';
-
-  // @Output: Esemény küldése a szülő komponens felé (belülről megy kifelé)
-  // Itt egy number-t (termék ID) fogunk kilőni a szülőnek
-  @Output() kosarbaTesz = new EventEmitter&lt;number&gt;();
-
-  kosarbaGombKattintas(): void {
-    // Amikor lefut ez a függvény, az EventEmitter "kilövi" (emit) az értéket
-    this.kosarbaTesz.emit(this.termek.id);
-  }
-}</code></pre>
-            <p><strong>HTML (termek-kartya.html):</strong></p>
-            <pre><code>&lt;!-- A kapott @Input változók használata --&gt;
-&lt;div [style.backgroundColor]="hatterSzin" class="kartya-stilus"&gt;
-  
-  &lt;h3&gt;{{ termek.nev }}&lt;/h3&gt;
-  &lt;p&gt;Ár: {{ termek.ar }} Ft&lt;/p&gt;
-
-  &lt;!-- Belső esemény, ami kiváltja az @Output emitálását --&gt;
-  &lt;button (click)="kosarbaGombKattintas()"&gt;Kosárba rakom&lt;/button&gt;
-
-&lt;/div&gt;</code></pre>
-          </div>
-        </div>
-
-        <div class="box" data-keywords="angular 20 parent szulo komponens input output hasznalat event">
-          <div class="box-header">
-            <span class="box-title">Szülő Komponens (Gyerek használata és adatkötése)</span>
-            <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
-          </div>
-          <div class="box-content">
-            <p><strong>TypeScript (szulo-oldal.ts):</strong></p>
-            <pre><code>import { Component } from '@angular/core';
-import { TermekKartya } from '../termek-kartya/termek-kartya';
-import { Termek } from '../models/termek.model';
-
-@Component({
-  selector: 'app-szulo-oldal',
-  // FONTOS: Be kell importálni a gyerek komponenst, hogy használhassuk a HTML-ben!
-  imports: [TermekKartya], 
-  templateUrl: './szulo-oldal.html'
-})
-export class SzuloOldal {
-  kosarTartalma: number[] = [];
-
-  // Ezt az adatot fogjuk átadni a gyereknek
-  peldaTermek: Termek = {
-    id: 101,
-    nev: 'Mechanikus Billentyűzet',
-    ar: 25000,
-    kategoriaId: 2
-  };
-
-  // Ezt a függvényt hívja meg a gyerek @Output eseménye
-  kosarbaKezelo(kapottTermekId: number) {
-    this.kosarTartalma.push(kapottTermekId);
-    console.log('Termék sikeresen a kosárban! ID:', kapottTermekId);
-  }
-}</code></pre>
-            <p><strong>HTML (szulo-oldal.html):</strong></p>
-            <pre><code>&lt;h2&gt;Kiemelt Termék Ajánlatunk&lt;/h2&gt;
-
-&lt;!-- 
-  1. [termek]="peldaTermek" -> @Input() kötés: a szülő 'peldaTermek' objektumát átadjuk a gyerek 'termek' bemenetének
-  2. [hatterSzin]="'#f0f8ff'" -> @Input() kötés: sima stringet adunk át
-  3. (kosarbaTesz)="kosarbaKezelo($event)" -> @Output() kötés: figyeljük a gyerek eseményét.
-      A $event egy beépített Angular változó, ami pontosan azt az értéket tartalmazza, amit a gyerek az .emit() metódusba tett!
---&gt;
-
-&lt;app-termek-kartya
-  [termek]="peldaTermek"
-  [hatterSzin]="'#f0f8ff'"
-  (kosarbaTesz)="kosarbaKezelo($event)"&gt;
-&lt;/app-termek-kartya&gt;
-
-&lt;p&gt;Kosárban lévő tételek száma: {{ kosarTartalma.length }} db&lt;/p&gt;</code></pre>
-          </div>
-        </div>
-      </div>
+<div id="frontend-angular" class="section">
+  <h2>Frontend - Angular 20</h2>
+  <div class="box">
+    <div class="box-header"> <span class="box-title">Adatkötések (Bindings)</span> </div>
+    <div class="box-content">
+      <p><strong>Doksi:</strong> <a href="https://v20.angular.dev/guide/templates/binding"
+          target="_blank">https://v20.angular.dev/guide/templates/binding</a></p>
+      <p><strong>Szöveg:</strong> <code>{{ valtozo }}</code></p>
+      <p><strong>Tulajdonság:</strong> <code>[tulajdonsag]="változó"</code></p>
+      <p><strong>Esemény:</strong> <code>(esemeny)="művelet"</code></p>
+      <p><strong>Kétirányú:</strong> <code>[(ngModel)]="változó"</code></p>
+      <p><strong>Fontos:</strong> ngModel esetén <code>FormsModule -t importálni kell hogy működjön</code></p>
+    </div>
+  </div>
+  <div class="box">
+    <div class="box-header"> <span class="box-title">Komponens alapok</span> </div>
+    <div class="box-content">
+      <p><strong>Doksi:</strong> <a href="https://v20.angular.dev/guide/components"
+          target="_blank">https://v20.angular.dev/guide/components</a></p>
+      <p><code>@Component(...)</code></p>
+      <p><strong>selector</strong> → HTML tag neve</p>
+      <p><strong>imports</strong> → ide kerül modul / másik komponens</p>
+      <p><strong>templateUrl</strong> → külön HTML fájl</p>
+      <p><strong>változó</strong> → <code>nev: tipus</code></p>
+      <p><strong>függvény</strong> → <code>muvelet()</code></p>
+      <p><strong>betöltéskor</strong> → <code>ngOnInit() - (ehhez az osztálynak <strong>implement</strong>álnia kell az OnInit-et)</code></p>
+    </div>
+  </div>
+  <div class="box">
+    <div class="box-header"> <span class="box-title">HTML navigáció</span> </div>
+    <div class="box-content">
+      <p><strong>Doksi:</strong> <a href="https://v20.angular.dev/guide/routing/router-reference"
+          target="_blank">https://v20.angular.dev/guide/routing/router-reference</a></p>
+      <p><strong>Sima út:</strong> <code>routerLink="/utvonal"</code></p>
+      <p><strong>Paraméterrel:</strong> <code>['/utvonal', id]</code></p>
+      <p><strong>Aktív elem:</strong> <code>routerLinkActive="classnev"</code></p>
+      <p><strong>Fontos:</strong> <code>RouterModule -t importálni kell hogy működjön</code></p>
+    </div>
+  </div>
+  <div class="box">
+    <div class="box-header"> <span class="box-title">Konfigurációk (app config)</span> </div>
+    <div class="box-content">
+      <p><strong>Doksi:</strong> <a href="https://v20.angular.dev/guide/routing/common-router-tasks"
+          target="_blank">https://v20.angular.dev/guide/routing/common-router-tasks</a></p>
+      <p><strong>providers</strong> tömb</p>
+      <p><code>provideRouter(...)</code></p>
+      <p><code>provideHttpClient()</code></p>
+    </div>
+  </div>
+  <div class="box">
+    <div class="box-header"> <span class="box-title">Útvonalak (app routes)</span> </div>
+    <div class="box-content">
+      <p><strong>Doksi:</strong> <a href="https://v20.angular.dev/guide/routing/common-router-tasks"
+          target="_blank">https://v20.angular.dev/guide/routing/common-router-tasks</a></p>
+      <p><strong>Sima:</strong> <code>path + component</code></p>
+      <p><strong>Paraméter:</strong> <code>utvonal/:id</code></p>
+      <p><strong>Wildcard:</strong> <code>** - (minden más path esetén)</code></p>
+      <p><strong>Redirect:</strong> <code>redirectTo</code></p>
+      <p><strong>Vizsgán gyakori:</strong> wildcard mindig legalul</p>
+    </div>
+  </div>
+  <div class="box">
+    <div class="box-header"> <span class="box-title">Service / HttpClient / CRUD</span> </div>
+    <div class="box-content">
+      <p><strong>Doksi:</strong> <a href="https://v20.angular.dev/guide/http/making-requests"
+          target="_blank">https://v20.angular.dev/guide/http/making-requests</a></p>
+      <p><strong>inject:</strong> <code>inject(HttpClient)</code></p>
+      <p><strong>Lista:</strong> <code>get&lt;Tipus[]&gt;</code></p>
+      <p><strong>Egy elem:</strong> <code>get&lt;Tipus&gt;</code></p>
+      <p><strong>Létrehozás:</strong> <code>post&lt;Tipus&gt;</code></p>
+      <p><strong>Módosítás:</strong> <code>put&lt;Tipus&gt;</code></p>
+      <p><strong>Törlés:</strong> <code>delete()</code></p>
+      <p><strong>Query param:</strong> <code>HttpParams → set(...)</code></p>
+    </div>
+  </div>
+  <div class="box">
+    <div class="box-header"> <span class="box-title">Subscribe + navigálás kódból</span> </div>
+    <div class="box-content">
+      <p><strong>Doksi:</strong> <a href="https://v20.angular.dev/guide/http/making-requests"
+          target="_blank">https://v20.angular.dev/guide/http/making-requests</a></p>
+      <p><code>subscribe({ ... })</code></p>
+      <p><strong>siker:</strong> <code>next</code></p>
+      <p><strong>hiba:</strong> <code>error</code></p>
+      <p><strong>navigálás:</strong> <code>navigate([...])</code></p>
+    </div>
+  </div>
+  <div class="box">
+    <div class="box-header"> <span class="box-title">@Input / @Output</span> </div>
+    <div class="box-content">
+      <p><strong>Doksi:</strong> TODO</p>
+      <p><strong>Bemenet:</strong> <code>@Input() változó</code></p>
+      <p><strong>Kimenet:</strong> <code>@Output() változó - (ennek egy új EventEmitter osztálypéldánynak kell lennie)</code></p>
+      <p><strong>Esemény küldés:</strong> <code>emit(ertek)</code></p>
+      <p><strong>Szülőből átadás:</strong> <code>[adat]="valtozo"</code></p>
+      <p><strong>Gyerek esemény figyelése:</strong> <code>(esemeny)="kezelo($event)"</code></p>
+    </div>
+  </div>
+</div>
 
       <!-- Frontend - Next -->
       <div id="frontend-next" class="section">
@@ -1230,7 +987,7 @@ class Flight extends Model
     // ...
 }
 </code></pre>
-<div class="snippet-header">
+            <div class="snippet-header">
               <h3 class="snippet-title">Member Model</h3>
               <button class="copy-snippet-btn" onclick="copySnippet(this)">Másolás</button>
             </div>
@@ -1368,23 +1125,23 @@ class DatabaseSeeder extends Seeder
 }
 </code></pre>
 
-           
+
           </div>
-          
+
         </div>
 
-<div class="box" data-keywords="route api">
-            <div class="box-header">
-              <span class="box-title">Routing</span>
+        <div class="box" data-keywords="route api">
+          <div class="box-header">
+            <span class="box-title">Routing</span>
+          </div>
+          <div class="box-content">
+            <div class="snippet-header">
+              <h3 class="snippet-title">DatabaseSeeder.php</h3>
+              <p>Mintaadatok generálása az adatbázisba:</p>
+              <button class="copy-snippet-btn" onclick="copySnippet(this)">Másolás</button>
             </div>
-            <div class="box-content">
-              <div class="snippet-header">
-                <h3 class="snippet-title">DatabaseSeeder.php</h3>
-                <p>Mintaadatok generálása az adatbázisba:</p>
-                <button class="copy-snippet-btn" onclick="copySnippet(this)">Másolás</button>
-              </div>
-              <h4>Forrás: https://laravel.com/docs/13.x/routing</h4>
-              <pre><code>
+            <h4>Forrás: https://laravel.com/docs/13.x/routing</h4>
+            <pre><code>
 Route::apiResource('songs', SongController::class);
 // Ez létrehozza: GET /api/songs, POST /api/songs, GET /api/songs/{id}, stb.
 
@@ -1395,9 +1152,9 @@ Route::get('/user', [UserController::class, 'index']);</code></pre>
 
 
 
-            </div>
+          </div>
 
-</div>
+        </div>
         <!-- Backend - ASP.NET -->
         <div id="backend-aspnet" class="section">
           <h2>Backend - ASP.NET</h2>
