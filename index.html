@@ -708,12 +708,15 @@ var result = people
   <div class="box">
     <div class="box-header"> <span class="box-title">@Input / @Output</span> </div>
     <div class="box-content">
-      <p><strong>Doksi:</strong> TODO</p>
+      <p><strong>Doksi:</strong> 
+        <a href="https://v20.angular.dev/api/core/Input">https://v20.angular.dev/api/core/Input</a>
+        <a href="https://v20.angular.dev/api/core/Output">https://v20.angular.dev/api/core/Output</a>
+      </p>
       <p><strong>Bemenet:</strong> <code>@Input() változó</code></p>
       <p><strong>Kimenet:</strong> <code>@Output() változó - (ennek egy új EventEmitter osztálypéldánynak kell lennie)</code></p>
-      <p><strong>Esemény küldés:</strong> <code>emit(ertek)</code></p>
-      <p><strong>Szülőből átadás:</strong> <code>[adat]="valtozo"</code></p>
-      <p><strong>Gyerek esemény figyelése:</strong> <code>(esemeny)="kezelo($event)"</code></p>
+      <p><strong>Esemény küldés:</strong> <code>emit(érték)</code></p>
+      <p><strong>Szülőből átadás:</strong> <code>[adat]="változó"</code></p>
+      <p><strong>Gyerek esemény figyelése:</strong> <code>(esemény)="kezelő($event)"</code></p>
     </div>
   </div>
 </div>
