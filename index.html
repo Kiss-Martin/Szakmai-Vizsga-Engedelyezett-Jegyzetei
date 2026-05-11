@@ -709,8 +709,8 @@ var result = people
     <div class="box-header"> <span class="box-title">@Input / @Output</span> </div>
     <div class="box-content">
       <p><strong>Doksi:</strong> 
-        <a href="https://v20.angular.dev/api/core/Input">https://v20.angular.dev/api/core/Input</a>
-        <a href="https://v20.angular.dev/api/core/Output">https://v20.angular.dev/api/core/Output</a>
+        <a href="https://v20.angular.dev/api/core/Input" target="_blank">https://v20.angular.dev/api/core/Input</a>
+        <a href="https://v20.angular.dev/api/core/Output" target="_blank">https://v20.angular.dev/api/core/Output</a>
       </p>
       <p><strong>Bemenet:</strong> <code>@Input() változó</code></p>
       <p><strong>Kimenet:</strong> <code>@Output() változó - (ennek egy új EventEmitter osztálypéldánynak kell lennie)</code></p>
@@ -1184,313 +1184,155 @@ Route::get('/user', [UserController::class, 'index']);</code></pre>
           </div>
 
         </div>
+      </div>
         <!-- Backend - ASP.NET -->
-        <div id="backend-aspnet" class="section">
-          <h2>Backend - ASP.NET</h2>
+<div id="backend-aspnet" class="section">
+  <h2>Backend - ASP.NET</h2>
 
-          <div class="box" data-keywords="controller alapok setup using">
-            <div class="box-header">
-              <span class="box-title">Controller Alapok (Fejléc)</span>
-              <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
-            </div>
-            <div class="box-content">
-              <pre><code>using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System.Text.Json;
+  <div class="box">
+    <div class="box-header">
+      <span class="box-title">Controller alapok</span>
+    </div>
+    <div class="box-content">
+      <p><strong>Doksi:</strong> <a href="https://learn.microsoft.com/aspnet/core/web-api" target="_blank">https://learn.microsoft.com/aspnet/core/web-api</a></p>
+      <p><code>[ApiController]</code></p>
+      <p><code>[Route("api")]</code></p>
+      <p><strong>öröklés:</strong> <code>ControllerBase</code></p>
+      <p><strong>adatbázis:</strong> <code>AdatbazisContext</code></p>
+      <p><strong>tipikus végpont:</strong> <code>/api/...</code></p>
+    </div>
+  </div>
 
-namespace VizsgaProject.Controllers
-{
-    [Route("api")]
-    [ApiController]
-    public class VizsgaController : ControllerBase
-    {
-        AdatbazisContext dbContext = new AdatbazisContext();</code></pre>
-            </div>
-          </div>
+  <div class="box">
+    <div class="box-header">
+      <span class="box-title">GET - listázás / szűrés</span>
+    </div>
+    <div class="box-content">
+      <p><strong>Doksi:</strong> <a href="https://learn.microsoft.com/ef/core/querying/related-data/eager" target="_blank">https://learn.microsoft.com/ef/core/querying/related-data/eager</a></p>
+      <p><code>[HttpGet("...")]</code></p>
+      <p><strong>útvonal paraméter:</strong> <code>[FromRoute]</code></p>
+      <p><strong>query paraméter:</strong> <code>[FromQuery]</code></p>
+      <p><strong>kapcsolt tábla:</strong> <code>.Include(...)</code></p>
+      <p><strong>kapcsolt táblához extra kapcsolás:</strong> <code>.ThenInclude(...)</code></p>
+      <p><strong>szűrés:</strong> <code>.Where(...)</code></p>
+      <p><strong>alakítás:</strong> <code>.Select(...)</code></p>
+      <p><strong>nincs találat:</strong> <code>NotFound(...)</code></p>
+      <p><strong>siker:</strong> <code>Ok(...)</code></p>
+    </div>
+  </div>
 
-          <div class="box" data-keywords="get lista query route include theninclude">
-            <div class="box-header">
-              <span class="box-title">GET - Listázás és Szűrés</span>
-              <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
-            </div>
-            <div class="box-content">
-              <pre><code>        // Route("api") miatt ez ilyen lesz:
-        // &lt;ipcím&gt;/api/konyvek/{orszagNev}/lista
-        
-        [HttpGet("konyvek/{orszagNev}/lista")]
-        public IActionResult GetKonyvek([FromRoute] string orszagNev, [FromQuery] int? minOldalszam)
-        {
-            var query = dbContext.Set&lt;Konyv&gt;()
-                                 .Include(k =&gt; k.Szerzo)
-                                 // A ThenInclude arra való, hogy a már behozott (Include-olt) tábla egy további kapcsolódó al-tábláját is hozzáfűzzük a lekérdezéshez. Itt a Könyvhöz bekértük a Szerzőt, majd a Szerzőhöz a hazáját (Ország).
-                                 .ThenInclude(sz =&gt; sz.Orszag)
-                                 .Where(k =&gt; k.Szerzo.Orszag.Nev.ToLower() == orszagNev.ToLower());
+  <div class="box">
+    <div class="box-header">
+      <span class="box-title">GET - egy elem</span>
+    </div>
+    <div class="box-content">
+      <p><strong>Doksi:</strong> <a href="https://learn.microsoft.com/ef/core/querying/" target="_blank">https://learn.microsoft.com/ef/core/querying/</a></p>
+      <p><code>[HttpGet(".../{id}")]</code></p>
+      <p><strong>paraméter:</strong> <code>[FromRoute]</code></p>
+      <p><strong>keresés:</strong> <code>.SingleOrDefault(...)</code></p>
+      <p><strong>ha nincs:</strong> <code>NotFound(...)</code></p>
+      <p><strong>ha van:</strong> <code>Ok(...)</code></p>
+    </div>
+  </div>
 
-            if (minOldalszam.HasValue)
-            {
-                query = query.Where(k =&gt; k.Oldalszam &gt;= minOldalszam.Value);
-            }
+  <div class="box">
+    <div class="box-header">
+      <span class="box-title">POST - létrehozás</span>
+    </div>
+    <div class="box-content">
+      <p><strong>Doksi:</strong> <a href="https://learn.microsoft.com/aspnet/core/web-api" target="_blank">https://learn.microsoft.com/aspnet/core/web-api</a></p>
+      <p><code>[HttpPost("...")]</code></p>
+      <p><strong>body:</strong> <code>[FromBody]</code></p>
+      <p><strong>JSON → objektum:</strong> <code>JsonSerializer.Deserialize&lt;Tipus&gt;(...)</code></p>
+      <p><strong>hozzáadás:</strong> <code>.Add(...)</code></p>
+      <p><strong>mentés:</strong> <code>SaveChanges()</code></p>
+      <p><strong>sikeres létrehozás:</strong> <code>StatusCode(201,...)</code></p>
+      <p><strong>hibás kérés:</strong> <code>BadRequest(...)</code></p>
+    </div>
+  </div>
 
-            var eredmeny = query.Select(k =&gt; new
-            {
-                k.Cim,
-                k.Oldalszam,
-                Szerzo = k.Szerzo.Nev,
-                Orszag = k.Szerzo.Orszag.Nev
-            });
+  <div class="box">
+    <div class="box-header">
+      <span class="box-title">PUT - módosítás</span>
+    </div>
+    <div class="box-content">
+      <p><strong>Doksi:</strong> <a href="https://learn.microsoft.com/ef/core/saving/basic" target="_blank">https://learn.microsoft.com/ef/core/saving/basic</a></p>
+      <p><code>[HttpPut(".../{id}")]</code></p>
+      <p><strong>keresés:</strong> <code>.SingleOrDefault(...)</code></p>
+      <p><strong>módosítandó mezők:</strong> <code>elem.Tulajdonsag = ...</code></p>
+      <p><strong>frissítés:</strong> <code>Update(...)</code></p>
+      <p><strong>mentés:</strong> <code>SaveChanges()</code></p>
+      <p><strong>siker:</strong> <code>Ok(...)</code></p>
+    </div>
+  </div>
 
-            if (eredmeny.Count() == 0)
-            {
-                return NotFound(new { Message = "Nincs találat...." });
-            }
+  <div class="box">
+    <div class="box-header">
+      <span class="box-title">DELETE - törlés</span>
+    </div>
+    <div class="box-content">
+      <p><strong>Doksi:</strong> <a href="https://learn.microsoft.com/ef/core/saving/basic" target="_blank">https://learn.microsoft.com/ef/core/saving/basic</a></p>
+      <p><code>[HttpDelete(".../{id}")]</code></p>
+      <p><strong>keresés:</strong> <code>.SingleOrDefault(...)</code></p>
+      <p><strong>törlés:</strong> <code>.Remove(...)</code></p>
+      <p><strong>mentés:</strong> <code>SaveChanges()</code></p>
+      <p><strong>válasz:</strong> <code>Ok(...)</code> vagy <code>NoContent()</code></p>
+    </div>
+  </div>
 
-            return Ok(eredmeny);
-        }</code></pre>
-            </div>
-          </div>
+  <div class="box">
+    <div class="box-header">
+      <span class="box-title">DbContext alapok</span>
+    </div>
+    <div class="box-content">
+      <p><strong>Doksi:</strong> <a href="https://learn.microsoft.com/ef/core/dbcontext-configuration/" target="_blank">https://learn.microsoft.com/ef/core/dbcontext-configuration/</a></p>
+      <p><strong>öröklés:</strong> <code>DbContext</code></p>
+      <p><strong>táblák:</strong> <code>DbSet&lt;Tipus&gt;</code></p>
+      <p><strong>kapcsolat:</strong> <code>OnConfiguring(...)</code></p>
+      <p><strong>adatbázis:</strong> <code>UseMySQL(...)</code></p>
+    </div>
+  </div>
 
-          <div class="box" data-keywords="get by id egy elem">
-            <div class="box-header">
-              <span class="box-title">GET - Egy Elem Lekérése (ID alapján)</span>
-              <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
-            </div>
-            <div class="box-content">
-              <pre><code>        [HttpGet("konyvek/{id}")]
-        public IActionResult GetById([FromRoute] string id)
-        {
-            Konyv? elem = dbContext.Set&lt;Konyv&gt;().SingleOrDefault(k =&gt; k.Id.ToString() == id);
+  <div class="box">
+    <div class="box-header">
+      <span class="box-title">OnModelCreating - index / seed</span>
+    </div>
+    <div class="box-content">
+      <p><strong>Doksi:</strong> <a href="https://learn.microsoft.com/ef/core/modeling/" target="_blank">https://learn.microsoft.com/ef/core/modeling/</a></p>
+      <p><strong>egyedi index:</strong> <code>.HasIndex(...).IsUnique()</code></p>
+      <p><strong>összetett index:</strong> <code>.HasIndex(x =&gt; new { ... })</code></p>
+      <p><strong>kezdő adatok:</strong> <code>.HasData(...)</code></p>
+    </div>
+  </div>
 
-            if (elem == null)
-            {
-                return NotFound(new { Message = "Nincs ilyen elem...." });
-            }
+  <div class="box">
+    <div class="box-header">
+      <span class="box-title">JSON-ből seed</span>
+    </div>
+    <div class="box-content">
+      <p><strong>Doksi:</strong> <a href="https://learn.microsoft.com/dotnet/api/system.text.json.jsonserializer" target="_blank">https://learn.microsoft.com/dotnet/api/system.text.json.jsonserializer</a></p>
+      <p><strong>fájl olvasás:</strong> <code>File.ReadAllText(...)</code></p>
+      <p><strong>lista deszerializálás:</strong> <code>Deserialize&lt;List&lt;Tipus&gt;&gt;(...)</code></p>
+      <p><strong>betöltés:</strong> <code>.HasData(...)</code></p>
+    </div>
+  </div>
 
-            return Ok(elem);
-        }</code></pre>
-            </div>
-          </div>
-
-          <div class="box" data-keywords="post letrehozas uj add frombody dynamic json">
-            <div class="box-header">
-              <span class="box-title">POST - Új Elem Létrehozása</span>
-              <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
-            </div>
-            <div class="box-content">
-              <pre><code>        [HttpPost("konyvek")]
-        public IActionResult CreateKonyv([FromBody] dynamic body)
-        {
-            try
-            {
-                Konyv model = JsonSerializer.Deserialize&lt;Konyv&gt;(body.ToString());
-
-                if (model.Oldalszam &lt; 1)
-                {
-                    return BadRequest(new { Message = "Hibás oldalszám" });
-                }
-
-                dbContext.Set&lt;Konyv&gt;().Add(model);
-                dbContext.SaveChanges();
-
-                return StatusCode(201, model);
-            }
-            catch
-            {
-                return StatusCode(400, new { Message = "Hiba van..." });
-            }
-        }</code></pre>
-            </div>
-          </div>
-
-          <div class="box" data-keywords="put modositas update frombody dynamic json">
-            <div class="box-header">
-              <span class="box-title">PUT - Meglévő Elem Módosítása</span>
-              <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
-            </div>
-            <div class="box-content">
-              <pre><code>        [HttpPut("konyvek/{id}")]
-        public IActionResult UpdateKonyv([FromRoute] string id, [FromBody] dynamic body)
-        {
-            try
-            {
-                Konyv? itemToUpdate = dbContext.Set&lt;Konyv&gt;().SingleOrDefault(k =&gt; k.Id.ToString() == id);
-
-                if (itemToUpdate == null)
-                {
-                    return BadRequest(new { Message = "Ilyen könyv nincs..." });
-                }
-
-                Konyv model = JsonSerializer.Deserialize&lt;Konyv&gt;(body.ToString());
-
-                if (model.Oldalszam &lt; 1)
-                {
-                    return BadRequest(new { Message = "Túl rövid..." });
-                }
-
-                itemToUpdate.Cim = model.Cim;
-                itemToUpdate.Oldalszam = model.Oldalszam;
-                itemToUpdate.SzerzoId = model.SzerzoId;
-
-                dbContext.Update(itemToUpdate);
-                dbContext.SaveChanges();
-
-                return Ok(itemToUpdate);
-            }
-            catch
-            {
-                return StatusCode(400, new { Message = "Hiba van..." });
-            }
-        }</code></pre>
-            </div>
-          </div>
-
-          <div class="box" data-keywords="delete torles remove">
-            <div class="box-header">
-              <span class="box-title">DELETE - Elem Törlése</span>
-              <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
-            </div>
-            <div class="box-content">
-              <pre><code>        [HttpDelete("konyvek/{id}")]
-        public IActionResult DeleteKonyv([FromRoute] string id)
-        {
-            try
-            {
-                Konyv? itemToDelete = dbContext.Set&lt;Konyv&gt;().SingleOrDefault(k =&gt; k.Id.ToString() == id);
-
-                if (itemToDelete == null)
-                {
-                    return BadRequest(new { Message = "Ilyen könyv nincs..." });
-                }
-
-                dbContext.Set&lt;Konyv&gt;().Remove(itemToDelete);
-                dbContext.SaveChanges();
-
-                return Ok(new { Message = "Sikeres törlés" });
-                //return NoContent();
-            }
-            catch
-            {
-                return StatusCode(400, new { Message = "Hiba van..." });
-            }
-        }
-    }
-}</code></pre>
-            </div>
-          </div>
-
-          <div class="box" data-keywords="dbcontext dbset onconfiguring mysql">
-            <div class="box-header">
-              <span class="box-title">DbContext Alapok és Kapcsolat</span>
-              <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
-            </div>
-            <div class="box-content">
-              <pre><code>using Microsoft.EntityFrameworkCore;
-using System.Text.Json;
-using System.IO;
-using System.Collections.Generic;
-
-public class AdatbazisContext: DbContext
-{
-    public DbSet&lt;Konyv&gt; Konyvek { get; set; }
-    public DbSet&lt;Szerzo&gt; Szerzok { get; set; }
-    public DbSet&lt;Orszag&gt; Orszagok { get; set; }
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        if (!optionsBuilder.IsConfigured)
-        {
-            optionsBuilder.UseMySQL("server=localhost;database=konyvtar_db;uid=root;pwd=;");
-        }
-    }</code></pre>
-            </div>
-          </div>
-
-          <div class="box" data-keywords="onmodelcreating hasindex isunique hasdata seed">
-            <div class="box-header">
-              <span class="box-title">OnModelCreating - Indexek és Normál HasData</span>
-              <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
-            </div>
-            <div class="box-content">
-              <pre><code>    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        modelBuilder.Entity&lt;Orszag&gt;().HasIndex(o =&gt; o.Nev).IsUnique();
-        modelBuilder.Entity&lt;Konyv&gt;().HasIndex(k =&gt; new { k.Cim, k.SzerzoId }).IsUnique();
-
-        modelBuilder.Entity&lt;Orszag&gt;().HasData(
-            new Orszag() { Id = 1, Nev = "Magyarország" },
-            new Orszag() { Id = 2, Nev = "Egyesült Királyság" },
-            new Orszag() { Id = 3, Nev = "Amerikai Egyesült Államok" }
-        );
-
-        modelBuilder.Entity&lt;Szerzo&gt;().HasData(
-            new Szerzo() { Id = 1, Nev = "Gárdonyi Géza", OrszagId = 1 },
-            new Szerzo() { Id = 2, Nev = "J.K. Rowling", OrszagId = 2 },
-            new Szerzo() { Id = 3, Nev = "Stephen King", OrszagId = 3 }
-        );</code></pre>
-            </div>
-          </div>
-
-          <div class="box" data-keywords="hasdata json jsonserializer file readalltext seed">
-            <div class="box-header">
-              <span class="box-title">HasData - Feltöltés JSON Fájlból</span>
-              <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
-            </div>
-            <div class="box-content">
-              <pre><code>        string jsonTartalom = File.ReadAllText("konyvek.json");
-        var konyvekLista = JsonSerializer.Deserialize&lt;List&lt;Konyv&gt;&gt;(jsonTartalom);
-        
-        if (konyvekLista != null)
-        {
-            modelBuilder.Entity&lt;Konyv&gt;().HasData(konyvekLista);
-        }
-    }
-}</code></pre>
-            </div>
-          </div>
-          <div class="box"
-            data-keywords="model entity data annotations table required stringlength column notmapped range">
-            <div class="box-header">
-              <span class="box-title">Model - Data Annotations (Adatbázis beállítások)</span>
-              <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
-            </div>
-            <div class="box-content">
-              <pre><code>using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-[Table("konyvek")]
-public class Konyv
-{
-    // [Key] - akkor kellene ha nem 'Id' lenne 
-    public int Id { get; set; }
-
-    [Required]
-    [StringLength(150)]
-    //Unique-t a contextben lehet csak!
-    public string Cim { get; set; } = "";
-
-    [Range(1, 5000)]
-    public int Oldalszam { get; set; }
-
-    [Column(TypeName = "decimal(10, 2)")]
-    //Pontos adattípus megadása az adatbázisban
-    public decimal Ar { get; set; }
-
-    public int SzerzoId { get; set; }
-
-    [Required]
-    // [ForeignKey("SzerzoId")] - csak akkor kellene ha nem 'SzerzoId' mező lenne hanem 'ValamiMásNév' 
-    public Szerzo? Szerzo { get; set; }
-
-    [StringLength(2000)]
-    public string? Leiras { get; set; }
-
-    [NotMapped]
-    //Ezt a mezőt kihagyja az adatbázis generálásakor! (Csak C#-ban létezik)
-    public string KonyvAdatai => $"{Cim} ({Oldalszam} oldal)";
-}</code></pre>
-            </div>
-          </div>
-
-        </div>
+  <div class="box">
+    <div class="box-header">
+      <span class="box-title">Model - Data Annotations</span>
+    </div>
+    <div class="box-content">
+      <p><strong>Doksi:</strong> <a href="https://learn.microsoft.com/ef/core/modeling/entity-properties" target="_blank">https://learn.microsoft.com/ef/core/modeling/entity-properties</a></p>
+      <p><strong>táblanév:</strong> <code>[Table("...")]</code></p>
+      <p><strong>kötelező:</strong> <code>[Required]</code></p>
+      <p><strong>max hossz:</strong> <code>[StringLength(...)]</code></p>
+      <p><strong>értéktartomány:</strong> <code>[Range(...)]</code></p>
+      <p><strong>oszloptípus:</strong> <code>[Column(TypeName = "...")]</code></p>
+      <p><strong>kapcsolat:</strong> <code>SzerzoId</code> + navigációs property</p>
+      <p><strong>nem adatbázis mező:</strong> <code>[NotMapped]</code></p>
+    </div>
+  </div>
+</div>
 
         <!-- Backend - Node.js -->
         <div id="backend-next" class="section">
