@@ -43,7 +43,8 @@
         <div class="box-header">
           <span class="box-title">JSON konfiguráció - Paste Special</span>
         </div>
-        <div class="box-content">Visual Studio-ban: Edit → Paste Special → Paste JSON as Classes <br>Ez létrehozza a megfelelő C# osztályokat a JSON-ból <br>.json file-ok "copy if newer/copy always" Property beállítása </div>
+        <div class="box-content">Visual Studio-ban: Edit → Paste Special → Paste JSON as Classes <br>Ez létrehozza a
+          megfelelő C# osztályokat a JSON-ból <br>.json file-ok "copy if newer/copy always" Property beállítása </div>
       </div>
 
       <div class="box" data-keywords="console write readline">
@@ -54,8 +55,8 @@
         <div class="box-content">
           public static List&lt;MintaClass&gt; LoadFromJSON(string fileName = "minta.json")
           {
-              var jsonText = File.ReadAllText(fileName);
-              return JsonSerializer.Deserialize&lt;List&lt;MintaClass&gt;&gt;(jsonText) ?? new List&lt;MintaClass&gt;();
+          var jsonText = File.ReadAllText(fileName);
+          return JsonSerializer.Deserialize&lt;List&lt;MintaClass&gt;&gt;(jsonText) ?? new List&lt;MintaClass&gt;();
           }
         </div>
       </div>
@@ -68,15 +69,15 @@
         <div class="box-content">
 
           List&lt;MintaClass&gt; minta = new List&lt;MintaClass&gt;(); //lehet var is
-          var minta = new List&lt;MintaClass&gt;(); 
+          var minta = new List&lt;MintaClass&gt;();
 
           try
           {
-            minta = MintaClass.LoadFromJSON();                           
+          minta = MintaClass.LoadFromJSON();
           }
           catch
           {
-              Console.WriteLine("Hiba");
+          Console.WriteLine("Hiba");
           }
 
         </div>
@@ -86,76 +87,76 @@
         <div class="box-header">
           <span class="box-title">Classoknál érdemes figyelni</span>
         </div>
-        <div class="box-content">public int Valami { get; set; }      // nem lehet null → default: 0
-public int? Valami { get; set; }   // lehet null</div>
+        <div class="box-content">public int Valami { get; set; } // nem lehet null → default: 0
+          public int? Valami { get; set; } // lehet null</div>
       </div>
 
-            <div class="box" data-keywords="date format decimal">
+      <div class="box" data-keywords="date format decimal">
         <div class="box-header">
           <span class="box-title">Dátum és tizedesjegy formázás</span>
         </div>
         <div class="box-content">
-  <ul>
-    <li>
-      <b>{x:F0}</b> → nincs tizedesjegy<br>
-      <small>
-        Pl: <code>12.78 → 13</code>
-      </small>
-    </li>
+          <ul>
+            <li>
+              <b>{x:F0}</b> → nincs tizedesjegy<br>
+              <small>
+                Pl: <code>12.78 → 13</code>
+              </small>
+            </li>
 
-    <li>
-      <b>{x:F1}</b> → 1 tizedesjegy<br>
-      <small>
-        Pl: <code>12.78 → 12.8</code>
-      </small>
-    </li>
+            <li>
+              <b>{x:F1}</b> → 1 tizedesjegy<br>
+              <small>
+                Pl: <code>12.78 → 12.8</code>
+              </small>
+            </li>
 
-    <li>
-      <b>{x:F2}</b> → 2 tizedesjegy<br>
-      <small>
-        Pl: <code>12.78 → 12.78</code>
-      </small>
-    </li>
+            <li>
+              <b>{x:F2}</b> → 2 tizedesjegy<br>
+              <small>
+                Pl: <code>12.78 → 12.78</code>
+              </small>
+            </li>
 
-    <li>
-      <b>{d:F}</b> → teljes dátum és idő<br>
-      <small>
-        Pl: <code>2024. június 29. 14:30:00</code>
-      </small>
-    </li>
+            <li>
+              <b>{d:F}</b> → teljes dátum és idő<br>
+              <small>
+                Pl: <code>2024. június 29. 14:30:00</code>
+              </small>
+            </li>
 
-    <li>
-      <b>{d:d}</b> → rövid dátum<br>
-      <small>
-        Pl: <code>2024.06.29.</code>
-      </small>
-    </li>
+            <li>
+              <b>{d:d}</b> → rövid dátum<br>
+              <small>
+                Pl: <code>2024.06.29.</code>
+              </small>
+            </li>
 
-    <li>
-      <b>{d:t}</b> → rövid idő formátum<br>
-      <small>
-        Pl: <code>14:30</code>
-      </small>
-    </li>
+            <li>
+              <b>{d:t}</b> → rövid idő formátum<br>
+              <small>
+                Pl: <code>14:30</code>
+              </small>
+            </li>
 
-    <li>
-      <b>{d:T}</b> → teljes idő formátum<br>
-      <small>
-        Pl: <code>14:30:00</code>
-      </small>
-    </li>
+            <li>
+              <b>{d:T}</b> → teljes idő formátum<br>
+              <small>
+                Pl: <code>14:30:00</code>
+              </small>
+            </li>
 
-    <li>
-      <b>{d:yyyy.MM.dd HH:mm}</b> → egyedi dátum + idő formátum<br>
-      <small>
-        Pl: <code>2024.06.29 14:30</code>
-      </small>
-    </li>
-  </ul>
+            <li>
+              <b>{d:yyyy.MM.dd HH:mm}</b> → egyedi dátum + idő formátum<br>
+              <small>
+                Pl: <code>2024.06.29 14:30</code>
+              </small>
+            </li>
+          </ul>
 
-  <h3>Formázás példa</h3>
+          <h3>Formázás példa</h3>
 
-  <pre><code>
+          <pre><code>
 double x = 12.786;
 DateTime d = DateTime.Now;
 
@@ -163,9 +164,9 @@ Console.WriteLine($"{x:F1}");
 Console.WriteLine($"{d:yyyy.MM.dd HH:mm}");
   </code></pre>
 
-  <h3>Vizualizálva</h3>
+          <h3>Vizualizálva</h3>
 
-  <pre>
+          <pre>
 12.786
    ↓ F1
 12.8
@@ -174,118 +175,119 @@ Console.WriteLine($"{d:yyyy.MM.dd HH:mm}");
         ↓ yyyy.MM.dd HH:mm
 2024.06.29 14:30
   </pre>
-</div>
+        </div>
       </div>
 
       <div class="box" data-keywords="linq">
         <div class="box-header">
           <span class="box-title">Gyors Linq</span>
         </div>
-        <div class="box-content"><ul>
-  <li>
-    <b>Where(x => ...)</b> → Szűrés feltétel alapján<br>
-    <small>Pl: csak a 18 év felettiek → <code>people.Where(p => p.Age >= 18)</code></small>
-  </li>
+        <div class="box-content">
+          <ul>
+            <li>
+              <b>Where(x => ...)</b> → Szűrés feltétel alapján<br>
+              <small>Pl: csak a 18 év felettiek → <code>people.Where(p => p.Age >= 18)</code></small>
+            </li>
 
-  <li>
-    <b>Select(x => ...)</b> → Adatok átalakítása más formára<br>
-    <small>Pl: csak neveket kérsz le → <code>people.Select(p => p.Name)</code></small>
-  </li>
+            <li>
+              <b>Select(x => ...)</b> → Adatok átalakítása más formára<br>
+              <small>Pl: csak neveket kérsz le → <code>people.Select(p => p.Name)</code></small>
+            </li>
 
-  <li>
-    <b>SelectMany(...)</b> → Lista a listából → egy nagy lista<br>
-    <small><code>[[1,2],[3,4]] => [1,2,3,4]</code></small>
-  </li>
+            <li>
+              <b>SelectMany(...)</b> → Lista a listából → egy nagy lista<br>
+              <small><code>[[1,2],[3,4]] => [1,2,3,4]</code></small>
+            </li>
 
-  <li>
-    <b>OrderBy(x => ...)</b> → Növekvő rendezés<br>
-    <small>Pl: név szerint A-Z → <code>people.OrderBy(p => p.Name)</code></small>
-  </li>
+            <li>
+              <b>OrderBy(x => ...)</b> → Növekvő rendezés<br>
+              <small>Pl: név szerint A-Z → <code>people.OrderBy(p => p.Name)</code></small>
+            </li>
 
-  <li>
-    <b>OrderByDescending(...)</b> → Csökkenő rendezés<br>
-    <small>Pl: legnagyobb pontszámtól → <code>scores.OrderByDescending(x => x)</code></small>
-  </li>
+            <li>
+              <b>OrderByDescending(...)</b> → Csökkenő rendezés<br>
+              <small>Pl: legnagyobb pontszámtól → <code>scores.OrderByDescending(x => x)</code></small>
+            </li>
 
-  <li>
-    <b>GroupBy(x => ...)</b> → Csoportosítás kulcs szerint<br>
-    <small>Pl: diákok osztály szerint → <code>students.GroupBy(s => s.Class)</code></small>
-  </li>
+            <li>
+              <b>GroupBy(x => ...)</b> → Csoportosítás kulcs szerint<br>
+              <small>Pl: diákok osztály szerint → <code>students.GroupBy(s => s.Class)</code></small>
+            </li>
 
-  <li>
-    <b>ToList()</b> → IEnumerable → List<br>
-    <small>Pl: módosítható lista kell → <code>query.ToList()</code></small>
-  </li>
+            <li>
+              <b>ToList()</b> → IEnumerable → List<br>
+              <small>Pl: módosítható lista kell → <code>query.ToList()</code></small>
+            </li>
 
-  <li>
-    <b>ToArray()</b> → Tömbbé alakítás<br>
-    <small>Pl: fix méretű tömb kell → <code>query.ToArray()</code></small>
-  </li>
+            <li>
+              <b>ToArray()</b> → Tömbbé alakítás<br>
+              <small>Pl: fix méretű tömb kell → <code>query.ToArray()</code></small>
+            </li>
 
-  <li>
-    <b>First()</b> → Első elem<br>
-    <small>Hiba, ha nincs elem → <code>numbers.First()</code></small>
-  </li>
+            <li>
+              <b>First()</b> → Első elem<br>
+              <small>Hiba, ha nincs elem → <code>numbers.First()</code></small>
+            </li>
 
-  <li>
-    <b>FirstOrDefault()</b> → Első elem vagy default/null<br>
-    <small>Biztonságosabb üres listánál → <code>numbers.FirstOrDefault()</code></small>
-  </li>
+            <li>
+              <b>FirstOrDefault()</b> → Első elem vagy default/null<br>
+              <small>Biztonságosabb üres listánál → <code>numbers.FirstOrDefault()</code></small>
+            </li>
 
-  <li>
-    <b>Single()</b> → Pontosan 1 elem kell<br>
-    <small>Hiba, ha 0 vagy több van → <code>users.Single(u => u.Id == 5)</code></small>
-  </li>
+            <li>
+              <b>Single()</b> → Pontosan 1 elem kell<br>
+              <small>Hiba, ha 0 vagy több van → <code>users.Single(u => u.Id == 5)</code></small>
+            </li>
 
-  <li>
-    <b>SingleOrDefault()</b> → 0 vagy 1 elem lehet<br>
-    <small>Hiba, ha több van → <code>users.SingleOrDefault(u => u.Id == 5)</code></small>
-  </li>
+            <li>
+              <b>SingleOrDefault()</b> → 0 vagy 1 elem lehet<br>
+              <small>Hiba, ha több van → <code>users.SingleOrDefault(u => u.Id == 5)</code></small>
+            </li>
 
-  <li>
-    <b>Count()</b> → Elemszám<br>
-    <small>Pl: hány elem van? → <code>numbers.Count()</code></small>
-  </li>
+            <li>
+              <b>Count()</b> → Elemszám<br>
+              <small>Pl: hány elem van? → <code>numbers.Count()</code></small>
+            </li>
 
-  <li>
-    <b>Sum(x => ...)</b> → Összegzés<br>
-    <small>Pl: fizetések összege → <code>employees.Sum(e => e.Salary)</code></small>
-  </li>
+            <li>
+              <b>Sum(x => ...)</b> → Összegzés<br>
+              <small>Pl: fizetések összege → <code>employees.Sum(e => e.Salary)</code></small>
+            </li>
 
-  <li>
-    <b>Max() / Min()</b> → Legnagyobb / legkisebb elem<br>
-    <small>Pl: legmagasabb pont → <code>scores.Max()</code></small>
-  </li>
+            <li>
+              <b>Max() / Min()</b> → Legnagyobb / legkisebb elem<br>
+              <small>Pl: legmagasabb pont → <code>scores.Max()</code></small>
+            </li>
 
-  <li>
-    <b>Average()</b> → Átlag számítás<br>
-    <small>Pl: átlag életkor → <code>people.Average(p => p.Age)</code></small>
-  </li>
+            <li>
+              <b>Average()</b> → Átlag számítás<br>
+              <small>Pl: átlag életkor → <code>people.Average(p => p.Age)</code></small>
+            </li>
 
-  <li>
-    <b>Distinct()</b> → Duplikátumok eltávolítása<br>
-    <small><code>[1,1,2,2] => [1,2]</code></small>
-  </li>
+            <li>
+              <b>Distinct()</b> → Duplikátumok eltávolítása<br>
+              <small><code>[1,1,2,2] => [1,2]</code></small>
+            </li>
 
-  <li>
-    <b>Skip(n)</b> → Első n elem kihagyása<br>
-    <small>Pl: lapozás → <code>numbers.Skip(10)</code></small>
-  </li>
+            <li>
+              <b>Skip(n)</b> → Első n elem kihagyása<br>
+              <small>Pl: lapozás → <code>numbers.Skip(10)</code></small>
+            </li>
 
-  <li>
-    <b>Zip(a,b,(x,y)=>...)</b> → Két lista párosítása<br>
-    <small><code>["A","B"] + [1,2] => A1,B2</code></small>
-  </li>
+            <li>
+              <b>Zip(a,b,(x,y)=>...)</b> → Két lista párosítása<br>
+              <small><code>["A","B"] + [1,2] => A1,B2</code></small>
+            </li>
 
-  <li>
-    <b>Join(...)</b> → Két lista összekapcsolása kulcs alapján<br>
-    <small>Pl: users + orders → <code>users.Join(...)</code></small>
-  </li>
-</ul>
+            <li>
+              <b>Join(...)</b> → Két lista összekapcsolása kulcs alapján<br>
+              <small>Pl: users + orders → <code>users.Join(...)</code></small>
+            </li>
+          </ul>
 
-<h3>LINQ folyamat vizuálisan</h3>
+          <h3>LINQ folyamat vizuálisan</h3>
 
-<pre>
+          <pre>
 [összes ember]
        ↓ Where
 [felnőttek]
@@ -297,16 +299,16 @@ Console.WriteLine($"{d:yyyy.MM.dd HH:mm}");
 [List&lt;string&gt;]
 </pre>
 
-<h3>Példa pipeline</h3>
+          <h3>Példa pipeline</h3>
 
-<pre><code>
+          <pre><code>
 var result = people
     .Where(p => p.Age > 18)
     .OrderBy(p => p.Name)
     .Select(p => p.Name)
     .ToList();
 </code></pre>
-      </div>
+        </div>
       </div>
 
       <div class="box" data-keywords="zip">
@@ -315,647 +317,410 @@ var result = people
           <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
         </div>
         <div class="box-content">
-    var ertek = 0
-    do
-    {
-        try
-        {
-            ertek = szám_beolvasása;
-        }
-        catch
-        {
-            ertek = 0;
-        }
+          var ertek = 0
+          do
+          {
+          try
+          {
+          ertek = szám_beolvasása;
+          }
+          catch
+          {
+          ertek = 0;
+          }
 
-    } while (ertek <= 0);
+          } while (ertek <= 0); </div>
         </div>
+
+        <div class="box" data-keywords="zip">
+          <div class="box-header">
+            <span class="box-title">Zip Példa</span>
+            <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+          </div>
+          <div class="box-content">int[] numbers = { 1, 2, 3, 4 };
+
+            var pairs = numbers.Zip(numbers.Skip(1), (a, b) => a + " -> " + b);
+
+            foreach (var item in pairs)
+            Console.WriteLine(item);
+
+            // This code produces the following output:
+
+            // 1 -> 2
+            // 2 -> 3
+            // 3 -> 4</div>
+        </div>
+
+        <div class="box" data-keywords="zip">
+          <div class="box-header">
+            <span class="box-title">Lista szűrése több feltétellel</span>
+            <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+          </div>
+          <div class="box-content">//
+            lista?.Where(x => feltétel1 && feltétel2)
+
+            // Rendezés
+            .OrderBy(x => x.tulajdonsag)
+
+            // További szűrés
+            .Where(x => feltétel3)
+
+            // Lista készítése
+            .ToList()
+
+            // Bejárás
+            .ForEach(x =>
+            {
+            Console.WriteLine($"{x.adat1} - {x.adat2}");
+            });</div>
+        </div>
+
+        <div class="box" data-keywords="zip">
+          <div class="box-header">
+            <span class="box-title">Egyszerű adatbekérések</span>
+            <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+          </div>
+          <div class="box-content">
+            // Szöveg bekérés
+            Console.Write("Szöveg: ");
+            string text = Console.ReadLine();
+
+            // Egész szám bekérés
+            Console.Write("Szám: ");
+            int number = int.Parse(Console.ReadLine());
+
+            // Tört szám bekérés
+            Console.Write("Érték: ");
+            decimal value = decimal.Parse(Console.ReadLine().Replace(",", "."));
+
+            // Dátum bekérés
+            Console.Write("Dátum: ");
+            DateTime date = DateTime.Parse(Console.ReadLine());
+          </div>
+        </div>
+
+        <div class="box" data-keywords="zip">
+          <div class="box-header">
+            <span class="box-title">Anonym osztály létrehozása</span>
+            <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+          </div>
+          <div class="box-content">
+            var groups = lista
+            .GroupBy(x => x.azonosito)
+            .Select(g => new
+            {
+            id = g.Key,
+            //esetleg id-k összehasonlítása
+            elemek = g.OrderBy(x => x.valami).ToList()
+            });
+          </div>
+        </div>
+
+        <div class="box" data-keywords="zip">
+          <div class="box-header">
+            <span class="box-title">Foreach és Zip használata</span>
+            <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+          </div>
+          <div class="box-content">
+            foreach (var item in lista)
+            {
+            var eredmeny = item.adatok
+            .Zip(item.adatok.Skip(1),
+            (a, b) => szamitas)
+            .Max();
+
+            Console.WriteLine(eredmeny);
+            }
+          </div>
+        </div>
+
       </div>
 
-      <div class="box" data-keywords="zip">
-        <div class="box-header">
-          <span class="box-title">Zip Példa</span>
-          <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+      <!-- WPF -->
+      <div id="wpf" class="section">
+        <h2>WPF</h2>
+
+        <div class="box guide" data-keywords="json config settings">
+          <div class="box-header">
+            <span class="box-title">Megfelelő Nuget csomagok listája</span>
+          </div>
+          <div class="box-content" style="text-align: left;">
+            MySql.EntityFrameworkCore (10.0.2)
+            CommunityToolkit.Mvvm (8.0.4)
+            Microsoft.EntityFrameworkCore.Tools (8.0.22)
+          </div>
         </div>
-        <div class="box-content">int[] numbers = { 1, 2, 3, 4 };
 
-var pairs = numbers.Zip(numbers.Skip(1), (a, b) => a + " -> " + b);
-
-foreach (var item in pairs)
-    Console.WriteLine(item);
-
-// This code produces the following output:
-
-// 1 -> 2
-// 2 -> 3
-// 3 -> 4</div>
-      </div>
-
-      <div class="box" data-keywords="zip">
-        <div class="box-header">
-          <span class="box-title">Lista szűrése több feltétellel</span>
-          <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
-        </div>
-        <div class="box-content">// 
-lista?.Where(x => feltétel1 && feltétel2)
-
-      // Rendezés
-      .OrderBy(x => x.tulajdonsag)
-
-      // További szűrés
-      .Where(x => feltétel3)
-
-      // Lista készítése
-      .ToList()
-
-      // Bejárás
-      .ForEach(x =>
-{
-    Console.WriteLine($"{x.adat1} - {x.adat2}");
-});</div>
-      </div>
-
-      <div class="box" data-keywords="zip">
-        <div class="box-header">
-          <span class="box-title">Egyszerű adatbekérések</span>
-          <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
-        </div>
-        <div class="box-content">
-          // Szöveg bekérés
-          Console.Write("Szöveg: ");
-          string text = Console.ReadLine();
-
-          // Egész szám bekérés
-          Console.Write("Szám: ");
-          int number = int.Parse(Console.ReadLine());
-
-          // Tört szám bekérés
-          Console.Write("Érték: ");
-          decimal value = decimal.Parse(Console.ReadLine().Replace(",", "."));
-
-          // Dátum bekérés
-          Console.Write("Dátum: ");
-          DateTime date = DateTime.Parse(Console.ReadLine());
-        </div>
-      </div>
-
-      <div class="box" data-keywords="zip">
-        <div class="box-header">
-          <span class="box-title">Anonym osztály létrehozása</span>
-          <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
-        </div>
-        <div class="box-content">
-          var groups = lista
-                  .GroupBy(x => x.azonosito)
-                  .Select(g => new
-                  {
-                      id = g.Key,
-                      //esetleg id-k összehasonlítása
-                      elemek = g.OrderBy(x => x.valami).ToList()
-                  });
-        </div>
-      </div>
-
-      <div class="box" data-keywords="zip">
-        <div class="box-header">
-          <span class="box-title">Foreach és Zip használata</span>
-          <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
-        </div>
-        <div class="box-content">
-              foreach (var item in lista)
-              {
-                  var eredmeny = item.adatok
-                      .Zip(item.adatok.Skip(1),
-                          (a, b) => szamitas)
-                      .Max();
-
-                  Console.WriteLine(eredmeny);
-              }
-        </div>
-      </div>
-
-    </div>
-
-    <!-- WPF -->
-    <div id="wpf" class="section">
-      <h2>WPF</h2>
-
-      <div class="box guide" data-keywords="json config settings">
-        <div class="box-header">
-          <span class="box-title">Megfelelő Nuget csomagok listája</span>
-        </div>
-        <div class="box-content" style="text-align: left;">
-MySql.EntityFrameworkCore (10.0.2)
-CommunityToolkit.Mvvm (8.0.4)
-Microsoft.EntityFrameworkCore.Tools (8.0.22)
-        </div>
-      </div>
-
-      <div class="box" data-keywords="xamarin entityframework navigation">
-        <div class="box-header">
-          <span class="box-title">Entitás kapcsolatok EF Core-ban (class végére)</span>
-        </div>
-        <div class="box-content" style="text-align: left;">
-Egy objektumhoz több kapcsolódó elem tartozhat
-<pre><code>public virtual ICollection&lt;PeldaClass&gt; PeldaCollection { get; set; } = new List&lt;PeldaClass&gt;();
+        <div class="box" data-keywords="xamarin entityframework navigation">
+          <div class="box-header">
+            <span class="box-title">Entitás kapcsolatok EF Core-ban (class végére)</span>
+          </div>
+          <div class="box-content" style="text-align: left;">
+            Egy objektumhoz több kapcsolódó elem tartozhat
+            <pre><code>public virtual ICollection&lt;PeldaClass&gt; PeldaCollection { get; set; } = new List&lt;PeldaClass&gt;();
 </code></pre>
 
-Az objektum egy másik objektumhoz tartozik
-<pre><code>public virtual PeldaSzuloClass Szulo { get; set; } = null!;
+            Az objektum egy másik objektumhoz tartozik
+            <pre><code>public virtual PeldaSzuloClass Szulo { get; set; } = null!;
 </code></pre>
 
-<h3>ICollection → több kapcsolódó adat tárolása listában</h3>
-<h3>new List&lt;&gt;() → üres lista létrehozása</h3>
-<h3>Szulo → egyetlen kapcsolódó objektum</h3>
-<h3>null! → az érték később lesz beállítva</h3>
+            <h3>ICollection → több kapcsolódó adat tárolása listában</h3>
+            <h3>new List&lt;&gt;() → üres lista létrehozása</h3>
+            <h3>Szulo → egyetlen kapcsolódó objektum</h3>
+            <h3>null! → az érték később lesz beállítva</h3>
 
-<h3>Példa:</h3>
-1 légitársaság → több járat
-1 járat → 1 légitársaság
+            <h3>Példa:</h3>
+            1 légitársaság → több járat
+            1 járat → 1 légitársaság
+          </div>
         </div>
-      </div>
 
-      <div class="box" data-keywords="xaml binding">
-        <div class="box-header">
-          <span class="box-title">Scaffold Parancs</span>
-          <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+        <div class="box" data-keywords="xaml binding">
+          <div class="box-header">
+            <span class="box-title">Scaffold Parancs</span>
+            <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+          </div>
+          <div class="box-content">Scaffold-DbContext -Connection
+            "server=localhost;database=adatbazis-nev;uid=root;pwd=;" -Provider Mysql.EntityFrameworkCore</div>
         </div>
-        <div class="box-content">Scaffold-DbContext -Connection "server=localhost;database=adatbazis-nev;uid=root;pwd=;" -Provider Mysql.EntityFrameworkCore</div>
-      </div>
 
-      <div class="box" data-keywords="xaml binding">
-        <div class="box-header">
-          <span class="box-title">Datagrid felépítése</span>
-          <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
-        </div>
-        <div class="box-content">      
+        <div class="box" data-keywords="xaml binding">
+          <div class="box-header">
+            <span class="box-title">Datagrid felépítése</span>
+            <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+          </div>
+          <div class="box-content">
 
-          &lt;DataGrid Name="dgMinta" IsReadOnly="True" AutoGenerateColumns="False"&gt;
+            &lt;DataGrid Name="dgMinta" IsReadOnly="True" AutoGenerateColumns="False"&gt;
             &lt;DataGrid.Columns&gt;
-                &lt;DataGridTextColumn Header="Id" Width="30" Binding="{Binding Id}"&gt;                
+            &lt;DataGridTextColumn Header="Id" Width="30" Binding="{Binding Id}"&gt;
             &lt;/DataGrid.Columns&gt;
-          &lt;/DataGrid&gt;
+            &lt;/DataGrid&gt;
+          </div>
         </div>
-      </div>
 
-      <div class="box" data-keywords="mvvm viewmodel command">
-        <div class="box-header">
-          <span class="box-title">Adatok formázása</span>
-        </div>
-        <div class="box-content">
+        <div class="box" data-keywords="mvvm viewmodel command">
+          <div class="box-header">
+            <span class="box-title">Adatok formázása</span>
+          </div>
+          <div class="box-content">
             Binding="{Binding Date, StringFormat=yyyy.MM.dd HH:mm}"
             Binding="{Binding Price, StringFormat={}{0:# ###} Ft}"
             Binding="{Binding Adat, TargetNullValue='N/A'}"
+          </div>
         </div>
-      </div>
 
-      <div class="box" data-keywords="mvvm viewmodel command">
-        <div class="box-header">
-          <span class="box-title">Context létrehozása</span>
-        </div>
-        <div class="box-content">
+        <div class="box" data-keywords="mvvm viewmodel command">
+          <div class="box-header">
+            <span class="box-title">Context létrehozása</span>
+          </div>
+          <div class="box-content">
             private MintaContext dbContext = new MintaContext();
+          </div>
         </div>
-      </div>
 
-      <div class="box" data-keywords="mvvm viewmodel command">
-        <div class="box-header">
-          <span class="box-title">ComboBox feltöltése</span>
+        <div class="box" data-keywords="mvvm viewmodel command">
+          <div class="box-header">
+            <span class="box-title">ComboBox feltöltése</span>
+          </div>
+          <div class="box-content">
+            cboMinta.ItemSource = tömb változó ami feltölti ComboBox-t pl: adatok;
+            cboMinta.DisplayMemberPath = Osztályban lévő mező megjelenítése pl: "Név";
+            cboMinta.SelectedValuePath = Osztályban lévő azonosító megadása pl: "Id";
+            cboMinta.SelectedIndex = hányadik elem legyen alapból kiválasztva pl: 0;
+          </div>
         </div>
-        <div class="box-content">
-          cboMinta.ItemSource = tömb változó ami feltölti ComboBox-t pl: adatok;
-          cboMinta.DisplayMemberPath = Osztályban lévő mező megjelenítése pl: "Név";
-          cboMinta.SelectedValuePath = Osztályban lévő azonosító megadása pl: "Id";
-          cboMinta.SelectedIndex = hányadik elem legyen alapból kiválasztva pl: 0;
-        </div>
-      </div>
 
-      <div class="box" data-keywords="mvvm viewmodel command">
-        <div class="box-header">
-          <span class="box-title">Combobox létrehozása</span>
-        </div>
-        <div class="box-content">
+        <div class="box" data-keywords="mvvm viewmodel command">
+          <div class="box-header">
+            <span class="box-title">Combobox létrehozása</span>
+          </div>
+          <div class="box-content">
             &lt;ComboBox Name="cboMinta"&gt;
+          </div>
+        </div>
+
+        <div class="box" data-keywords="mvvm viewmodel command">
+          <div class="box-header">
+            <span class="box-title">Datagrid feltöltése</span>
+          </div>
+          <div class="box-content">
+            var adatok = dbContext.Set&lt;MintaClass&gt;().ToList();
+
+
+            dgMinta.ItemsSource = dbContext.Set&lt;MintaClass&gt;().ToList();
+          </div>
+        </div>
+
+
+
+        <div class="box" data-keywords="mvvm viewmodel command">
+          <div class="box-header">
+            <span class="box-title">Elem beszúra</span>
+          </div>
+          <div class="box-content">adatok.Insert(0, new MintaClass {}); </div>
+        </div>
+
+        <div class="box" data-keywords="mvvm viewmodel command">
+          <div class="box-header">
+            <span class="box-title">MVVM Pattern</span>
+          </div>
+          <div class="box-content">// Ide írd a jegyzetet</div>
+        </div>
+
+        <div class="box" data-keywords="control event">
+          <div class="box-header">
+            <span class="box-title">Controk és események</span>
+            <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+          </div>
+          <div class="box-content">// Ide írd a jegyzetet</div>
         </div>
       </div>
 
-      <div class="box" data-keywords="mvvm viewmodel command">
-        <div class="box-header">
-          <span class="box-title">Datagrid feltöltése</span>
-        </div>
-        <div class="box-content">                      
-                var adatok = dbContext.Set&lt;MintaClass&gt;().ToList();
-                                           
+      <!-- HTML -->
+      <div id="html" class="section">
+        <h2>HTML</h2>
 
-                dgMinta.ItemsSource = dbContext.Set&lt;MintaClass&gt;().ToList();            
+        <div class="box guide" data-keywords="html5 semantic tag">
+          <div class="box-header">
+            <span class="box-title">HTML5 Semantikus Tag-ek</span>
+          </div>
+          <div class="box-content"> &lt;header&gt; - Fejléc<br> &lt;nav&gt; - Navigáció<br> &lt;main&gt; - Fő
+            tartalom<br> &lt;article&gt; - önálló tartalom<br> &lt;section&gt; - szekció<br> &lt;aside&gt; - oldalsó
+            tartalom<br> &lt;footer&gt; - lábléc<br> &lt;figure&gt; - ábra + &lt;figcaption&gt;</div>
+        </div>
+
+        <div class="box" data-keywords="bootstrap grid">
+          <div class="box-header">
+            <span class="box-title">Bootstrap Gyors linkek</span>
+          </div>
+          <div class="box-content"><a target="_blank" rel="noopener"
+              href="https://getbootstrap.com/docs/5.3/getting-started/introduction/">Bootstrap főoldal</a><br><a
+              target="_blank" rel="noopener" href="https://getbootstrap.com/docs/5.3/layout/grid/">Bootstrap Grid
+              Dokumentáció</a><br><a target="_blank" rel="noopener"
+              href="https://getbootstrap.com/docs/5.3/content/tables/#overview">Bootstrap Táblázatok Dokumentáció</a>
+          </div>
+        </div>
+
+        <div class="box" data-keywords="form input validation">
+          <div class="box-header">
+            <span class="box-title">Űrlapok</span>
+          </div>
+          <div class="box-content">// Ide írd a jegyzetet</div>
+        </div>
+
+        <div class="box" data-keywords="table list link image">
+          <div class="box-header">
+            <span class="box-title">Média és táblázatok</span>
+            <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+          </div>
+          <div class="box-content">// Ide írd a jegyzetet</div>
         </div>
       </div>
 
-      
-
-      <div class="box" data-keywords="mvvm viewmodel command">
-        <div class="box-header">
-          <span class="box-title">Elem beszúra</span>
-        </div>
-        <div class="box-content">adatok.Insert(0, new MintaClass {}); </div>
-      </div>
-
-      <div class="box" data-keywords="mvvm viewmodel command">
-        <div class="box-header">
-          <span class="box-title">MVVM Pattern</span>
-        </div>
-        <div class="box-content">// Ide írd a jegyzetet</div>
-      </div>
-
-      <div class="box" data-keywords="control event">
-        <div class="box-header">
-          <span class="box-title">Controk és események</span>
-          <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
-        </div>
-        <div class="box-content">// Ide írd a jegyzetet</div>
-      </div>
+      <!-- Frontend - Angular -->
+<div id="frontend-angular" class="section">
+  <h2>Frontend - Angular 20</h2>
+  <div class="box">
+    <div class="box-header"> <span class="box-title">Adatkötések (Bindings)</span> </div>
+    <div class="box-content">
+      <p><strong>Doksi:</strong> <a href="https://v20.angular.dev/guide/templates/binding"
+          target="_blank">https://v20.angular.dev/guide/templates/binding</a></p>
+      <p><strong>Szöveg:</strong> <code>{{ valtozo }}</code></p>
+      <p><strong>Tulajdonság:</strong> <code>[tulajdonsag]="változó"</code></p>
+      <p><strong>Esemény:</strong> <code>(esemeny)="művelet"</code></p>
+      <p><strong>Kétirányú:</strong> <code>[(ngModel)]="változó"</code></p>
+      <p><strong>Fontos:</strong> ngModel esetén <code>FormsModule -t importálni kell hogy működjön</code></p>
     </div>
-
-    <!-- HTML -->
-    <div id="html" class="section">
-      <h2>HTML</h2>
-
-      <div class="box guide" data-keywords="html5 semantic tag">
-        <div class="box-header">
-          <span class="box-title">HTML5 Semantikus Tag-ek</span>
-        </div>
-        <div class="box-content"> &lt;header&gt; - Fejléc<br> &lt;nav&gt; - Navigáció<br> &lt;main&gt; - Fő tartalom<br> &lt;article&gt; - önálló tartalom<br> &lt;section&gt; - szekció<br> &lt;aside&gt; - oldalsó tartalom<br> &lt;footer&gt; - lábléc<br> &lt;figure&gt; - ábra + &lt;figcaption&gt;</div>
-      </div>
-
-      <div class="box" data-keywords="bootstrap grid">
-        <div class="box-header">
-          <span class="box-title">Bootstrap Gyors linkek</span>
-        </div>
-        <div class="box-content"><a target="_blank" rel="noopener"
-            href="https://getbootstrap.com/docs/5.3/getting-started/introduction/">Bootstrap főoldal</a><br><a
-            target="_blank" rel="noopener" href="https://getbootstrap.com/docs/5.3/layout/grid/">Bootstrap Grid Dokumentáció</a><br><a target="_blank" rel="noopener"
-            href="https://getbootstrap.com/docs/5.3/content/tables/#overview">Bootstrap Táblázatok Dokumentáció</a></div>
-      </div>
-
-      <div class="box" data-keywords="form input validation">
-        <div class="box-header">
-          <span class="box-title">Űrlapok</span>
-        </div>
-        <div class="box-content">// Ide írd a jegyzetet</div>
-      </div>
-
-      <div class="box" data-keywords="table list link image">
-        <div class="box-header">
-          <span class="box-title">Média és táblázatok</span>
-          <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
-        </div>
-        <div class="box-content">// Ide írd a jegyzetet</div>
-      </div>
+  </div>
+  <div class="box">
+    <div class="box-header"> <span class="box-title">Komponens alapok</span> </div>
+    <div class="box-content">
+      <p><strong>Doksi:</strong> <a href="https://v20.angular.dev/guide/components"
+          target="_blank">https://v20.angular.dev/guide/components</a></p>
+      <p><code>@Component(...)</code></p>
+      <p><strong>selector</strong> → HTML tag neve</p>
+      <p><strong>imports</strong> → ide kerül modul / másik komponens</p>
+      <p><strong>templateUrl</strong> → külön HTML fájl</p>
+      <p><strong>változó</strong> → <code>nev: tipus</code></p>
+      <p><strong>függvény</strong> → <code>muvelet()</code></p>
+      <p><strong>betöltéskor</strong> → <code>ngOnInit() - (ehhez az osztálynak <strong>implement</strong>álnia kell az OnInit-et)</code></p>
     </div>
-
-    <!-- Frontend - Angular -->
-    <div id="frontend-angular" class="section">
-      <h2>Frontend - Angular</h2>
-
-
-      <div class="box" data-keywords="angular 20 binding adatkotes interpolation property event twoway ngmodel formsmodule">
-  <div class="box-header">
-    <span class="box-title">Adatkötések (Bindings) és Komponens Alapok</span>
-    <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
   </div>
-  <div class="box-content">
-    <p><strong>TypeScript (termek-kezelo.ts):</strong></p>
-<pre><code>import { Component, OnInit } from '@angular/core';
-  import { FormsModule } from '@angular/forms'; 
-  import { CommonModule } from '@angular/common';
-  
-  @Component({
-  selector: 'app-termek-kezelo',
-  // FONTOS: A FormsModule kötelező a kétirányú [(ngModel)] adatkötéshez!
-  imports: [CommonModule, FormsModule], 
-  templateUrl: './termek-kezelo.html'
-})
-export class TermekKezelo implements OnInit {
-  oldalCim: string = 'Termékek Kezelése';
-  isLetiltva: boolean = false;
-  kepEleresiUt: string = 'assets/pelda.jpg';
-  keresoSzo: string = '';
-
-  ngOnInit(): void {
-    // Komponens betöltésekor lefutó kód
-  }
-
-  kattintasKezelo(): void {
-    this.isLetiltva = !this.isLetiltva; // Gomb letiltásának váltogatása
-    console.log('Gombra kattintottak, a jelenlegi keresőszó:', this.keresoSzo);
-  }
-}</code></pre>
-    <p><strong>HTML (termek-kezelo.html):</strong></p>
-<pre><code>&lt;!-- 1. Interpolation (Szöveges behelyettesítés): {{ }} --&gt;
-&lt;h1&gt;{{ oldalCim }}&lt;/h1&gt;
-
-&lt;!-- 2. Property Binding (Tulajdonság kötés egyirányú): [ ] --&gt;
-&lt;!-- A TS változó értékét átadja a HTML elem tulajdonságának --&gt;
-&lt;button [disabled]="isLetiltva"&gt;Mentés gomb&lt;/button&gt;
-&lt;img [src]="kepEleresiUt" alt="Termék képe"&gt;
-
-&lt;!-- 3. Event Binding (Esemény kötés egyirányú): ( ) --&gt;
-&lt;!-- A HTML esemény (pl. click, change) meghív egy TS függvényt --&gt;
-&lt;button (click)="kattintasKezelo()"&gt;Kattints ide!&lt;/button&gt;
-
-&lt;!-- 4. Two-Way Binding (Kétirányú adatkötés): [(ngModel)] --&gt;
-&lt;!-- "Banán a dobozban" szintaxis. Automatikusan frissül mindkét oldalon. --&gt;
-&lt;input type="text" [(ngModel)]="keresoSzo" placeholder="Írj be valamit..."&gt;
-
-&lt;!-- Ha beírsz valamit az inputba, az alábbi szöveg azonnal frissül! --&gt;
-&lt;p&gt;Keresett kifejezés: {{ keresoSzo }}&lt;/p&gt;</code></pre>
-  </div>
-</div>
-
-<div class="box" data-keywords="angular 20 routing routerlink route params">
-  <div class="box-header">
-    <span class="box-title">Navigáció HTML-ből (RouterLink)</span>
-    <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
-  </div>
-  <div class="box-content">
-    <p><strong>TypeScript (fejlec.ts):</strong></p>
-<pre><code>import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
-
-@Component({
-  selector: 'app-fejlec',
-  // FONTOS: Kell a routerLink-hez a RouterModule!
-  imports: [RouterModule],
-  templateUrl: './fejlec.html'
-})
-export class Fejlec {
-  termekId: number = 5;
-}</code></pre>
-    <p><strong>HTML (fejlec.html):</strong></p>
-<pre><code>&lt;nav&gt;
-  &lt;!-- Sima útvonalra navigálás --&gt;
-  &lt;a routerLink="/termekek"&gt;Terméklista&lt;/a&gt;
-
-  &lt;!-- Dinamikus útvonal (pl. id átadása paraméterként: /termek/5) --&gt;
-  &lt;a [routerLink]="['/termek', termekId]"&gt;Részletek&lt;/a&gt;
-  
-  &lt;!-- Aktív link stílusozása (ha ezen az oldalon vagyunk, ráteszi a class-t) --&gt;
-  &lt;a routerLink="/kapcsolat" routerLinkActive="aktiv-menu"&gt;Kapcsolat&lt;/a&gt;
-&lt;/nav&gt;</code></pre>
-  </div>
-</div>
-
-<div class="box" data-keywords="angular 20 config appconfig providehttpclient router">
-  <div class="box-header">
-    <span class="box-title">App Config (app.config.ts) - HttpClient és Router beállítása</span>
-    <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
-  </div>
-  <div class="box-content">
-    <p><strong>TypeScript (app.config.ts):</strong></p>
-<pre><code>import { ApplicationConfig } from '@angular/core';
-import { provideRouter } from '@angular/router';
-import { routes } from './app.routes';
-// Ez kell a HTTP kérésekhez (pl. DataService-ben)
-import { provideHttpClient } from '@angular/common/http';
-
-export const appConfig: ApplicationConfig = {
-  providers: [
-    provideRouter(routes),
-    provideHttpClient() 
-  ]
-};</code></pre>
-  </div>
-</div>
-
-<div class="box" data-keywords="angular 20 routes approutes path component loadcomponent">
-  <div class="box-header">
-    <span class="box-title">Útvonalak (app.routes.ts)</span>
-    <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
-  </div>
-  <div class="box-content">
-    <p><strong>TypeScript (app.routes.ts):</strong></p>
-<pre><code>import { Routes } from '@angular/router';
-import { Home } from './home/home';
-
-export const routes: Routes = [
-  // Sima komponens betöltése
-  { path: '', component: Home }, 
-  
-  { path: 'termekek', component: TermekLista }, 
-  
-  // Paraméteres útvonal (pl. /termek/5)
-  { path: 'termek/:id', component: TermekReszletek }, 
-  
-  // Fallback (minden más esetben ide visz, pl. 404 helyett)
-  { path: '**', redirectTo: '' } 
-];</code></pre>
-  </div>
-</div>
-
-<div class="box" data-keywords="angular 20 service dataservice httpclient get post put delete httpparams observable">
-  <div class="box-header">
-    <span class="box-title">DataService (data.service.ts) - CRUD Műveletek</span>
-    <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
-  </div>
-  <div class="box-content">
-    <p><strong>TypeScript (data.service.ts):</strong></p>
-<pre><code>import { Injectable, inject } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
-
-// Backendből jövő DTO model
-import { Termek } from './models/termek.model'; 
-
-@Injectable({
-  providedIn: 'root'
-})
-export class DataService {
-  private http = inject(HttpClient); 
-  private apiUrl = 'http://localhost:5000/api/termekek';
-
-  // GET MANY - Opcionális Query paraméterek bemutatásával (?minAr=...)
-  getMany(minAr?: number){
-    let params = new HttpParams();
-    if (minAr) {
-      params = params.set('minAr', minAr.toString());
-    }
-
-    return this.http.get&lt;Termek[]&gt;(this.apiUrl, { params });
-  }
-
-  // GET ONE
-  getById(id: number | string){
-    return this.http.get&lt;Termek&gt;(`${this.apiUrl}/${id}`);
-  }
-
-  // POST
-  post(ujTermek: Termek){
-    return this.http.post&lt;Termek&gt;(this.apiUrl, ujTermek);
-  }
-
-  // PUT
-  put(id: number | string, modositottTermek: Termek){
-    return this.http.put&lt;Termek&gt;(`${this.apiUrl}/${id}`, modositottTermek);
-  }
-
-  // DELETE
-  delete(id: number | string){
-    return this.http.delete(`${this.apiUrl}/${id}`);
-  }
-}</code></pre>
-  </div>
-</div>
-
-<div class="box" data-keywords="angular 20 component router navigate subscribe inject adatlekeres">
-  <div class="box-header">
-    <span class="box-title">Komponens (komponens) - Navigálás és Subscribe</span>
-    <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
-  </div>
-  <div class="box-content">
-    <p><strong>TypeScript (termek-lista.ts):</strong></p>
-<pre><code>import { Component, inject, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { DataService } from '../data.service';
-import { Termek } from '../models/termek.model';
-import { CommonModule } from '@angular/common';
-
-@Component({
-  selector: 'app-termek-lista',
-  imports: [CommonModule],
-  templateUrl: './termek-lista.html'
-})
-export class TermekLista implements OnInit {
-  private dataService = inject(DataService);
-  private router = inject(Router);
-  
-  termekek: Termek[] = [];
-
-  ngOnInit(): void {
-    this.adatokLekeres();
-  }
-
-  adatokLekeres() {
-    this.dataService.getMany(5000).subscribe({
-      next: (adatok) =&gt; {
-        this.termekek = adatok;
-        console.log('Sikeres lekérdezés:', adatok);
-      },
-      error: (hiba) =&gt; {
-        console.error('Hiba történt a lekérdezés során:', hiba);
-      }
-    });
-  }
-
-  reszletekhezNavigal(id: number) {
-    // Router használata a kódból történő navigáláshoz
-    this.router.navigate(['/termek', id]); 
-    // Ez a következőt nyitja meg: localhost:4200/termek/5
-  }
-}</code></pre>
-    <p><strong>HTML (termek-lista.html):</strong></p>
-<pre><code>&lt;!-- Gomb, ami kódból navigál --&gt;
-&lt;button (click)="reszletekhezNavigal(5)"&gt;Kattints ide a részletekhez&lt;/button&gt;</code></pre>
-  </div>
-</div>
-<div class="box" data-keywords="angular 20 input output eventemitter child gyerek komponens">
-  <div class="box-header">
-    <span class="box-title">Gyerek Komponens (@Input és @Output definiálása)</span>
-    <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
-  </div>
-  <div class="box-content">
-    <p><strong>TypeScript (termek-kartya.ts):</strong></p>
-<pre><code>import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Termek } from '../models/termek.model';
-
-@Component({
-  selector: 'app-termek-kartya',
-  templateUrl: './termek-kartya.html'
-})
-export class TermekKartya {
-  // @Input: A szülő komponenstől kapott adat (kívülről jön befelé)
-  @Input() termek!: Termek; 
-  @Input() hatterSzin: string = 'white';
-
-  // @Output: Esemény küldése a szülő komponens felé (belülről megy kifelé)
-  // Itt egy number-t (termék ID) fogunk kilőni a szülőnek
-  @Output() kosarbaTesz = new EventEmitter&lt;number&gt;();
-
-  kosarbaGombKattintas(): void {
-    // Amikor lefut ez a függvény, az EventEmitter "kilövi" (emit) az értéket
-    this.kosarbaTesz.emit(this.termek.id);
-  }
-}</code></pre>
-    <p><strong>HTML (termek-kartya.html):</strong></p>
-<pre><code>&lt;!-- A kapott @Input változók használata --&gt;
-&lt;div [style.backgroundColor]="hatterSzin" class="kartya-stilus"&gt;
-  
-  &lt;h3&gt;{{ termek.nev }}&lt;/h3&gt;
-  &lt;p&gt;Ár: {{ termek.ar }} Ft&lt;/p&gt;
-
-  &lt;!-- Belső esemény, ami kiváltja az @Output emitálását --&gt;
-  &lt;button (click)="kosarbaGombKattintas()"&gt;Kosárba rakom&lt;/button&gt;
-
-&lt;/div&gt;</code></pre>
-  </div>
-</div>
-
-<div class="box" data-keywords="angular 20 parent szulo komponens input output hasznalat event">
-  <div class="box-header">
-    <span class="box-title">Szülő Komponens (Gyerek használata és adatkötése)</span>
-    <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
-  </div>
-  <div class="box-content">
-    <p><strong>TypeScript (szulo-oldal.ts):</strong></p>
-<pre><code>import { Component } from '@angular/core';
-import { TermekKartya } from '../termek-kartya/termek-kartya';
-import { Termek } from '../models/termek.model';
-
-@Component({
-  selector: 'app-szulo-oldal',
-  // FONTOS: Be kell importálni a gyerek komponenst, hogy használhassuk a HTML-ben!
-  imports: [TermekKartya], 
-  templateUrl: './szulo-oldal.html'
-})
-export class SzuloOldal {
-  kosarTartalma: number[] = [];
-
-  // Ezt az adatot fogjuk átadni a gyereknek
-  peldaTermek: Termek = {
-    id: 101,
-    nev: 'Mechanikus Billentyűzet',
-    ar: 25000,
-    kategoriaId: 2
-  };
-
-  // Ezt a függvényt hívja meg a gyerek @Output eseménye
-  kosarbaKezelo(kapottTermekId: number) {
-    this.kosarTartalma.push(kapottTermekId);
-    console.log('Termék sikeresen a kosárban! ID:', kapottTermekId);
-  }
-}</code></pre>
-    <p><strong>HTML (szulo-oldal.html):</strong></p>
-<pre><code>&lt;h2&gt;Kiemelt Termék Ajánlatunk&lt;/h2&gt;
-
-&lt;!-- 
-  1. [termek]="peldaTermek" -> @Input() kötés: a szülő 'peldaTermek' objektumát átadjuk a gyerek 'termek' bemenetének
-  2. [hatterSzin]="'#f0f8ff'" -> @Input() kötés: sima stringet adunk át
-  3. (kosarbaTesz)="kosarbaKezelo($event)" -> @Output() kötés: figyeljük a gyerek eseményét.
-      A $event egy beépített Angular változó, ami pontosan azt az értéket tartalmazza, amit a gyerek az .emit() metódusba tett!
---&gt;
-
-&lt;app-termek-kartya
-  [termek]="peldaTermek"
-  [hatterSzin]="'#f0f8ff'"
-  (kosarbaTesz)="kosarbaKezelo($event)"&gt;
-&lt;/app-termek-kartya&gt;
-
-&lt;p&gt;Kosárban lévő tételek száma: {{ kosarTartalma.length }} db&lt;/p&gt;</code></pre>
-  </div>
-</div>
+  <div class="box">
+    <div class="box-header"> <span class="box-title">HTML navigáció</span> </div>
+    <div class="box-content">
+      <p><strong>Doksi:</strong> <a href="https://v20.angular.dev/guide/routing/router-reference"
+          target="_blank">https://v20.angular.dev/guide/routing/router-reference</a></p>
+      <p><strong>Sima út:</strong> <code>routerLink="/utvonal"</code></p>
+      <p><strong>Paraméterrel:</strong> <code>['/utvonal', id]</code></p>
+      <p><strong>Aktív elem:</strong> <code>routerLinkActive="classnev"</code></p>
+      <p><strong>Fontos:</strong> <code>RouterModule -t importálni kell hogy működjön</code></p>
     </div>
+  </div>
+  <div class="box">
+    <div class="box-header"> <span class="box-title">Konfigurációk (app config)</span> </div>
+    <div class="box-content">
+      <p><strong>Doksi:</strong> <a href="https://v20.angular.dev/guide/routing/common-router-tasks"
+          target="_blank">https://v20.angular.dev/guide/routing/common-router-tasks</a></p>
+      <p><strong>providers</strong> tömb</p>
+      <p><code>provideRouter(...)</code></p>
+      <p><code>provideHttpClient()</code></p>
+    </div>
+  </div>
+  <div class="box">
+    <div class="box-header"> <span class="box-title">Útvonalak (app routes)</span> </div>
+    <div class="box-content">
+      <p><strong>Doksi:</strong> <a href="https://v20.angular.dev/guide/routing/common-router-tasks"
+          target="_blank">https://v20.angular.dev/guide/routing/common-router-tasks</a></p>
+      <p><strong>Sima:</strong> <code>path + component</code></p>
+      <p><strong>Paraméter:</strong> <code>utvonal/:id</code></p>
+      <p><strong>Wildcard:</strong> <code>** - (minden más path esetén)</code></p>
+      <p><strong>Redirect:</strong> <code>redirectTo</code></p>
+      <p><strong>Vizsgán gyakori:</strong> wildcard mindig legalul</p>
+    </div>
+  </div>
+  <div class="box">
+    <div class="box-header"> <span class="box-title">Service / HttpClient / CRUD</span> </div>
+    <div class="box-content">
+      <p><strong>Doksi:</strong> <a href="https://v20.angular.dev/guide/http/making-requests"
+          target="_blank">https://v20.angular.dev/guide/http/making-requests</a></p>
+      <p><strong>inject:</strong> <code>inject(HttpClient)</code></p>
+      <p><strong>Lista:</strong> <code>get&lt;Tipus[]&gt;</code></p>
+      <p><strong>Egy elem:</strong> <code>get&lt;Tipus&gt;</code></p>
+      <p><strong>Létrehozás:</strong> <code>post&lt;Tipus&gt;</code></p>
+      <p><strong>Módosítás:</strong> <code>put&lt;Tipus&gt;</code></p>
+      <p><strong>Törlés:</strong> <code>delete()</code></p>
+      <p><strong>Query param:</strong> <code>HttpParams → set(...)</code></p>
+    </div>
+  </div>
+  <div class="box">
+    <div class="box-header"> <span class="box-title">Subscribe + navigálás kódból</span> </div>
+    <div class="box-content">
+      <p><strong>Doksi:</strong> <a href="https://v20.angular.dev/guide/http/making-requests"
+          target="_blank">https://v20.angular.dev/guide/http/making-requests</a></p>
+      <p><code>subscribe({ ... })</code></p>
+      <p><strong>siker:</strong> <code>next</code></p>
+      <p><strong>hiba:</strong> <code>error</code></p>
+      <p><strong>navigálás:</strong> <code>navigate([...])</code></p>
+    </div>
+  </div>
+  <div class="box">
+    <div class="box-header"> <span class="box-title">@Input / @Output</span> </div>
+    <div class="box-content">
+      <p><strong>Doksi:</strong> TODO</p>
+      <p><strong>Bemenet:</strong> <code>@Input() változó</code></p>
+      <p><strong>Kimenet:</strong> <code>@Output() változó - (ennek egy új EventEmitter osztálypéldánynak kell lennie)</code></p>
+      <p><strong>Esemény küldés:</strong> <code>emit(ertek)</code></p>
+      <p><strong>Szülőből átadás:</strong> <code>[adat]="valtozo"</code></p>
+      <p><strong>Gyerek esemény figyelése:</strong> <code>(esemeny)="kezelo($event)"</code></p>
+    </div>
+  </div>
+</div>
 
-    <!-- Frontend - Next -->
-    <div id="frontend-next" class="section">
-      <h2>Frontend - Next</h2>
+      <!-- Frontend - Next -->
+      <div id="frontend-next" class="section">
+        <h2>Frontend - Next</h2>
 
         <div class="box" data-keywords="next">
           <div class="box-header">
@@ -1000,7 +765,7 @@ export const useGlobalStore = create&lt;GlobalStore&gt;()((set) =&gt; ({
     })),
 }));</code></pre>
 
-<div class="snippet-header">
+            <div class="snippet-header">
               <h3 class="snippet-title">UseEffect használata pl végpont kéréseknék</h3>
               <button class="copy-snippet-btn" onclick="copySnippet(this)">
                 Másolás
@@ -1050,7 +815,8 @@ export const useGlobalStore = create&lt;GlobalStore&gt;()((set) =&gt; ({
             </div>
             <pre><code>const { gs, set } = useGlobalStore();
 set("globalVariable", "valami más");</code></pre>
-            <p>Ez egy globális változó (bármelyik komponensben elérhető változó) értékét frissíti, gyakorlati haszna pl. UI state, light/dark mode, keresési paraméter</p>
+            <p>Ez egy globális változó (bármelyik komponensben elérhető változó) értékét frissíti, gyakorlati haszna pl.
+              UI state, light/dark mode, keresési paraméter</p>
 
             <div class="snippet-header">
               <h3 class="snippet-title">useState</h3>
@@ -1060,7 +826,8 @@ set("globalVariable", "valami más");</code></pre>
             </div>
             <pre><code>const [array, setArray] = useState&lt;Model[]&gt;([]);
 setArray(apiLekeresResponse.data);</code></pre>
-            <p>Ez a useState hook, amivel egy állapotváltozót hozol létre. Az array tartalmaz egy Model típusú tömböt, a setArray pedig egy függvény, amivel ezt az állapotot tudod később módosítani.</p>
+            <p>Ez a useState hook, amivel egy állapotváltozót hozol létre. Az array tartalmaz egy Model típusú tömböt, a
+              setArray pedig egy függvény, amivel ezt az állapotot tudod később módosítani.</p>
 
             <div class="snippet-header">
               <h3 class="snippet-title">useEffect</h3>
@@ -1076,118 +843,210 @@ setArray(apiLekeresResponse.data);</code></pre>
   }
   getData();
 }, [dependencyValami]);</code></pre>
-            <p>A useEffect hook minden alkalommal lefut, ha a "dependenyValami" frissül, üresen hagyott dependency array esetén csak az oldal betöltésekor fut le</p>
+            <p>A useEffect hook minden alkalommal lefut, ha a "dependenyValami" frissül, üresen hagyott dependency array
+              esetén csak az oldal betöltésekor fut le</p>
           </div>
         </div>
 
         <div class="snippet-header">
-              <h3 class="snippet-title">Végpontok elérése pl GET</h3>
-              <button class="copy-snippet-btn" onclick="copySnippet(this)">
-                Másolás
-              </button>
-            </div>
-            <pre><code>
+          <h3 class="snippet-title">Végpontok elérése pl GET</h3>
+          <button class="copy-snippet-btn" onclick="copySnippet(this)">
+            Másolás
+          </button>
+        </div>
+        <pre><code>
               const res = await axios.get("http://localhost:3000/api/mintaVégpont");
             </code></pre>
 
-            <div class="snippet-header">
-              <h3 class="snippet-title">Next Link használata</h3>
-              <button class="copy-snippet-btn" onclick="copySnippet(this)">
-                Másolás
-              </button>
-            </div>
-            <pre><code>
+        <div class="snippet-header">
+          <h3 class="snippet-title">Next Link használata</h3>
+          <button class="copy-snippet-btn" onclick="copySnippet(this)">
+            Másolás
+          </button>
+        </div>
+        <pre><code>
               &lt;Link className="btn" href="/mintaOldal">
                 MintaFelirat
               &lt;/Link&gt;
             </code></pre>
 
-      <div class="box" data-keywords="redux context">
-        <div class="box-header">
-          <span class="box-title">State Management</span>
-          <button class="copy-btn" onclick="copySnippet(this)">Másolás</button>
+        <div class="box" data-keywords="redux context">
+          <div class="box-header">
+            <span class="box-title">State Management</span>
+            <button class="copy-btn" onclick="copySnippet(this)">Másolás</button>
+          </div>
+          <div class="box-content">// Ide írd a jegyzetet</div>
         </div>
-        <div class="box-content">// Ide írd a jegyzetet</div>
       </div>
-    </div>
 
-    
 
-    <!-- Backend - Laravel -->
-    <div id="backend-laravel" class="section">
-      <h2>Backend - Laravel</h2>
-      <div class="box" data-keywords="artisan cli setup">
-        <div class="box-header">
-          <span class="box-title">Alapvető Artisan parancsok</span>
-        </div>
-        <div class="box-content">
-          <div class="snippet-header">
-            <h3 class="snippet-title">API telepíítése</h3>
-            <button class="copy-snippet-btn" onclick="copySnippet(this)">Másolás</button>
+
+      <!-- Backend - Laravel -->
+      <div id="backend-laravel" class="section">
+        <h2>Backend - Laravel</h2>
+        <div class="box" data-keywords="artisan cli setup">
+          <div class="box-header">
+            <span class="box-title">Alapvető Artisan parancsok</span>
           </div>
+          <div class="box-content">
+            <div class="snippet-header">
+              <h3 class="snippet-title">API telepíítése</h3>
+              <button class="copy-snippet-btn" onclick="copySnippet(this)">Másolás</button>
+            </div>
+            <h4>Forrás: https://laravel.com/docs/13.x/routing#api-routes</h4>
             <pre><code>php artisan install:api</code></pre>
-          <div class="snippet-header">
-            <h3 class="snippet-title">Modellek generálása (Modell, Migráció, Controller)</h3>
-            <button class="copy-snippet-btn" onclick="copySnippet(this)">Másolás</button>
-          </div>
+            <div class="snippet-header">
+              <h3 class="snippet-title">Modellek generálása (Modell, Migráció, Controller)</h3>
+              <button class="copy-snippet-btn" onclick="copySnippet(this)">Másolás</button>
+            </div>
+            <h4>Forrás: https://laravel.com/docs/13.x/eloquent</h4>
             <pre><code>php artisan make:model ModelName -mc --api</code></pre>
-          <div class="snippet-header">
-            <h3 class="snippet-title">Migrációk kezelése</h3>
-            <button class="copy-snippet-btn" onclick="copySnippet(this)">Másolás</button>
-          </div>
-          <pre><code>php artisan make:migration create_table_name_table</code></pre>
-          <div class="snippet-header">
-            <h3 class="snippet-title">Futttatás</h3>
-            <button class="copy-snippet-btn" onclick="copySnippet(this)">Másolás</button>
-          </div>
+            <div class="snippet-header">
+              <h3 class="snippet-title">Migráció létrehozása</h3>
+              <button class="copy-snippet-btn" onclick="copySnippet(this)">Másolás</button>
+            </div>
+            <h4>Forrás: https://laravel.com/docs/13.x/migrations</h4>
+            <pre><code>php artisan make:migration create_table_name_table</code></pre>
+            <div class="snippet-header">
+              <h3 class="snippet-title">Migráció futttatása</h3>
+              <button class="copy-snippet-btn" onclick="copySnippet(this)">Másolás</button>
+            </div>
+            <h4>Forrás: https://laravel.com/docs/13.x/migrations</h4>
             <pre><code>php artisan migrate</code></pre>
             <div class="snippet-header">
               <h3 class="snippet-title">Visszagörgetés és újra futtatás</h3>
               <button class="copy-snippet-btn" onclick="copySnippet(this)">Másolás</button>
             </div>
+            <h4>Forrás: https://laravel.com/docs/13.x/migrations</h4>
             <pre><code>php artisan migrate:refresh</code></pre>
             <div class="snippet-header">
               <h3 class="snippet-title">Táblák törlése és migrációk újrafuttatása</h3>
               <button class="copy-snippet-btn" onclick="copySnippet(this)">Másolás</button>
             </div>
+            <h4>Forrás: https://laravel.com/docs/13.x/migrations</h4>
             <pre><code>php artisan migrate:fresh</code></pre>
+          </div>
         </div>
-      </div>
 
-      <div class="box" data-keywords="resource json transformation">
-        <div class="box-header">
-          <span class="box-title">Resource-ok (Adat transzformáció)</span>
+        <div class="box" data-keywords="migration">
+          <div class="box-header">
+            <span class="box-title">Migráció példa</span>
+          </div>
+          <div class="box-content">
+            <div class="snippet-header">
+              <h3 class="snippet-title">flights migráció:</h3>
+              <button class="copy-snippet-btn" onclick="copySnippet(this)">Másolás</button>
+            </div>
+            <h4>Forrás: https://laravel.com/docs/13.x/migrations</h4>
+            <pre><code>use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+ 
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('flights', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('airline');
+            $table->timestamps();
+        });
+    }
+ 
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::drop('flights');
+    }
+};</code></pre>
+          </div>
         </div>
-        <div class="box-content">
-          <div class="snippet-header">
-            <h3 class="snippet-title">Generálás és Példa</h3>
-            <button class="copy-snippet-btn" onclick="copySnippet(this)">Másolás</button>
+
+        <div class="box" data-keywords="migration">
+          <div class="box-header">
+            <span class="box-title">Model példa</span>
           </div>
-          <pre><code>php artisan make:resource ResourceName</code></pre>
-          <div class="snippet-header">
-            <h3 class="snippet-title">A Resource segítségével szabályozható a kimenő JSON szerkezete (mezők átnevezése, formázása):</h3>
-            <button class="copy-snippet-btn" onclick="copySnippet(this)">Másolás</button>
+          <div class="box-content">
+            <div class="snippet-header">
+              <h3 class="snippet-title">Flights Model</h3>
+              <button class="copy-snippet-btn" onclick="copySnippet(this)">Másolás</button>
+            </div>
+            <h4>Forrás: https://laravel.com/docs/13.x/eloquent</h4>
+            <pre><code>namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Flight extends Model
+{
+    // ...
+}
+</code></pre>
+            <div class="snippet-header">
+              <h3 class="snippet-title">Member Model</h3>
+              <button class="copy-snippet-btn" onclick="copySnippet(this)">Másolás</button>
+            </div>
+            <h4>Forrás: https://laravel.com/docs/13.x/eloquent</h4>
+            <pre><code>namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Member extends Model
+{
+    public $timestamps = false;
+
+    protected $fillable = [
+        'name',
+        'flight_id',
+        'age',
+    ];
+}
+</code></pre>
           </div>
-          <pre><code>public function toArray(Request $request): array {
+        </div>
+
+        <div class="box" data-keywords="resource json transformation">
+          <div class="box-header">
+            <span class="box-title">Resource-ok (Adat transzformáció)</span>
+          </div>
+          <div class="box-content">
+            <div class="snippet-header">
+              <h3 class="snippet-title">Generálás és Példa</h3>
+              <button class="copy-snippet-btn" onclick="copySnippet(this)">Másolás</button>
+            </div>
+            <pre><code>php artisan make:resource ResourceName</code></pre>
+            <div class="snippet-header">
+              <h3 class="snippet-title">A Resource segítségével szabályozható a kimenő JSON szerkezete (mezők
+                átnevezése, formázása):</h3>
+              <button class="copy-snippet-btn" onclick="copySnippet(this)">Másolás</button>
+            </div>
+            <h4>Forrás: https://laravel.com/docs/13.x/eloquent-resources</h4>
+            <pre><code>public function toArray(Request $request): array {
     return [
         'identifier'  => $this->id,
         'title_of_something'  => strtoupper($this->title),
         'things'   => ThingResource::collection($this->whenLoaded('things')),
     ];
 }</code></pre>
+          </div>
         </div>
-      </div>
 
-      <div class="box" data-keywords="relationship model eloquent">
-        <div class="box-header">
-          <span class="box-title">Kapcsolatok</span>
-        </div>
-        <div class="box-content">
+        <div class="box" data-keywords="relationship model eloquent">
+          <div class="box-header">
+            <span class="box-title">Kapcsolatok</span>
+          </div>
+          <div class="box-content">
             <div class="snippet-header">
-              <h3 class="snippet-title">Kapcsolatok definiálása a modellekben</h3>
+              <h3 class="snippet-title">Egy a többhöz (1->N)</h3>
               <button class="copy-snippet-btn" onclick="copySnippet(this)">Másolás</button>
             </div>
-          <pre><code>
+            <h4>Forrás: https://laravel.com/docs/13.x/eloquent-relationships#one-to-many</h4>
+            <pre><code>
 // "1" oldal:
 public function posts() {
     return $this->hasMany(Post::class);
@@ -1197,29 +1056,31 @@ public function user() {
     return $this->belongsTo(User::class);
 }
 </code></pre>
-           <div class="snippet-header">
+            <div class="snippet-header">
               <h3 class="snippet-title">Több a többhöz kapcsolat (N:N)</h3>
               <p>Kapcsolótábla elnevezése: abc sorrendben, alulvonással elválasztva, pl.: playlist_song</p>
               <button class="copy-snippet-btn" onclick="copySnippet(this)">Másolás</button>
             </div>
-          <pre><code>Song.php
+            <h4>Forrás: https://laravel.com/docs/13.x/eloquent-relationships#many-to-many</h4>
+            <pre><code>Song.php
 public function playlists() { return $this->belongsToMany(Playlist::class) }
 
 Playlist.php
 public function songs() { return $this->belongsToMany(Song::class) }</code></pre>
-        </div>
-      </div>
-      <div class="box" data-keywords="seeder route api">
-        <div class="box-header">
-          <span class="box-title">Seeder és Végpontok</span>
-        </div>
-        <div class="box-content">
-          <div class="snippet-header">
-            <h3 class="snippet-title">DatabaseSeeder.php</h3>
-            <p>Mintaadatok generálása az adatbázisba:</p>
-            <button class="copy-snippet-btn" onclick="copySnippet(this)">Másolás</button>
           </div>
-          <pre><code>public function run(): void
+        </div>
+        <div class="box" data-keywords="seeder route api">
+          <div class="box-header">
+            <span class="box-title">Seeder</span>
+          </div>
+          <div class="box-content">
+            <div class="snippet-header">
+              <h3 class="snippet-title">DatabaseSeeder.php</h3>
+              <p>Mintaadatok generálása az adatbázisba:</p>
+              <button class="copy-snippet-btn" onclick="copySnippet(this)">Másolás</button>
+            </div>
+            <h4>Forrás: https://laravel.com/docs/13.x/seeding</h4>
+            <pre><code>public function run(): void
     {
         User::factory(10)->create(); // 10 user generálása a factory segítségével
 
@@ -1239,155 +1100,72 @@ public function songs() { return $this->belongsToMany(Song::class) }</code></pre
     }
 </code></pre>
 
-          <div class="snippet-header">
-            <h3 class="snippet-title">Végpontok (api.php)</h3>
-            <button class="copy-snippet-btn" onclick="copySnippet(this)">Másolás</button>
-          </div>
-          <pre><code>use App\Http\Controllers\SongController;
+            <pre><code>
+ 
+namespace Database\Seeders;
+ 
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+ 
+class DatabaseSeeder extends Seeder
+{
+    /**
+     * Run the database seeders.
+     */
+    public function run(): void
+    {
+        DB::table('users')->insert([
+            'name' => Str::random(10),
+            'email' => Str::random(10).'@example.com',
+            'password' => Hash::make('password'),
+        ]);
+    }
+}
+</code></pre>
 
+
+          </div>
+
+        </div>
+
+        <div class="box" data-keywords="route api">
+          <div class="box-header">
+            <span class="box-title">Routing</span>
+          </div>
+          <div class="box-content">
+            <div class="snippet-header">
+              <h3 class="snippet-title">DatabaseSeeder.php</h3>
+              <p>Mintaadatok generálása az adatbázisba:</p>
+              <button class="copy-snippet-btn" onclick="copySnippet(this)">Másolás</button>
+            </div>
+            <h4>Forrás: https://laravel.com/docs/13.x/routing</h4>
+            <pre><code>
 Route::apiResource('songs', SongController::class);
 // Ez létrehozza: GET /api/songs, POST /api/songs, GET /api/songs/{id}, stb.
 
-Route::put('/comments/{comment}', [CommentController::class, 'update']);</code></pre>
+Route::put('/comments/{comment}', [CommentController::class, 'update']);
+
+Route::get('/user', [UserController::class, 'index']);</code></pre>
+
+
+
+
+          </div>
+
         </div>
-      </div>
+        <!-- Backend - ASP.NET -->
+        <div id="backend-aspnet" class="section">
+          <h2>Backend - ASP.NET</h2>
 
-      <div class="box" data-keywords="example endpoints">
-        <div class="box-header">
-          <span class="box-title">Példa végpontok</span>
-        </div>
-        <div class="box-content">
-          <pre><code>
-      public function index(Request $request)
-      {
-          $search = $request->query('search');
-  
-          $songs = Song::query()
-              ->when($search, function ($query, $search) {
-                  $query->where('title', 'like', '%' . $search . '%');
-              })
-              ->with(['user:id,name', 'album:id,title'])
-              ->get();
-  
-          return response()->json($songs, 200);
-      }
-          </code></pre>
-    <pre><code>
-      public function listByUser($id)
-        {
-            $user = User::find($id);
-    
-            if (!$user) {
-                return response()->json(['message' => 'User not found!'], 404);
-            }
-    
-            // $songs = $user->songs;
-            $songs = Song::with('user:id,name')->where('user_id', $id)->get();
-    
-            return response()->json($songs, 200);
-        }
-    </code></pre>
-<pre><code>
-  public function getNewSongs(Request $request) {
-      $count = $request->query('count', 10);
-
-      $songs = Song::with('user:id,name')->orderBy('created_at', 'desc')->limit($count)->get();
-
-      return response()->json($songs);
-  }
-</code></pre>
-  <pre><code>
-    public function random(Request $request)
-      {
-  
-          $count = $request->query('count', 10);
-  
-          $songs = Song::inRandomOrder()
-              ->limit($count)
-              ->with(['user:id,name', 'album:id,title'])
-              ->get();
-  
-          return response()->json($songs);
-      }
-  </code></pre>
-    <pre><code>
-      public function logPlay(Request $request, $id)
-        {
-    
-            $song = Song::find($id);
-    
-            if (!$song) {
-                return response()->json(['error' => 'Song not found'], 404);
-            }
-    
-            try {
-                DB::transaction(function () use ($request, $song) {
-                    $song->increment('plays');
-    
-                    $user = auth('sanctum')->user();
-    
-                    ListeningHistoryItem::create([
-                        'user_id'     => $user ? $user->id : null,
-                        'song_id'     => $song->id,
-                        'album_id'    => $song->album_id,
-                        'playlist_id' => $request->input('playlist_id'),
-                    ]);
-                });
-    
-                return response()->json(['message' => 'Play logged successfully'], 200);
-    
-            } catch (\Exception $e) {
-                return response()->json([
-                    'error' => 'Failed to log play',
-                    'message' => $e->getMessage()
-                ], 500);
-            }
-        }
-    </code></pre>
-<pre><code>
-  /**
-   * Display the specified resource.
-   */
-  public function show($id)
-  {
-      $song = Song::with(['user:id,name', 'album:id,title'])->find($id);
-
-      if (!$song) {
-          return response()->json(['message' => 'Song not found!'], 404);
-      }
-
-      return response()->json($song);
-  }
-</code></pre>
-  <pre><code>
-    public function update(Request $request, Comment $comment)
-      {
-          $validatedData = $request->validate([
-              'body' => 'required|string|min:2', // Kötelező, szöveg, és legalább 2 karakter
-          ]);
-  
-          $comment->update($validatedData);
-  
-          return response()->json([
-              'message' => 'A hozzászólás sikeresen frissítve!',
-              'comment' => $comment
-          ], 200);
-      }</div>
-  </code></pre>
-      </div>
-</div>
-    
-
-    <!-- Backend - ASP.NET -->
-    <div id="backend-aspnet" class="section">
-      <h2>Backend - ASP.NET</h2>
-
-      <div class="box" data-keywords="controller alapok setup using">
-  <div class="box-header">
-    <span class="box-title">Controller Alapok (Fejléc)</span>
-    <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
-  </div>
-  <div class="box-content"><pre><code>using Microsoft.AspNetCore.Mvc;
+          <div class="box" data-keywords="controller alapok setup using">
+            <div class="box-header">
+              <span class="box-title">Controller Alapok (Fejléc)</span>
+              <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+            </div>
+            <div class="box-content">
+              <pre><code>using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
 
@@ -1397,15 +1175,17 @@ namespace VizsgaProject.Controllers
     [ApiController]
     public class VizsgaController : ControllerBase
     {
-        AdatbazisContext dbContext = new AdatbazisContext();</code></pre></div>
-</div>
+        AdatbazisContext dbContext = new AdatbazisContext();</code></pre>
+            </div>
+          </div>
 
-<div class="box" data-keywords="get lista query route include theninclude">
-  <div class="box-header">
-    <span class="box-title">GET - Listázás és Szűrés</span>
-    <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
-  </div>
-  <div class="box-content"><pre><code>        // Route("api") miatt ez ilyen lesz:
+          <div class="box" data-keywords="get lista query route include theninclude">
+            <div class="box-header">
+              <span class="box-title">GET - Listázás és Szűrés</span>
+              <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+            </div>
+            <div class="box-content">
+              <pre><code>        // Route("api") miatt ez ilyen lesz:
         // &lt;ipcím&gt;/api/konyvek/{orszagNev}/lista
         
         [HttpGet("konyvek/{orszagNev}/lista")]
@@ -1436,15 +1216,17 @@ namespace VizsgaProject.Controllers
             }
 
             return Ok(eredmeny);
-        }</code></pre></div>
-</div>
+        }</code></pre>
+            </div>
+          </div>
 
-<div class="box" data-keywords="get by id egy elem">
-  <div class="box-header">
-    <span class="box-title">GET - Egy Elem Lekérése (ID alapján)</span>
-    <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
-  </div>
-  <div class="box-content"><pre><code>        [HttpGet("konyvek/{id}")]
+          <div class="box" data-keywords="get by id egy elem">
+            <div class="box-header">
+              <span class="box-title">GET - Egy Elem Lekérése (ID alapján)</span>
+              <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+            </div>
+            <div class="box-content">
+              <pre><code>        [HttpGet("konyvek/{id}")]
         public IActionResult GetById([FromRoute] string id)
         {
             Konyv? elem = dbContext.Set&lt;Konyv&gt;().SingleOrDefault(k =&gt; k.Id.ToString() == id);
@@ -1455,15 +1237,17 @@ namespace VizsgaProject.Controllers
             }
 
             return Ok(elem);
-        }</code></pre></div>
-</div>
+        }</code></pre>
+            </div>
+          </div>
 
-<div class="box" data-keywords="post letrehozas uj add frombody dynamic json">
-  <div class="box-header">
-    <span class="box-title">POST - Új Elem Létrehozása</span>
-    <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
-  </div>
-  <div class="box-content"><pre><code>        [HttpPost("konyvek")]
+          <div class="box" data-keywords="post letrehozas uj add frombody dynamic json">
+            <div class="box-header">
+              <span class="box-title">POST - Új Elem Létrehozása</span>
+              <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+            </div>
+            <div class="box-content">
+              <pre><code>        [HttpPost("konyvek")]
         public IActionResult CreateKonyv([FromBody] dynamic body)
         {
             try
@@ -1484,15 +1268,17 @@ namespace VizsgaProject.Controllers
             {
                 return StatusCode(400, new { Message = "Hiba van..." });
             }
-        }</code></pre></div>
-</div>
+        }</code></pre>
+            </div>
+          </div>
 
-<div class="box" data-keywords="put modositas update frombody dynamic json">
-  <div class="box-header">
-    <span class="box-title">PUT - Meglévő Elem Módosítása</span>
-    <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
-  </div>
-  <div class="box-content"><pre><code>        [HttpPut("konyvek/{id}")]
+          <div class="box" data-keywords="put modositas update frombody dynamic json">
+            <div class="box-header">
+              <span class="box-title">PUT - Meglévő Elem Módosítása</span>
+              <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+            </div>
+            <div class="box-content">
+              <pre><code>        [HttpPut("konyvek/{id}")]
         public IActionResult UpdateKonyv([FromRoute] string id, [FromBody] dynamic body)
         {
             try
@@ -1524,15 +1310,17 @@ namespace VizsgaProject.Controllers
             {
                 return StatusCode(400, new { Message = "Hiba van..." });
             }
-        }</code></pre></div>
-</div>
+        }</code></pre>
+            </div>
+          </div>
 
-<div class="box" data-keywords="delete torles remove">
-  <div class="box-header">
-    <span class="box-title">DELETE - Elem Törlése</span>
-    <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
-  </div>
-  <div class="box-content"><pre><code>        [HttpDelete("konyvek/{id}")]
+          <div class="box" data-keywords="delete torles remove">
+            <div class="box-header">
+              <span class="box-title">DELETE - Elem Törlése</span>
+              <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+            </div>
+            <div class="box-content">
+              <pre><code>        [HttpDelete("konyvek/{id}")]
         public IActionResult DeleteKonyv([FromRoute] string id)
         {
             try
@@ -1556,15 +1344,17 @@ namespace VizsgaProject.Controllers
             }
         }
     }
-}</code></pre></div>
-</div>
+}</code></pre>
+            </div>
+          </div>
 
-      <div class="box" data-keywords="dbcontext dbset onconfiguring mysql">
-  <div class="box-header">
-    <span class="box-title">DbContext Alapok és Kapcsolat</span>
-    <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
-  </div>
-  <div class="box-content"><pre><code>using Microsoft.EntityFrameworkCore;
+          <div class="box" data-keywords="dbcontext dbset onconfiguring mysql">
+            <div class="box-header">
+              <span class="box-title">DbContext Alapok és Kapcsolat</span>
+              <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+            </div>
+            <div class="box-content">
+              <pre><code>using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
 using System.IO;
 using System.Collections.Generic;
@@ -1581,15 +1371,17 @@ public class AdatbazisContext: DbContext
         {
             optionsBuilder.UseMySQL("server=localhost;database=konyvtar_db;uid=root;pwd=;");
         }
-    }</code></pre></div>
-</div>
+    }</code></pre>
+            </div>
+          </div>
 
-<div class="box" data-keywords="onmodelcreating hasindex isunique hasdata seed">
-  <div class="box-header">
-    <span class="box-title">OnModelCreating - Indexek és Normál HasData</span>
-    <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
-  </div>
-  <div class="box-content"><pre><code>    protected override void OnModelCreating(ModelBuilder modelBuilder)
+          <div class="box" data-keywords="onmodelcreating hasindex isunique hasdata seed">
+            <div class="box-header">
+              <span class="box-title">OnModelCreating - Indexek és Normál HasData</span>
+              <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+            </div>
+            <div class="box-content">
+              <pre><code>    protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity&lt;Orszag&gt;().HasIndex(o =&gt; o.Nev).IsUnique();
         modelBuilder.Entity&lt;Konyv&gt;().HasIndex(k =&gt; new { k.Cim, k.SzerzoId }).IsUnique();
@@ -1604,15 +1396,17 @@ public class AdatbazisContext: DbContext
             new Szerzo() { Id = 1, Nev = "Gárdonyi Géza", OrszagId = 1 },
             new Szerzo() { Id = 2, Nev = "J.K. Rowling", OrszagId = 2 },
             new Szerzo() { Id = 3, Nev = "Stephen King", OrszagId = 3 }
-        );</code></pre></div>
-</div>
+        );</code></pre>
+            </div>
+          </div>
 
-<div class="box" data-keywords="hasdata json jsonserializer file readalltext seed">
-  <div class="box-header">
-    <span class="box-title">HasData - Feltöltés JSON Fájlból</span>
-    <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
-  </div>
-  <div class="box-content"><pre><code>        string jsonTartalom = File.ReadAllText("konyvek.json");
+          <div class="box" data-keywords="hasdata json jsonserializer file readalltext seed">
+            <div class="box-header">
+              <span class="box-title">HasData - Feltöltés JSON Fájlból</span>
+              <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+            </div>
+            <div class="box-content">
+              <pre><code>        string jsonTartalom = File.ReadAllText("konyvek.json");
         var konyvekLista = JsonSerializer.Deserialize&lt;List&lt;Konyv&gt;&gt;(jsonTartalom);
         
         if (konyvekLista != null)
@@ -1620,14 +1414,17 @@ public class AdatbazisContext: DbContext
             modelBuilder.Entity&lt;Konyv&gt;().HasData(konyvekLista);
         }
     }
-}</code></pre></div>
-</div>
-<div class="box" data-keywords="model entity data annotations table required stringlength column notmapped range">
-  <div class="box-header">
-    <span class="box-title">Model - Data Annotations (Adatbázis beállítások)</span>
-    <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
-  </div>
-  <div class="box-content"><pre><code>using System.ComponentModel.DataAnnotations;
+}</code></pre>
+            </div>
+          </div>
+          <div class="box"
+            data-keywords="model entity data annotations table required stringlength column notmapped range">
+            <div class="box-header">
+              <span class="box-title">Model - Data Annotations (Adatbázis beállítások)</span>
+              <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+            </div>
+            <div class="box-content">
+              <pre><code>using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 [Table("konyvek")]
@@ -1660,27 +1457,28 @@ public class Konyv
     [NotMapped]
     //Ezt a mezőt kihagyja az adatbázis generálásakor! (Csak C#-ban létezik)
     public string KonyvAdatai => $"{Cim} ({Oldalszam} oldal)";
-}</code></pre></div>
-</div>
-
-    </div>
-
-    <!-- Backend - Node.js -->
-    <div id="backend-next" class="section">
-      <h2>Backend - Next.js</h2>
-
-      <div class="box" data-keywords="next.js route">
-        <div class="box-header">
-          <span class="box-title">REST végpontok</span>
-        </div>
-        <div class="box-content">
-          <div class="snippet-header">
-            <h3 class="snippet-title">standard GET</h3>
-            <button class="copy-snippet-btn" onclick="copySnippet(this)">
-              Másolás
-            </button>
+}</code></pre>
+            </div>
           </div>
-          <pre><code>export async function GET() {
+
+        </div>
+
+        <!-- Backend - Node.js -->
+        <div id="backend-next" class="section">
+          <h2>Backend - Next.js</h2>
+
+          <div class="box" data-keywords="next.js route">
+            <div class="box-header">
+              <span class="box-title">REST végpontok</span>
+            </div>
+            <div class="box-content">
+              <div class="snippet-header">
+                <h3 class="snippet-title">standard GET</h3>
+                <button class="copy-snippet-btn" onclick="copySnippet(this)">
+                  Másolás
+                </button>
+              </div>
+              <pre><code>export async function GET() {
   try {
     const data = await prisma.table.findMany({});
     return NextResponse.json(data);
@@ -1692,13 +1490,13 @@ public class Konyv
   }
 }</code></pre>
 
-          <div class="snippet-header">
-            <h3 class="snippet-title">standard GET by Id</h3>
-            <button class="copy-snippet-btn" onclick="copySnippet(this)">
-              Másolás
-            </button>
-          </div>
-          <pre><code>export async function GET(
+              <div class="snippet-header">
+                <h3 class="snippet-title">standard GET by Id</h3>
+                <button class="copy-snippet-btn" onclick="copySnippet(this)">
+                  Másolás
+                </button>
+              </div>
+              <pre><code>export async function GET(
   request: NextRequest,
   { params }: { params: Promise&lt;{ id: string }&gt; }
 ) {
@@ -1716,13 +1514,13 @@ public class Konyv
   }
 }</code></pre>
 
-          <div class="snippet-header">
-            <h3 class="snippet-title">standard POST</h3>
-            <button class="copy-snippet-btn" onclick="copySnippet(this)">
-              Másolás
-            </button>
-          </div>
-          <pre><code>export async function POST(request: Request) {
+              <div class="snippet-header">
+                <h3 class="snippet-title">standard POST</h3>
+                <button class="copy-snippet-btn" onclick="copySnippet(this)">
+                  Másolás
+                </button>
+              </div>
+              <pre><code>export async function POST(request: Request) {
   try {
     const body = await request.json();
     const newOne = await prisma.table.create({
@@ -1737,13 +1535,13 @@ public class Konyv
   }
 }</code></pre>
 
-          <div class="snippet-header">
-            <h3 class="snippet-title">standard PATCH</h3>
-            <button class="copy-snippet-btn" onclick="copySnippet(this)">
-              Másolás
-            </button>
-          </div>
-          <pre><code>export async function PATCH(
+              <div class="snippet-header">
+                <h3 class="snippet-title">standard PATCH</h3>
+                <button class="copy-snippet-btn" onclick="copySnippet(this)">
+                  Másolás
+                </button>
+              </div>
+              <pre><code>export async function PATCH(
   request: NextRequest,
   { params }: { params: Promise&lt;{ id: string }&gt; }
 ) {
@@ -1763,13 +1561,13 @@ public class Konyv
   }
 }</code></pre>
 
-          <div class="snippet-header">
-            <h3 class="snippet-title">standard PUT</h3>
-            <button class="copy-snippet-btn" onclick="copySnippet(this)">
-              Másolás
-            </button>
-          </div>
-          <pre><code>export async function PUT(
+              <div class="snippet-header">
+                <h3 class="snippet-title">standard PUT</h3>
+                <button class="copy-snippet-btn" onclick="copySnippet(this)">
+                  Másolás
+                </button>
+              </div>
+              <pre><code>export async function PUT(
   request: NextRequest,
   { params }: { params: Promise&lt;{ id: string }&gt; }
 ) {
@@ -1789,13 +1587,13 @@ public class Konyv
   }
 }</code></pre>
 
-          <div class="snippet-header">
-            <h3 class="snippet-title">standard DELETE</h3>
-            <button class="copy-snippet-btn" onclick="copySnippet(this)">
-              Másolás
-            </button>
-          </div>
-          <pre><code>export async function DELETE(
+              <div class="snippet-header">
+                <h3 class="snippet-title">standard DELETE</h3>
+                <button class="copy-snippet-btn" onclick="copySnippet(this)">
+                  Másolás
+                </button>
+              </div>
+              <pre><code>export async function DELETE(
   request: NextRequest,
   { params }: { params: Promise&lt;{ id: string }&gt; }
 ) {
@@ -1812,54 +1610,56 @@ public class Konyv
 }</code></pre>
 
 
-        </div>
-      </div>
-
-      <div class="box" data-keywords="mongodb mongoose">
-        <div class="box-header">
-          <span class="box-title">MongoDB - Prisma</span>
-        </div>
-        <div class="box-content">
-          <div class="snippet-header">
-            <h3 class="snippet-title">start Mongo szerver -  startMongoDB.bat</h3>
-            <button class="copy-snippet-btn" onclick="copySnippet(this)">
-              Másolás
-            </button>
+            </div>
           </div>
-          <pre><code>if not exist "c:\data\" mkdir "c:\data"
+
+          <div class="box" data-keywords="mongodb mongoose">
+            <div class="box-header">
+              <span class="box-title">MongoDB - Prisma</span>
+            </div>
+            <div class="box-content">
+              <div class="snippet-header">
+                <h3 class="snippet-title">start Mongo szerver - startMongoDB.bat</h3>
+                <button class="copy-snippet-btn" onclick="copySnippet(this)">
+                  Másolás
+                </button>
+              </div>
+              <pre><code>if not exist "c:\data\" mkdir "c:\data"
 if not exist "c:\data\db" mkdir "c:\data\db"
 "c:\Program Files\MongoDB\Server\8.2\bin\mongod.exe" --dbpath="c:\data\db" --replSet "rs0"</code></pre>
 
-<div class="snippet-header">
-            <h3 class="snippet-title">Extract data fájl -  extract-data.bat</h3>
-            <button class="copy-snippet-btn" onclick="copySnippet(this)">
-              Másolás
-            </button>
-          </div>
-          <pre><code>if exist "C:\data" (
+              <div class="snippet-header">
+                <h3 class="snippet-title">Extract data fájl - extract-data.bat</h3>
+                <button class="copy-snippet-btn" onclick="copySnippet(this)">
+                  Másolás
+                </button>
+              </div>
+              <pre><code>if exist "C:\data" (
     rmdir /s /q "C:\data"
 )
 
 tar -xf data.zip -C C:\
 pause</code></pre>
 
-<div class="snippet-header">
-            <h3 class="snippet-title">Extract data fájl -  extract-data.bat</h3>
-            <button class="copy-snippet-btn" onclick="copySnippet(this)">
-              Másolás
-            </button>
-          </div>
-          <h1>1.Json fájlok megírása. 2. .env fájl és mongo.bat -> megírása 2.Extract data 3. startMongoDB 4. Mongo.bat 5. terminalban: npx prsima db pull --force 6. a schema elkészítése után terminalban: npx prisma db push</h1>
+              <div class="snippet-header">
+                <h3 class="snippet-title">Extract data fájl - extract-data.bat</h3>
+                <button class="copy-snippet-btn" onclick="copySnippet(this)">
+                  Másolás
+                </button>
+              </div>
+              <h1>1.Json fájlok megírása. 2. .env fájl és mongo.bat -> megírása 2.Extract data 3. startMongoDB 4.
+                Mongo.bat 5. terminalban: npx prsima db pull --force 6. a schema elkészítése után terminalban: npx
+                prisma db push</h1>
 
 
 
-          <div class="snippet-header">
-            <h3 class="snippet-title">json file jsonArray formátumban</h3>
-            <button class="copy-snippet-btn" onclick="copySnippet(this)">
-              Másolás
-            </button>
-          </div>
-          <pre><code>[
+              <div class="snippet-header">
+                <h3 class="snippet-title">json file jsonArray formátumban</h3>
+                <button class="copy-snippet-btn" onclick="copySnippet(this)">
+                  Másolás
+                </button>
+              </div>
+              <pre><code>[
   {
     "_id": 1,
     "unique_something": "alpha",
@@ -1872,13 +1672,13 @@ pause</code></pre>
   }
 ]</code></pre>
 
-          <div class="snippet-header">
-            <h3 class="snippet-title">másik collection example</h3>
-            <button class="copy-snippet-btn" onclick="copySnippet(this)">
-              Másolás
-            </button>
-          </div>
-          <pre><code>[
+              <div class="snippet-header">
+                <h3 class="snippet-title">másik collection example</h3>
+                <button class="copy-snippet-btn" onclick="copySnippet(this)">
+                  Másolás
+                </button>
+              </div>
+              <pre><code>[
   {
     "_id": 1,
     "date": {
@@ -1893,40 +1693,40 @@ pause</code></pre>
     "relation_id": 2
   }
 ]</code></pre>
-          <div class="snippet-header">
-            <h3 class="snippet-title">Mongo db feltöltése a json fájlokkal - mongo.bat</h3>
-            <button class="copy-snippet-btn" onclick="copySnippet(this)">
-              Másolás
-            </button>
-          </div>
-          <pre><code>@echo off
+              <div class="snippet-header">
+                <h3 class="snippet-title">Mongo db feltöltése a json fájlokkal - mongo.bat</h3>
+                <button class="copy-snippet-btn" onclick="copySnippet(this)">
+                  Másolás
+                </button>
+              </div>
+              <pre><code>@echo off
 chcp 65001
 "mongoimport.exe" --uri="mongodb://localhost:27017" --db=dbname --collection=collectionname --drop --file=filename.json --jsonArray
 "mongoimport.exe" --uri="mongodb://localhost:27017" --db=dbname --collection=collectionname --drop --file=filename.json --jsonArray
 echo PLEASE KILL AND RESTART YOUR BACKEND SERVER DEV TASK IF RUNNING!</code></pre>
 
-          <div class="snippet-header">
-            <h3 class="snippet-title">.env fájl tartalma</h3>
-            <button class="copy-snippet-btn" onclick="copySnippet(this)">
-              Másolás
-            </button>
-          </div>
-          <pre><code>DATABASE_URL="mongodb://localhost:27017/dbname"</code></pre>
-          <div class="snippet-header">
-            <h3 class="snippet-title">prisma schema létrehozása</h3>
-            <button class="copy-snippet-btn" onclick="copySnippet(this)">
-              Másolás
-            </button>
-          </div>
-          <pre><code>npx prisma db pull --force</code></pre>
+              <div class="snippet-header">
+                <h3 class="snippet-title">.env fájl tartalma</h3>
+                <button class="copy-snippet-btn" onclick="copySnippet(this)">
+                  Másolás
+                </button>
+              </div>
+              <pre><code>DATABASE_URL="mongodb://localhost:27017/dbname"</code></pre>
+              <div class="snippet-header">
+                <h3 class="snippet-title">prisma schema létrehozása</h3>
+                <button class="copy-snippet-btn" onclick="copySnippet(this)">
+                  Másolás
+                </button>
+              </div>
+              <pre><code>npx prisma db pull --force</code></pre>
 
-          <div class="snippet-header">
-            <h3 class="snippet-title">prisma schema example</h3>
-            <button class="copy-snippet-btn" onclick="copySnippet(this)">
-              Másolás
-            </button>
-          </div>
-          <pre><code>datasource db {
+              <div class="snippet-header">
+                <h3 class="snippet-title">prisma schema example</h3>
+                <button class="copy-snippet-btn" onclick="copySnippet(this)">
+                  Másolás
+                </button>
+              </div>
+              <pre><code>datasource db {
   provider = "mongodb"
   url      = env("DATABASE_URL")
 }
@@ -1953,13 +1753,13 @@ model Collection2 {
 }
 </code></pre>
 
-<div class="snippet-header">
-            <h3 class="snippet-title">Prisma relation fieldek használata 1:N tábláknál</h3>
-            <button class="copy-snippet-btn" onclick="copySnippet(this)">
-              Másolás
-            </button>
-          </div>
-          <pre><code>
+              <div class="snippet-header">
+                <h3 class="snippet-title">Prisma relation fieldek használata 1:N tábláknál</h3>
+                <button class="copy-snippet-btn" onclick="copySnippet(this)">
+                  Másolás
+                </button>
+              </div>
+              <pre><code>
 1:N kapcsolat (egy a többhöz)
 
 Jelentése:
@@ -2003,13 +1803,13 @@ az összetartozó rekordokat.
 ────────────────────────────
 </code></pre>
 
-<div class="snippet-header">
-            <h3 class="snippet-title">Try-catch általános használata és a Nodejs alap visszatérése</h3>
-            <button class="copy-snippet-btn" onclick="copySnippet(this)">
-              Másolás
-            </button>
-          </div>
-          <pre><code>
+              <div class="snippet-header">
+                <h3 class="snippet-title">Try-catch általános használata és a Nodejs alap visszatérése</h3>
+                <button class="copy-snippet-btn" onclick="copySnippet(this)">
+                  Másolás
+                </button>
+              </div>
+              <pre><code>
   try {
 
         kód...
@@ -2072,12 +1872,60 @@ DELETE http://localhost:3000/api/journeys/333
 </code></pre>
 
 <div class="snippet-header">
-            <h3 class="snippet-title">Hibakezelés hibaüzenetkor a Nodejs szerint</h3>
+            <h3 class="snippet-title">Url ből adatkiszedés - Dinamikus végpont</h3>
             <button class="copy-snippet-btn" onclick="copySnippet(this)">
               Másolás
             </button>
           </div>
           <pre><code>
+            request: NextRequest, { params }: { params: Promise<{ id: string }> }    
+</code></pre>
+
+<div class="snippet-header">
+            <h3 class="snippet-title">Végpontok</h3>
+            <button class="copy-snippet-btn" onclick="copySnippet(this)">
+              Másolás
+            </button>
+          </div>
+          <pre><code>
+            export async function GET()  
+</code></pre>
+
+<div class="snippet-header">
+            <h3 class="snippet-title">Test https. Végpontok</h3>
+            <button class="copy-snippet-btn" onclick="copySnippet(this)">
+              Másolás
+            </button>
+          </div>
+          <pre><code>
+            ### 6. feladat: A megadott járműtípussal elérhető utak lekérdezése
+GET http://localhost:3000/api/journeys/112
+
+### 7. feladat: Új utazási ajánlat hozzáadása
+POST http://localhost:3000/api/journeys
+content-type: application/json
+# Request body tartalma: (A következő üres sort ne törölje ki!) 
+
+{ 
+   "id": 12345, 
+   "vehicle_id": 1, 
+   "description": "A festői szépségű német főváros…", 
+   "departure": "2022-08-10T00:00:00.000Z", 
+   "pictureUrl": "https://pictures.com/berlin.jpg" 
+} 
+
+### 8. feladat: Utazási ajánlat törlése id alapján
+DELETE http://localhost:3000/api/journeys/333
+  
+</code></pre>
+
+              <div class="snippet-header">
+                <h3 class="snippet-title">Hibakezelés hibaüzenetkor a Nodejs szerint</h3>
+                <button class="copy-snippet-btn" onclick="copySnippet(this)">
+                  Másolás
+                </button>
+              </div>
+              <pre><code>
   } catch (error) {
     if (error instanceof Error && error.message.includes("Mintaszöveg")) {
       return NextResponse.json({ message: "Mintaszöveg" }, { status: feladatban meghatározott hibaüzenet pl: 404 });
@@ -2085,20 +1933,20 @@ DELETE http://localhost:3000/api/journeys/333
     
 </code></pre>
 
-          <div class="snippet-header">
-            <h3 class="snippet-title">prisma schema pusholása</h3>
-            <button class="copy-snippet-btn" onclick="copySnippet(this)">
-              Másolás
-            </button>
-          </div>
-          <pre><code>npx prisma db push</code></pre>
-          <div class="snippet-header">
-            <h3 class="snippet-title">prisma lekérés example</h3>
-            <button class="copy-snippet-btn" onclick="copySnippet(this)">
-              Másolás
-            </button>
-          </div>
-          <pre><code>// példa 1 - egyszerű lekérés
+              <div class="snippet-header">
+                <h3 class="snippet-title">prisma schema pusholása</h3>
+                <button class="copy-snippet-btn" onclick="copySnippet(this)">
+                  Másolás
+                </button>
+              </div>
+              <pre><code>npx prisma db push</code></pre>
+              <div class="snippet-header">
+                <h3 class="snippet-title">prisma lekérés example</h3>
+                <button class="copy-snippet-btn" onclick="copySnippet(this)">
+                  Másolás
+                </button>
+              </div>
+              <pre><code>// példa 1 - egyszerű lekérés
 const example1 = await prisma.exampleModel.findMany()
 
 // példa 2 - where használata
@@ -2138,13 +1986,13 @@ const example6 = await prisma.exampleModel.delete({
     id: 1
   }
 })</code></pre>
-          <div class="snippet-header">
-            <h3 class="snippet-title">prisma operátorok</h3>
-            <button class="copy-snippet-btn" onclick="copySnippet(this)">
-              Másolás
-            </button>
-          </div>
-          <pre><code>where - itt adsz meg feltételeket pl. id: 1 vagy name: "John"
+              <div class="snippet-header">
+                <h3 class="snippet-title">prisma operátorok</h3>
+                <button class="copy-snippet-btn" onclick="copySnippet(this)">
+                  Másolás
+                </button>
+              </div>
+              <pre><code>where - itt adsz meg feltételeket pl. id: 1 vagy name: "John"
 
 data - itt adod meg a létrehozandó vagy módosítandó adatokat pl. name: "Anna"
 
@@ -2177,20 +2025,20 @@ updateMany - több rekord frissítése feltétel alapján
 createMany - több rekord létrehozása egyszerre
 
 count - megszámolja a rekordokat</code></pre>
-        </div>
-      </div>
-      <div class="box" data-keywords="next.js">
-        <div class="box-header">
-          <span class="box-title">Egyéb</span>
-        </div>
-        <div class="box-content">
-          <div class="snippet-header">
-            <h3 class="snippet-title">Next.js backend struktúra</h3>
+            </div>
           </div>
-          <img src="pics/next_backend_structure.png" alt="Nem jelent meg a kép, ezer bocsánat!" />
-        </div>
-      </div>
-      <script src="script.js"></script>
+          <div class="box" data-keywords="next.js">
+            <div class="box-header">
+              <span class="box-title">Egyéb</span>
+            </div>
+            <div class="box-content">
+              <div class="snippet-header">
+                <h3 class="snippet-title">Next.js backend struktúra</h3>
+              </div>
+              <img src="pics/next_backend_structure.png" alt="Nem jelent meg a kép, ezer bocsánat!" />
+            </div>
+          </div>
+          <script src="script.js"></script>
 </body>
 
 </html>
