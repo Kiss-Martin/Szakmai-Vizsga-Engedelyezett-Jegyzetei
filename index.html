@@ -729,7 +729,54 @@ var result = people
           <div class="box-header">
             <span class="box-title">Általános</span>
           </div>
-          <div class="box-content">// Ide írd a jegyzetet</div>
+          
+        <div class="snippet-header">
+          <h3 class="snippet-title">Végpontok elérése pl GET</h3>
+          <button class="copy-snippet-btn" onclick="copySnippet(this)">
+            Másolás
+          </button>
+        </div>
+        <pre><code>
+              const res = await axios.get("http://localhost:3000/api/mintaVégpont");
+            </code></pre>
+
+        <div class="snippet-header">
+          <h3 class="snippet-title">Next Link használata</h3>
+          <button class="copy-snippet-btn" onclick="copySnippet(this)">
+            Másolás
+          </button>
+        </div>
+        <pre><code>
+              &lt;Link className="btn" href="/mintaOldal">
+                MintaFelirat
+              &lt;/Link&gt;
+            </code></pre>
+        <div class="snippet-header">
+          <h3 class="snippet-title">Elküldendő adat frissírése formban</h3>          
+          <button class="copy-snippet-btn" onclick="copySnippet(this)">
+            Másolás
+          </button>
+        </div>
+        <pre>
+          <code>
+            // ezt egy &lt;input-on belül
+                        onChange={(e) => setData({ ...data, newValami: Number(e.target.value) })}
+
+          </code>
+        </pre>
+                <div class="snippet-header">
+          <h3 class="snippet-title">Adatelküldés</h3>          
+          <button class="copy-snippet-btn" onclick="copySnippet(this)">
+            Másolás
+          </button>
+        </div>
+        <pre>
+          <code>
+            onClick={() => sendRating()}
+            //sendRating függvény meg csak egy szimpla axios.post(link, data);
+          </code>
+        </pre>
+
         </div>
 
         <div class="box" data-keywords="router route">
@@ -851,27 +898,6 @@ setArray(apiLekeresResponse.data);</code></pre>
           </div>
         </div>
 
-        <div class="snippet-header">
-          <h3 class="snippet-title">Végpontok elérése pl GET</h3>
-          <button class="copy-snippet-btn" onclick="copySnippet(this)">
-            Másolás
-          </button>
-        </div>
-        <pre><code>
-              const res = await axios.get("http://localhost:3000/api/mintaVégpont");
-            </code></pre>
-
-        <div class="snippet-header">
-          <h3 class="snippet-title">Next Link használata</h3>
-          <button class="copy-snippet-btn" onclick="copySnippet(this)">
-            Másolás
-          </button>
-        </div>
-        <pre><code>
-              &lt;Link className="btn" href="/mintaOldal">
-                MintaFelirat
-              &lt;/Link&gt;
-            </code></pre>
 
         <div class="box" data-keywords="redux context">
           <div class="box-header">
@@ -1469,6 +1495,13 @@ public class Konyv
         <!-- Backend - Node.js -->
         <div id="backend-next" class="section">
           <h2>Backend - Next.js</h2>
+          <div class="box">
+            <div class="box-header">
+              használt források:
+              NextJS végpontok: https://nextjs.org/docs/app/guides/backend-for-frontend#nextrequest-and-nextresponse
+              Prisma operátorok: https://www.prisma.io/docs/orm/prisma-client/queries/crud
+            </div>
+          </div>
 
           <div class="box" data-keywords="next.js route">
             <div class="box-header">
@@ -1476,21 +1509,23 @@ public class Konyv
             </div>
             <div class="box-content">
               <div class="snippet-header">
+            <h3 class="snippet-title">Url ből adatkiszedés - Dinamikus végpont</h3>
+            <button class="copy-snippet-btn" onclick="copySnippet(this)">
+              Másolás
+            </button>
+          </div>
+          <pre><code>
+            request: NextRequest, { params }: { params: Promise<{ id: string }> }    
+</code></pre>
+              <div class="snippet-header">
                 <h3 class="snippet-title">standard GET</h3>
                 <button class="copy-snippet-btn" onclick="copySnippet(this)">
                   Másolás
                 </button>
               </div>
               <pre><code>export async function GET() {
-  try {
     const data = await prisma.table.findMany({});
-    return NextResponse.json(data);
-  } catch (error) {
-    return NextResponse.json(
-      { message: error instanceof Error ? error.message : "Ismeretlen hiba!" },
-      { status: 500 }
-    );
-  }
+    // + hibakezelés
 }</code></pre>
 
               <div class="snippet-header">
@@ -1499,22 +1534,12 @@ public class Konyv
                   Másolás
                 </button>
               </div>
-              <pre><code>export async function GET(
-  request: NextRequest,
-  { params }: { params: Promise&lt;{ id: string }&gt; }
-) {
-  try {
+              <pre><code>export async function GET(//dinamikus végpont, urlből szedd ki az id-t) {
     const { id } = await params;
     const data = await prisma.table.findUnique({
       where: { id: Number(id) },
     });
-    return NextResponse.json(data);
-  } catch (error) {
-    return NextResponse.json(
-      { message: error instanceof Error ? error.message : "Ismeretlen hiba!" },
-      { status: 500 }
-    );
-  }
+  // + hibakezelés
 }</code></pre>
 
               <div class="snippet-header">
@@ -1523,45 +1548,22 @@ public class Konyv
                   Másolás
                 </button>
               </div>
-              <pre><code>export async function POST(request: Request) {
-  try {
-    const body = await request.json();
-    const newOne = await prisma.table.create({
-      data: body,
-    });
-    return NextResponse.json(newOne, { status: 201 });
-  } catch (error) {
-    return NextResponse.json(
-      { message: error instanceof Error ? error.message : "Ismeretlen hiba!" },
-      { status: 500 }
-    );
-  }
-}</code></pre>
-
+              <pre><code>
+                const body = await request.json();
+                const newOne = await prisma.table.create({
+                  data: body,
+                });
+    // + hibakezelés
+</code></pre>
               <div class="snippet-header">
                 <h3 class="snippet-title">standard PATCH</h3>
                 <button class="copy-snippet-btn" onclick="copySnippet(this)">
                   Másolás
                 </button>
               </div>
-              <pre><code>export async function PATCH(
-  request: NextRequest,
-  { params }: { params: Promise&lt;{ id: string }&gt; }
-) {
-  try {
-    const { id } = await params;
-    const changedData = await request.json();
-    const updatedDoc = await prisma.table.update({
-      where: { id: Number(id) },
-      data: changedData,
-    });
-    return NextResponse.json(updatedDoc, { status: 200 });
-  } catch (error) {
-    return NextResponse.json(
-      { message: error instanceof Error ? error.message : "Ismeretlen hiba!" },
-      { status: 500 }
-    );
-  }
+              <pre><code>export async function PATCH(//url-ből id kinyerése) {
+    //konkrétan ugyanaz mint a POST, csak ne createlj, hanem update-t használj, illetve awaiteld az id-t a paraméterből és arra keress a where operátorral
+    // + hibakezelés
 }</code></pre>
 
               <div class="snippet-header">
@@ -1570,23 +1572,9 @@ public class Konyv
                   Másolás
                 </button>
               </div>
-              <pre><code>export async function PUT(
-  request: NextRequest,
-  { params }: { params: Promise&lt;{ id: string }&gt; }
-) {
-  try {
-    const { id } = await params;
-    const newDocument = await request.json();
-    const updatedDoc = await prisma.table.update({
-      where: { id: Number(id) },
-      data: newDocument,
-    });
-    return NextResponse.json(updatedDoc, { status: 200 });
-  } catch (error) {
-    return NextResponse.json(
-      { message: error instanceof Error ? error.message : "Ismeretlen hiba!" },
-      { status: 500 }
-    );
+              <pre><code>export async function PUT(// url-ből id kinyerése) {
+        //ugyanaz mint a PATCH
+        // + hibakezelés
   }
 }</code></pre>
 
@@ -1596,21 +1584,24 @@ public class Konyv
                   Másolás
                 </button>
               </div>
-              <pre><code>export async function DELETE(
-  request: NextRequest,
-  { params }: { params: Promise&lt;{ id: string }&gt; }
-) {
-  try {
-    const { id } = await params;
-    await prisma.table.delete({ where: { id: Number(id) } });
-    return new NextResponse(null, { status: 204 });
-  } catch (error) {
-    return NextResponse.json(
-      { message: error instanceof Error ? error.message : "Ismeretlen hiba!" },
-      { status: 500 }
-    );
-  }
+              <pre><code>export async function DELETE(//url-ből id kinyerése) {
+    //olyan mint a GET by id, csak itt delete prisma operátor
+    return new NextResponse(null, { status: 204 }); // ha nem kér a feladat semmilyen válaszüzenetet, akkor simán null az első paraméter
+    // + hibakezelés
 }</code></pre>
+<div class="snippet-header">
+  <h3 class="snippet-title">+ sor hozzáadása</h3>
+  <button class="copy-snippet-btn" onclick="copySnippet(this)">Másolás</button>
+</div>
+<pre>
+  <code>
+      const resWithNewData = res.map((e, i) => ({
+    ...e,
+    index: `${i + 1}.`,
+  }));
+  // utána ezt return nextrespone-ba, mint mindenhol máshol
+  </code>
+</pre>
 
 
             </div>
@@ -1645,14 +1636,20 @@ tar -xf data.zip -C C:\
 pause</code></pre>
 
               <div class="snippet-header">
-                <h3 class="snippet-title">Extract data fájl - extract-data.bat</h3>
+                <h3 class="snippet-title">Setup sorrend</h3>
                 <button class="copy-snippet-btn" onclick="copySnippet(this)">
                   Másolás
                 </button>
               </div>
-              <h1>1.Json fájlok megírása. 2. .env fájl és mongo.bat -> megírása 2.Extract data 3. startMongoDB 4.
-                Mongo.bat 5. terminalban: npx prsima db pull --force 6. a schema elkészítése után terminalban: npx
-                prisma db push</h1>
+              <ol>
+                <li>JSON fájlok megírása</li>
+                <li>extract-data</li>
+                <li>startMongoDb.bat</li>
+                <li>mongo.bat</li>
+                <li>npx prisma db pull --force</li>
+                <li>schema szerkesztése</li>
+                <li>npx prisma db push</li>
+              </ol>
 
 
 
@@ -1824,6 +1821,82 @@ az összetartozó rekordokat.
         );
       }
     
+</code></pre>
+
+<div class="snippet-header">
+            <h3 class="snippet-title">Test https. Végpontok</h3>
+            <button class="copy-snippet-btn" onclick="copySnippet(this)">
+              Másolás
+            </button>
+          </div>
+          <pre><code>
+            ### 6. feladat: A megadott járműtípussal elérhető utak lekérdezése
+GET http://localhost:3000/api/journeys/112
+
+### 7. feladat: Új utazási ajánlat hozzáadása
+POST http://localhost:3000/api/journeys
+content-type: application/json
+# Request body tartalma: (A következő üres sort ne törölje ki!) 
+
+{ 
+   "id": 12345, 
+   "vehicle_id": 1, 
+   "description": "A festői szépségű német főváros…", 
+   "departure": "2022-08-10T00:00:00.000Z", 
+   "pictureUrl": "https://pictures.com/berlin.jpg" 
+} 
+
+### 8. feladat: Utazási ajánlat törlése id alapján
+DELETE http://localhost:3000/api/journeys/333
+  
+</code></pre>
+
+<div class="snippet-header">
+            <h3 class="snippet-title">Url ből adatkiszedés - Dinamikus végpont</h3>
+            <button class="copy-snippet-btn" onclick="copySnippet(this)">
+              Másolás
+            </button>
+          </div>
+          <pre><code>
+            request: NextRequest, { params }: { params: Promise<{ id: string }> }    
+</code></pre>
+
+<div class="snippet-header">
+            <h3 class="snippet-title">Végpontok</h3>
+            <button class="copy-snippet-btn" onclick="copySnippet(this)">
+              Másolás
+            </button>
+          </div>
+          <pre><code>
+            export async function GET()  
+</code></pre>
+
+<div class="snippet-header">
+            <h3 class="snippet-title">Test https. Végpontok</h3>
+            <button class="copy-snippet-btn" onclick="copySnippet(this)">
+              Másolás
+            </button>
+          </div>
+          <pre><code>
+            ### 6. feladat: A megadott járműtípussal elérhető utak lekérdezése
+GET http://localhost:3000/api/journeys/112
+
+### 7. feladat: Új utazási ajánlat hozzáadása
+POST http://localhost:3000/api/journeys
+content-type: application/json
+# Request body tartalma: (A következő üres sort ne törölje ki!) 
+
+{ 
+   "id": 12345, 
+   "vehicle_id": 1, 
+   "description": "A festői szépségű német főváros…", 
+   "departure": "2022-08-10T00:00:00.000Z", 
+   "pictureUrl": "https://pictures.com/berlin.jpg" 
+} 
+
+### 8. feladat: Utazási ajánlat törlése id alapján
+DELETE http://localhost:3000/api/journeys/333
+  
 </code></pre>
 
               <div class="snippet-header">
