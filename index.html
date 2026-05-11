@@ -2024,6 +2024,54 @@ az összetartozó rekordokat.
 </code></pre>
 
 <div class="snippet-header">
+            <h3 class="snippet-title">Url ből adatkiszedés - Dinamikus végpont</h3>
+            <button class="copy-snippet-btn" onclick="copySnippet(this)">
+              Másolás
+            </button>
+          </div>
+          <pre><code>
+            request: NextRequest, { params }: { params: Promise<{ id: string }> }    
+</code></pre>
+
+<div class="snippet-header">
+            <h3 class="snippet-title">Végpontok</h3>
+            <button class="copy-snippet-btn" onclick="copySnippet(this)">
+              Másolás
+            </button>
+          </div>
+          <pre><code>
+            export async function GET()  
+</code></pre>
+
+<div class="snippet-header">
+            <h3 class="snippet-title">Test https. Végpontok</h3>
+            <button class="copy-snippet-btn" onclick="copySnippet(this)">
+              Másolás
+            </button>
+          </div>
+          <pre><code>
+            ### 6. feladat: A megadott járműtípussal elérhető utak lekérdezése
+GET http://localhost:3000/api/journeys/112
+
+### 7. feladat: Új utazási ajánlat hozzáadása
+POST http://localhost:3000/api/journeys
+content-type: application/json
+# Request body tartalma: (A következő üres sort ne törölje ki!) 
+
+{ 
+   "id": 12345, 
+   "vehicle_id": 1, 
+   "description": "A festői szépségű német főváros…", 
+   "departure": "2022-08-10T00:00:00.000Z", 
+   "pictureUrl": "https://pictures.com/berlin.jpg" 
+} 
+
+### 8. feladat: Utazási ajánlat törlése id alapján
+DELETE http://localhost:3000/api/journeys/333
+  
+</code></pre>
+
+<div class="snippet-header">
             <h3 class="snippet-title">Hibakezelés hibaüzenetkor a Nodejs szerint</h3>
             <button class="copy-snippet-btn" onclick="copySnippet(this)">
               Másolás
