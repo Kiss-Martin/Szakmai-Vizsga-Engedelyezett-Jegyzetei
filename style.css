@@ -30,20 +30,20 @@
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         background: var(--bg);
         color: var(--text);
-        line-height: 1.6;
-        padding: 20px;
+        line-height: 1.75;
+        padding: 28px;
         transition: background 0.2s, color 0.2s;
     }
 
     .container {
-        max-width: 900px;
+        max-width: 920px;
         margin: 0 auto;
     }
 
     header {
         text-align: center;
-        margin-bottom: 30px;
-        padding-bottom: 20px;
+        margin-bottom: 36px;
+        padding-bottom: 26px;
         position: sticky;
         top: 0;
         background: var(--bg);
@@ -74,7 +74,7 @@
 
     .controls {
         display: flex;
-        gap: 10px;
+        gap: 14px;
         justify-content: center;
         flex-wrap: wrap;
         align-items: center;
@@ -82,12 +82,17 @@
 
     select,
     input {
-        padding: 10px 15px;
+        padding: 12px 16px;
         font-size: 1rem;
         border: 1px solid var(--border);
-        border-radius: 4px;
+        border-radius: 6px;
         background: var(--bg-box);
         color: var(--text);
+    }
+
+    select {
+        cursor: pointer;
+        appearance: auto;
     }
 
     input[type="search"] {
@@ -113,8 +118,8 @@
     }
 
     .section h2 {
-        font-size: 1.3rem;
-        margin: 30px 0 15px;
+        font-size: 1.35rem;
+        margin: 42px 0 22px;
         padding-bottom: 10px;
         border-bottom: 2px solid var(--border);
     }
@@ -122,30 +127,112 @@
     .box {
         background: var(--bg-box);
         border: 1px solid var(--border);
-        border-radius: 4px;
-        margin-bottom: 15px;
+        border-radius: 6px;
+        margin-bottom: 24px;
         overflow: hidden;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.06);
     }
 
     .box-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 12px 15px;
+        padding: 14px 18px;
         background: var(--bg-header);
         border-bottom: 1px solid var(--border-light);
     }
 
     .box-title {
         font-weight: 600;
-        font-size: 1rem;
+        font-size: 1.02rem;
     }
 
     .box-content {
-        padding: 15px;
-        white-space: pre-wrap;
-        font-family: monospace;
-        font-size: 0.9rem;
+        padding: 24px 22px 22px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-size: 1rem;
+        line-height: 1.8;
+        white-space: normal;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+        color: var(--text);
+    }
+
+    .box-content p,
+    .box-content li,
+    .box-content small,
+    .box-content code {
+        line-height: 1.75;
+    }
+
+    .box-content ul,
+    .box-content ol {
+        list-style: none;
+        margin: 1rem 0 0;
+        padding-left: 0;
+    }
+
+    .box-content li {
+        margin-bottom: 3rem;
+        padding-left: 0;
+    }
+
+    .box-content li:last-child {
+        margin-bottom: 2rem;
+    }
+
+    .box-content code {
+        font-family: Consolas, 'Courier New', monospace;
+        font-size: 0.95rem;
+        background: rgba(255, 255, 255, 0.08);
+        padding: 0.12rem 0.35rem;
+        border-radius: 4px;
+    }
+
+    .box-content small {
+        display: block;
+        margin-top: 0.3rem;
+        color: var(--text);
+        opacity: 0.8;
+        font-size: 0.92rem;
+    }
+
+    .box-content pre {
+        margin: 1.2rem 0 0;
+        padding: 20px;
+        border: 1px solid var(--border-light);
+        border-radius: 8px;
+        background: var(--bg-header);
+        overflow-x: auto;
+        white-space: pre;
+        tab-size: 4;
+        line-height: 1.75;
+    }
+
+    .box-content pre code {
+        display: block;
+        padding: 0;
+        margin: 0;
+        background: transparent;
+        font-family: Consolas, 'Courier New', monospace;
+        font-size: 0.95rem;
+        line-height: 1.75;
+    }
+
+    .box-content pre code {
+        display: block;
+        padding: 0;
+        margin: 0;
+        background: transparent;
+        font-family: Consolas, 'Courier New', monospace;
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    .box-content h3 {
+        margin: 1.2rem 0 0.5rem;
+        font-size: 1rem;
+        font-weight: 600;
     }
 
     .snippet-title {
@@ -218,6 +305,22 @@
         overflow-x: auto;
     }
 
+    .box-content .box-list {
+        list-style: none;
+        padding-left: 0;
+        margin: 0;
+    }
+
+    .box-content .box-list li {
+        margin-bottom: 10px;
+        line-height: 1.6;
+    }
+
+    .box-content .box-list li strong {
+        display: inline-block;
+        min-width: 140px;
+    }
+
     .box-content code {
         font-family: Consolas, 'Courier New', monospace;
         line-height: 1.5;
@@ -256,7 +359,4 @@
 
     .box.guide .box-title::before {
         content: "📌 ";
-    }
-    li{
-        margin-left: 10%;
     }

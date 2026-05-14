@@ -39,7 +39,7 @@
     <div id="csharp" class="section">
       <h2>C# Console App</h2>
 
-      <div class="box guide" data-keywords="json config settings">
+      <div class="box guide" data-keywords="json config settings paste special classes deserialize file read vs code">
         <div class="box-header">
           <span class="box-title">JSON konfiguráció - Paste Special</span>
         </div>
@@ -47,51 +47,54 @@
           megfelelő C# osztályokat a JSON-ból <br>.json file-ok "copy if newer/copy always" Property beállítása </div>
       </div>
 
-      <div class="box" data-keywords="console write readline">
+      <div class="box" data-keywords="console write readline input output console app json load file">
         <div class="box-header">
           <span class="box-title">Class vége Json beolvasás használata esetén</span>
           <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
         </div>
         <div class="box-content">
-          public static List&lt;MintaClass&gt; LoadFromJSON(string fileName = "minta.json")
-          {
-          var jsonText = File.ReadAllText(fileName);
-          return JsonSerializer.Deserialize&lt;List&lt;MintaClass&gt;&gt;(jsonText) ?? new List&lt;MintaClass&gt;();
-          }
+          <pre><code>public static List&lt;MintaClass&gt; LoadFromJSON(string fileName = "minta.json")
+{
+    var jsonText = File.ReadAllText(fileName);
+    return JsonSerializer.Deserialize&lt;List&lt;MintaClass&gt;&gt;(jsonText) ?? new List&lt;MintaClass&gt;();
+}
+</code></pre>
         </div>
       </div>
 
-      <div class="box" data-keywords="string int array list">
+      <div class="box" data-keywords="string int array list collection try catch file read success">
         <div class="box-header">
           <span class="box-title">Listák, fájlbeolvasás sikerességének ellenőrzése</span>
           <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
         </div>
         <div class="box-content">
+          <pre><code>List&lt;MintaClass&gt; minta = new List&lt;MintaClass&gt;(); // lehet var is
+var minta = new List&lt;MintaClass&gt;();
 
-          List&lt;MintaClass&gt; minta = new List&lt;MintaClass&gt;(); //lehet var is
-          var minta = new List&lt;MintaClass&gt;();
-
-          try
-          {
-          minta = MintaClass.LoadFromJSON();
-          }
-          catch
-          {
-          Console.WriteLine("Hiba");
-          }
-
+try
+{
+    minta = MintaClass.LoadFromJSON();
+}
+catch
+{
+    Console.WriteLine("Hiba");
+}
+</code></pre>
         </div>
       </div>
 
-      <div class="box" data-keywords="class property nullable">
+      <div class="box" data-keywords="class property nullable null default struct object">
         <div class="box-header">
           <span class="box-title">Classoknál érdemes figyelni</span>
         </div>
-        <div class="box-content">public int Valami { get; set; } // nem lehet null → default: 0
-          public int? Valami { get; set; } // lehet null</div>
+        <div class="box-content">
+          <pre><code>public int Valami { get; set; } // nem lehet null → default: 0
+public int? Valami { get; set; } // lehet null
+</code></pre>
+        </div>
       </div>
 
-      <div class="box" data-keywords="date format decimal">
+      <div class="box" data-keywords="date format decimal datetime number string interpolation culture">
         <div class="box-header">
           <span class="box-title">Dátum és tizedesjegy formázás</span>
         </div>
@@ -178,7 +181,7 @@ Console.WriteLine($"{d:yyyy.MM.dd HH:mm}");
         </div>
       </div>
 
-      <div class="box" data-keywords="linq">
+      <div class="box" data-keywords="linq where select orderby groupby tolist first or default">
         <div class="box-header">
           <span class="box-title">Gyors Linq</span>
         </div>
@@ -298,81 +301,76 @@ Console.WriteLine($"{d:yyyy.MM.dd HH:mm}");
        ↓ ToList
 [List&lt;string&gt;]
 </pre>
-
           <h3>Példa pipeline</h3>
-
-          <pre><code>
-var result = people
-    .Where(p => p.Age > 18)
-    .OrderBy(p => p.Name)
-    .Select(p => p.Name)
-    .ToList();
-</code></pre>
+          <pre><code>var result = people
+          .Where(p => p.Age > 18)
+          .OrderBy(p => p.Name)
+          .Select(p => p.Name)
+          .ToList();</code></pre>
         </div>
       </div>
 
-      <div class="box" data-keywords="zip">
+      <div class="box" data-keywords="zip linq input read while loop validation console">
         <div class="box-header">
           <span class="box-title">Adatbekérés ismétléssel</span>
           <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
         </div>
         <div class="box-content">
-          var ertek = 0
-          do
-          {
-          try
-          {
-          ertek = szám_beolvasása;
-          }
-          catch
-          {
-          ertek = 0;
-          }
-
-          } while (ertek <= 0); </div>
+<pre><code>var ertek = 0
+do
+{
+  try
+  {
+    ertek = szám_beolvasása;
+  }
+  catch
+  {
+    ertek = 0;
+  }
+} while (ertek <= 0);</code></pre>
+        </div>
         </div>
 
-        <div class="box" data-keywords="zip">
+        <div class="box" data-keywords="zip linq zip example numbers skip foreach output">
           <div class="box-header">
             <span class="box-title">Zip Példa</span>
             <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
           </div>
-          <div class="box-content">int[] numbers = { 1, 2, 3, 4 };
+          <div class="box-content">
+            <pre><code>int[] numbers = { 1, 2, 3, 4 };
 
-            var pairs = numbers.Zip(numbers.Skip(1), (a, b) => a + " -> " + b);
+var pairs = numbers.Zip(numbers.Skip(1), (a, b) => a + " -> " + b);
 
-            foreach (var item in pairs)
-            Console.WriteLine(item);
+foreach (var item in pairs)
+{
+    Console.WriteLine(item);
+}
 
-            // This code produces the following output:
-
-            // 1 -> 2
-            // 2 -> 3
-            // 3 -> 4</div>
+// This code produces the following output:
+// 1 -> 2
+// 2 -> 3
+// 3 -> 4
+</code></pre>
+          </div>
         </div>
 
-        <div class="box" data-keywords="zip">
+        <div class="box" data-keywords="zip linq where orderby filter list multiple conditions">
           <div class="box-header">
             <span class="box-title">Lista szűrése több feltétellel</span>
             <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
           </div>
-          <div class="box-content">//
-            lista?.Where(x => feltétel1 && feltétel2)
+          <div class="box-content">
+            <pre><code>lista?.Where(x => feltétel1 && feltétel2)
 
-            // Rendezés
-            .OrderBy(x => x.tulajdonsag)
-
-            // További szűrés
-            .Where(x => feltétel3)
-
-            // Lista készítése
-            .ToList()
-
-            // Bejárás
-            .ForEach(x =>
-            {
-            Console.WriteLine($"{x.adat1} - {x.adat2}");
-            });</div>
+    .OrderBy(x => x.tulajdonsag)
+    .Where(x => feltétel3)
+    .ToList()
+    .ForEach(x =>
+    {
+        Console.WriteLine($"{x.adat1} - {x.adat2}");
+    });
+</code></pre>
+          </div>
         </div>
 
         <div class="box" data-keywords="zip">
@@ -381,56 +379,59 @@ var result = people
             <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
           </div>
           <div class="box-content">
-            // Szöveg bekérés
-            Console.Write("Szöveg: ");
-            string text = Console.ReadLine();
+            <pre><code>// Szöveg bekérés
+Console.Write("Szöveg: ");
+string text = Console.ReadLine();
 
-            // Egész szám bekérés
-            Console.Write("Szám: ");
-            int number = int.Parse(Console.ReadLine());
+// Egész szám bekérés
+Console.Write("Szám: ");
+int number = int.Parse(Console.ReadLine());
 
-            // Tört szám bekérés
-            Console.Write("Érték: ");
-            decimal value = decimal.Parse(Console.ReadLine().Replace(",", "."));
+// Tört szám bekérés
+Console.Write("Érték: ");
+decimal value = decimal.Parse(Console.ReadLine().Replace(",", "."));
 
-            // Dátum bekérés
-            Console.Write("Dátum: ");
-            DateTime date = DateTime.Parse(Console.ReadLine());
+// Dátum bekérés
+Console.Write("Dátum: ");
+DateTime date = DateTime.Parse(Console.ReadLine());
+</code></pre>
           </div>
         </div>
 
-        <div class="box" data-keywords="zip">
+        <div class="box" data-keywords="zip linq foreach collection pair group combine">
           <div class="box-header">
             <span class="box-title">Anonym osztály létrehozása</span>
             <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
           </div>
           <div class="box-content">
-            var groups = lista
-            .GroupBy(x => x.azonosito)
-            .Select(g => new
-            {
-            id = g.Key,
-            //esetleg id-k összehasonlítása
-            elemek = g.OrderBy(x => x.valami).ToList()
-            });
+            <pre><code>var groups = lista
+    .GroupBy(x => x.azonosito)
+    .Select(g => new
+    {
+        id = g.Key,
+        // esetleg id-k összehasonlítása
+        elemek = g.OrderBy(x => x.valami).ToList()
+    });
+</code></pre>
           </div>
         </div>
 
-        <div class="box" data-keywords="zip">
+        <div class="box" data-keywords="zip linq foreach collection pair combine list practice">
           <div class="box-header">
             <span class="box-title">Foreach és Zip használata</span>
             <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
           </div>
           <div class="box-content">
-            foreach (var item in lista)
-            {
-            var eredmeny = item.adatok
-            .Zip(item.adatok.Skip(1),
+            <pre><code>foreach (var item in lista)
+{
+    var eredmeny = item.adatok
+        .Zip(item.adatok.Skip(1),
             (a, b) => szamitas)
-            .Max();
+        .Max();
 
-            Console.WriteLine(eredmeny);
-            }
+    Console.WriteLine(eredmeny);
+}
+</code></pre>
           </div>
         </div>
 
@@ -440,22 +441,22 @@ var result = people
       <div id="wpf" class="section">
         <h2>WPF</h2>
 
-        <div class="box guide" data-keywords="json config settings">
+        <div class="box guide" data-keywords="json config settings nuget ef core mvvm mysql communitytoolkit">
           <div class="box-header">
             <span class="box-title">Megfelelő Nuget csomagok listája</span>
           </div>
-          <div class="box-content" style="text-align: left;">
-            MySql.EntityFrameworkCore (10.0.2)
-            CommunityToolkit.Mvvm (8.0.4)
+          <div class="box-content">
+            MySql.EntityFrameworkCore (10.0.2)<br>
+            CommunityToolkit.Mvvm (8.0.4)<br>
             Microsoft.EntityFrameworkCore.Tools (8.0.22)
           </div>
         </div>
 
-        <div class="box" data-keywords="xamarin entityframework navigation">
+        <div class="box" data-keywords="xamarin entityframework navigation ef core relationship collection ienumerable">
           <div class="box-header">
             <span class="box-title">Entitás kapcsolatok EF Core-ban (class végére)</span>
           </div>
-          <div class="box-content" style="text-align: left;">
+          <div class="box-content">
             Egy objektumhoz több kapcsolódó elem tartozhat
             <pre><code>public virtual ICollection&lt;PeldaClass&gt; PeldaCollection { get; set; } = new List&lt;PeldaClass&gt;();
 </code></pre>
@@ -475,80 +476,84 @@ var result = people
           </div>
         </div>
 
-        <div class="box" data-keywords="xaml binding">
+        <div class="box" data-keywords="xaml binding scaffold dbcontext mysql ef core command">
           <div class="box-header">
             <span class="box-title">Scaffold Parancs</span>
             <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
           </div>
-          <div class="box-content">Scaffold-DbContext -Connection
-            "server=localhost;database=adatbazis-nev;uid=root;pwd=;" -Provider Mysql.EntityFrameworkCore</div>
+          <div class="box-content">
+            <pre><code>Scaffold-DbContext -Connection "server=localhost;database=adatbazis-nev;uid=root;pwd=;" -Provider Mysql.EntityFrameworkCore</code></pre>
+          </div>
         </div>
 
-        <div class="box" data-keywords="xaml binding">
+        <div class="box" data-keywords="xaml binding datagrid columns readonly autogenerate">
           <div class="box-header">
             <span class="box-title">Datagrid felépítése</span>
             <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
           </div>
           <div class="box-content">
-
-            &lt;DataGrid Name="dgMinta" IsReadOnly="True" AutoGenerateColumns="False"&gt;
-            &lt;DataGrid.Columns&gt;
-            &lt;DataGridTextColumn Header="Id" Width="30" Binding="{Binding Id}"&gt;
-            &lt;/DataGrid.Columns&gt;
-            &lt;/DataGrid&gt;
+            <pre><code>&lt;DataGrid Name="dgMinta" IsReadOnly="True" AutoGenerateColumns="False"&gt;
+    &lt;DataGrid.Columns&gt;
+        &lt;DataGridTextColumn Header="Id" Width="30" Binding="{Binding Id}" /&gt;
+    &lt;/DataGrid.Columns&gt;
+&lt;/DataGrid&gt;
+</code></pre>
           </div>
         </div>
 
-        <div class="box" data-keywords="mvvm viewmodel command">
+        <div class="box" data-keywords="mvvm viewmodel command binding stringformat targetnullvalue formatting">
           <div class="box-header">
             <span class="box-title">Adatok formázása</span>
           </div>
           <div class="box-content">
-            Binding="{Binding Date, StringFormat=yyyy.MM.dd HH:mm}"
-            Binding="{Binding Price, StringFormat={}{0:# ###} Ft}"
-            Binding="{Binding Adat, TargetNullValue='N/A'}"
+            <pre><code>Binding="{Binding Date, StringFormat=yyyy.MM.dd HH:mm}"
+Binding="{Binding Price, StringFormat={}{0:# ###} Ft}"
+Binding="{Binding Adat, TargetNullValue='N/A'}"
+</code></pre>
           </div>
         </div>
 
-        <div class="box" data-keywords="mvvm viewmodel command">
+        <div class="box" data-keywords="mvvm viewmodel command dbcontext context instance create">
           <div class="box-header">
             <span class="box-title">Context létrehozása</span>
           </div>
           <div class="box-content">
-            private MintaContext dbContext = new MintaContext();
+            <pre><code>private MintaContext dbContext = new MintaContext();</code></pre>
           </div>
         </div>
 
-        <div class="box" data-keywords="mvvm viewmodel command">
+        <div class="box" data-keywords="mvvm viewmodel command combobox itemsource displaymemberpath selectedvaluepath">
           <div class="box-header">
             <span class="box-title">ComboBox feltöltése</span>
           </div>
           <div class="box-content">
-            cboMinta.ItemSource = tömb változó ami feltölti ComboBox-t pl: adatok;
-            cboMinta.DisplayMemberPath = Osztályban lévő mező megjelenítése pl: "Név";
-            cboMinta.SelectedValuePath = Osztályban lévő azonosító megadása pl: "Id";
-            cboMinta.SelectedIndex = hányadik elem legyen alapból kiválasztva pl: 0;
+            <pre><code>cboMinta.ItemSource = adatok;
+cboMinta.DisplayMemberPath = "Név";
+cboMinta.SelectedValuePath = "Id";
+cboMinta.SelectedIndex = 0;
+</code></pre>
           </div>
         </div>
 
-        <div class="box" data-keywords="mvvm viewmodel command">
+        <div class="box" data-keywords="mvvm viewmodel command combobox xaml control">
           <div class="box-header">
             <span class="box-title">Combobox létrehozása</span>
           </div>
           <div class="box-content">
-            &lt;ComboBox Name="cboMinta"&gt;
+            <pre><code>&lt;ComboBox Name="cboMinta" /&gt;
+</code></pre>
           </div>
         </div>
 
-        <div class="box" data-keywords="mvvm viewmodel command">
+        <div class="box" data-keywords="mvvm viewmodel command datagrid items source datasource tolist">
           <div class="box-header">
             <span class="box-title">Datagrid feltöltése</span>
           </div>
           <div class="box-content">
-            var adatok = dbContext.Set&lt;MintaClass&gt;().ToList();
+            <pre><code>var adatok = dbContext.Set&lt;MintaClass&gt;().ToList();
 
-
-            dgMinta.ItemsSource = dbContext.Set&lt;MintaClass&gt;().ToList();
+dgMinta.ItemsSource = adatok;
+</code></pre>
           </div>
         </div>
 
@@ -558,63 +563,44 @@ var result = people
           <div class="box-header">
             <span class="box-title">Elem beszúra</span>
           </div>
-          <div class="box-content">adatok.Insert(0, new MintaClass {}); </div>
+          <div class="box-content">
+            <pre><code>adatok.Insert(0, new MintaClass {});</code></pre>
+          </div>
         </div>
 
-        <div class="box" data-keywords="mvvm viewmodel command">
-          <div class="box-header">
-            <span class="box-title">MVVM Pattern</span>
-          </div>
-          <div class="box-content">// Ide írd a jegyzetet</div>
-        </div>
-
-        <div class="box" data-keywords="control event">
-          <div class="box-header">
-            <span class="box-title">Controk és események</span>
-            <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
-          </div>
-          <div class="box-content">// Ide írd a jegyzetet</div>
-        </div>
       </div>
-
       <!-- HTML -->
       <div id="html" class="section">
         <h2>HTML</h2>
 
-        <div class="box guide" data-keywords="html5 semantic tag">
+        <div class="box guide" data-keywords="html5 semantic tag section article header footer nav aside main figure figcaption">
           <div class="box-header">
             <span class="box-title">HTML5 Semantikus Tag-ek</span>
           </div>
-          <div class="box-content"> &lt;header&gt; - Fejléc<br> &lt;nav&gt; - Navigáció<br> &lt;main&gt; - Fő
-            tartalom<br> &lt;article&gt; - önálló tartalom<br> &lt;section&gt; - szekció<br> &lt;aside&gt; - oldalsó
-            tartalom<br> &lt;footer&gt; - lábléc<br> &lt;figure&gt; - ábra + &lt;figcaption&gt;</div>
+          <div class="box-content">
+            <pre><code>&lt;header&gt; - Fejléc
+&lt;nav&gt; - Navigáció
+&lt;main&gt; - Fő tartalom
+&lt;article&gt; - önálló tartalom
+&lt;section&gt; - szekció
+&lt;aside&gt; - oldalsó tartalom
+&lt;footer&gt; - lábléc
+&lt;figure&gt; - ábra + &lt;figcaption&gt;
+</code></pre>
+          </div>
         </div>
 
-        <div class="box" data-keywords="bootstrap grid">
+        <div class="box" data-keywords="bootstrap grid tables docs css responsive container row col">
           <div class="box-header">
             <span class="box-title">Bootstrap Gyors linkek</span>
           </div>
-          <div class="box-content"><a target="_blank" rel="noopener"
-              href="https://getbootstrap.com/docs/5.3/getting-started/introduction/">Bootstrap főoldal</a><br><a
-              target="_blank" rel="noopener" href="https://getbootstrap.com/docs/5.3/layout/grid/">Bootstrap Grid
-              Dokumentáció</a><br><a target="_blank" rel="noopener"
-              href="https://getbootstrap.com/docs/5.3/content/tables/#overview">Bootstrap Táblázatok Dokumentáció</a>
+          <div class="box-content">
+            <ul>
+              <li><a target="_blank" rel="noopener" href="https://getbootstrap.com/docs/5.3/getting-started/introduction/">Bootstrap főoldal</a></li>
+              <li><a target="_blank" rel="noopener" href="https://getbootstrap.com/docs/5.3/layout/grid/">Bootstrap Grid Dokumentáció</a></li>
+              <li><a target="_blank" rel="noopener" href="https://getbootstrap.com/docs/5.3/content/tables/#overview">Bootstrap Táblázatok Dokumentáció</a></li>
+            </ul>
           </div>
-        </div>
-
-        <div class="box" data-keywords="form input validation">
-          <div class="box-header">
-            <span class="box-title">Űrlapok</span>
-          </div>
-          <div class="box-content">// Ide írd a jegyzetet</div>
-        </div>
-
-        <div class="box" data-keywords="table list link image">
-          <div class="box-header">
-            <span class="box-title">Média és táblázatok</span>
-            <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
-          </div>
-          <div class="box-content">// Ide írd a jegyzetet</div>
         </div>
       </div>
 
@@ -624,99 +610,109 @@ var result = people
   <div class="box">
     <div class="box-header"> <span class="box-title">Adatkötések (Bindings)</span> </div>
     <div class="box-content">
-      <p><strong>Doksi:</strong> <a href="https://v20.angular.dev/guide/templates/binding"
-          target="_blank">https://v20.angular.dev/guide/templates/binding</a></p>
-      <p><strong>Szöveg:</strong> <code>{{ valtozo }}</code></p>
-      <p><strong>Tulajdonság:</strong> <code>[tulajdonsag]="változó"</code></p>
-      <p><strong>Esemény:</strong> <code>(esemeny)="művelet"</code></p>
-      <p><strong>Kétirányú:</strong> <code>[(ngModel)]="változó"</code></p>
-      <p><strong>Fontos:</strong> ngModel esetén <code>FormsModule -t importálni kell hogy működjön</code></p>
+      <ul class="box-list">
+        <li><strong>Doksi:</strong> <a href="https://v20.angular.dev/guide/templates/binding" rel="noopener noreferrer" target="_blank">v20 Angular binding</a></li>
+        <li><strong>Szöveg:</strong> <code>{{ valtozo }}</code></li>
+        <li><strong>Tulajdonság:</strong> <code>[tulajdonsag]="változó"</code></li>
+        <li><strong>Esemény:</strong> <code>(esemeny)="művelet"</code></li>
+        <li><strong>Kétirányú:</strong> <code>[(ngModel)]="változó"</code></li>
+        <li><strong>Fontos:</strong> <code>FormsModule</code> importálása szükséges</li>
+      </ul>
     </div>
   </div>
   <div class="box">
     <div class="box-header"> <span class="box-title">Komponens alapok</span> </div>
     <div class="box-content">
-      <p><strong>Doksi:</strong> <a href="https://v20.angular.dev/guide/components"
-          target="_blank">https://v20.angular.dev/guide/components</a></p>
-      <p><code>@Component(...)</code></p>
-      <p><strong>selector</strong> → HTML tag neve</p>
-      <p><strong>imports</strong> → ide kerül modul / másik komponens</p>
-      <p><strong>templateUrl</strong> → külön HTML fájl</p>
-      <p><strong>változó</strong> → <code>nev: tipus</code></p>
-      <p><strong>függvény</strong> → <code>muvelet()</code></p>
-      <p><strong>betöltéskor</strong> → <code>ngOnInit() - (ehhez az osztálynak <strong>implement</strong>álnia kell az OnInit-et)</code></p>
+      <ul class="box-list">
+        <li><strong>Doksi:</strong> <a href="https://v20.angular.dev/guide/components" rel="noopener noreferrer" target="_blank">v20 Angular components</a></li>
+        <li><code>@Component(...)</code></li>
+        <li><strong>selector</strong> → HTML tag neve</li>
+        <li><strong>imports</strong> → modulok és komponensek</li>
+        <li><strong>templateUrl</strong> → külön HTML fájl</li>
+        <li><strong>változó</strong> → <code>nev: tipus</code></li>
+        <li><strong>függvény</strong> → <code>muvelet()</code></li>
+        <li><strong>betöltéskor</strong> → <code>ngOnInit()</code> (implementálni kell az <code>OnInit</code>-et)</li>
+      </ul>
     </div>
   </div>
   <div class="box">
     <div class="box-header"> <span class="box-title">HTML navigáció</span> </div>
     <div class="box-content">
-      <p><strong>Doksi:</strong> <a href="https://v20.angular.dev/guide/routing/router-reference"
-          target="_blank">https://v20.angular.dev/guide/routing/router-reference</a></p>
-      <p><strong>Sima út:</strong> <code>routerLink="/utvonal"</code></p>
-      <p><strong>Paraméterrel:</strong> <code>['/utvonal', id]</code></p>
-      <p><strong>Aktív elem:</strong> <code>routerLinkActive="classnev"</code></p>
-      <p><strong>Fontos:</strong> <code>RouterModule -t importálni kell hogy működjön</code></p>
+      <ul class="box-list">
+        <li><strong>Doksi:</strong> <a href="https://v20.angular.dev/guide/routing/router-reference" rel="noopener noreferrer" target="_blank">Angular routing</a></li>
+        <li><strong>Sima út:</strong> <code>routerLink="/utvonal"</code></li>
+        <li><strong>Paraméter:</strong> <code>['/utvonal', id]</code></li>
+        <li><strong>Aktív elem:</strong> <code>routerLinkActive="classnev"</code></li>
+        <li><strong>Fontos:</strong> <code>RouterModule</code> importálása szükséges</li>
+      </ul>
     </div>
   </div>
   <div class="box">
     <div class="box-header"> <span class="box-title">Konfigurációk (app config)</span> </div>
     <div class="box-content">
-      <p><strong>Doksi:</strong> <a href="https://v20.angular.dev/guide/routing/common-router-tasks"
-          target="_blank">https://v20.angular.dev/guide/routing/common-router-tasks</a></p>
-      <p><strong>providers</strong> tömb</p>
-      <p><code>provideRouter(...)</code></p>
-      <p><code>provideHttpClient()</code></p>
+      <ul class="box-list">
+        <li><strong>Doksi:</strong> <a href="https://v20.angular.dev/guide/routing/common-router-tasks" rel="noopener noreferrer" target="_blank">Angular routing konfiguráció</a></li>
+        <li><strong>providers:</strong> tömb</li>
+        <li><code>provideRouter(...)</code></li>
+        <li><code>provideHttpClient()</code></li>
+      </ul>
     </div>
   </div>
   <div class="box">
     <div class="box-header"> <span class="box-title">Útvonalak (app routes)</span> </div>
     <div class="box-content">
-      <p><strong>Doksi:</strong> <a href="https://v20.angular.dev/guide/routing/common-router-tasks"
-          target="_blank">https://v20.angular.dev/guide/routing/common-router-tasks</a></p>
-      <p><strong>Sima:</strong> <code>path + component</code></p>
-      <p><strong>Paraméter:</strong> <code>utvonal/:id</code></p>
-      <p><strong>Wildcard:</strong> <code>** - (minden más path esetén)</code></p>
-      <p><strong>Redirect:</strong> <code>redirectTo</code></p>
-      <p><strong>Vizsgán gyakori:</strong> wildcard mindig legalul</p>
+      <ul class="box-list">
+        <li><strong>Doksi:</strong> <a href="https://v20.angular.dev/guide/routing/common-router-tasks" rel="noopener noreferrer" target="_blank">Angular routes</a></li>
+        <li><strong>Sima:</strong> <code>path + component</code></li>
+        <li><strong>Paraméter:</strong> <code>utvonal/:id</code></li>
+        <li><strong>Wildcard:</strong> <code>**</code> (minden más path esetén)</li>
+        <li><strong>Redirect:</strong> <code>redirectTo</code></li>
+        <li><strong>Vizsgán gyakori:</strong> wildcard mindig legalul</li>
+      </ul>
     </div>
   </div>
   <div class="box">
     <div class="box-header"> <span class="box-title">Service / HttpClient / CRUD</span> </div>
     <div class="box-content">
-      <p><strong>Doksi:</strong> <a href="https://v20.angular.dev/guide/http/making-requests"
-          target="_blank">https://v20.angular.dev/guide/http/making-requests</a></p>
-      <p><strong>inject:</strong> <code>inject(HttpClient)</code></p>
-      <p><strong>Lista:</strong> <code>get&lt;Tipus[]&gt;</code></p>
-      <p><strong>Egy elem:</strong> <code>get&lt;Tipus&gt;</code></p>
-      <p><strong>Létrehozás:</strong> <code>post&lt;Tipus&gt;</code></p>
-      <p><strong>Módosítás:</strong> <code>put&lt;Tipus&gt;</code></p>
-      <p><strong>Törlés:</strong> <code>delete()</code></p>
-      <p><strong>Query param:</strong> <code>HttpParams → set(...)</code></p>
+      <ul class="box-list">
+        <li><strong>Doksi:</strong> <a href="https://v20.angular.dev/guide/http/making-requests" rel="noopener noreferrer" target="_blank">Angular HTTP</a></li>
+        <li><strong>inject:</strong> <code>inject(HttpClient)</code></li>
+        <li><strong>Lista lekérése:</strong> <code>get&lt;Tipus[]&gt;</code></li>
+        <li><strong>Egy elem lekérése:</strong> <code>get&lt;Tipus&gt;</code></li>
+        <li><strong>Létrehozás:</strong> <code>post&lt;Tipus&gt;</code></li>
+        <li><strong>Módosítás:</strong> <code>put&lt;Tipus&gt;</code></li>
+        <li><strong>Törlés:</strong> <code>delete()</code></li>
+        <li><strong>Query param:</strong> <code>HttpParams → set(...)</code></li>
+      </ul>
     </div>
   </div>
   <div class="box">
     <div class="box-header"> <span class="box-title">Subscribe + navigálás kódból</span> </div>
     <div class="box-content">
-      <p><strong>Doksi:</strong> <a href="https://v20.angular.dev/guide/http/making-requests"
-          target="_blank">https://v20.angular.dev/guide/http/making-requests</a></p>
-      <p><code>subscribe({ ... })</code></p>
-      <p><strong>siker:</strong> <code>next</code></p>
-      <p><strong>hiba:</strong> <code>error</code></p>
-      <p><strong>navigálás:</strong> <code>navigate([...])</code></p>
+      <ul class="box-list">
+        <li><strong>Doksi:</strong> <a href="https://v20.angular.dev/guide/http/making-requests" rel="noopener noreferrer" target="_blank">Angular HTTP</a></li>
+        <li><code>subscribe({ ... })</code></li>
+        <li><strong>Siker:</strong> <code>next</code></li>
+        <li><strong>Hiba:</strong> <code>error</code></li>
+        <li><strong>Navigálás:</strong> <code>navigate([...])</code></li>
+      </ul>
     </div>
   </div>
   <div class="box">
     <div class="box-header"> <span class="box-title">@Input / @Output</span> </div>
     <div class="box-content">
-      <p><strong>Doksi:</strong> 
-        <a href="https://v20.angular.dev/api/core/Input" target="_blank">https://v20.angular.dev/api/core/Input</a>
-        <a href="https://v20.angular.dev/api/core/Output" target="_blank">https://v20.angular.dev/api/core/Output</a>
-      </p>
-      <p><strong>Bemenet:</strong> <code>@Input() változó</code></p>
-      <p><strong>Kimenet:</strong> <code>@Output() változó - (ennek egy új EventEmitter osztálypéldánynak kell lennie)</code></p>
-      <p><strong>Esemény küldés:</strong> <code>emit(érték)</code></p>
-      <p><strong>Szülőből átadás:</strong> <code>[adat]="változó"</code></p>
-      <p><strong>Gyerek esemény figyelése:</strong> <code>(esemény)="kezelő($event)"</code></p>
+      <ul class="box-list">
+        <li><strong>Doksi:</strong>
+          <a href="https://v20.angular.dev/api/core/Input" rel="noopener noreferrer" target="_blank">@Input</a>
+          <span>•</span>
+          <a href="https://v20.angular.dev/api/core/Output" rel="noopener noreferrer" target="_blank">@Output</a>
+        </li>
+        <li><strong>Bemenet:</strong> <code>@Input() változó</code></li>
+        <li><strong>Kimenet:</strong> <code>@Output() változó</code> és <code>EventEmitter</code></li>
+        <li><strong>Esemény küldés:</strong> <code>emit(érték)</code></li>
+        <li><strong>Szülőből átadás:</strong> <code>[adat]="változó"</code></li>
+        <li><strong>Gyerek esemény figyelése:</strong> <code>(esemény)="kezelő($event)"</code></li>
+      </ul>
     </div>
   </div>
 </div>
@@ -725,20 +721,18 @@ var result = people
       <div id="frontend-next" class="section">
         <h2>Frontend - Next</h2>
 
-        <div class="box" data-keywords="next">
+        <div class="box" data-keywords="next nextjs axios api get post link use state use effect server client">
           <div class="box-header">
             <span class="box-title">Általános</span>
           </div>
-          
+          <div class="box-content">
         <div class="snippet-header">
           <h3 class="snippet-title">Végpontok elérése pl GET</h3>
           <button class="copy-snippet-btn" onclick="copySnippet(this)">
             Másolás
           </button>
         </div>
-        <pre><code>
-              const res = await axios.get("http://localhost:3000/api/mintaVégpont");
-            </code></pre>
+        <pre><code>const res = await axios.get("http://localhost:3000/api/mintaVégpont");</code></pre>
 
         <div class="snippet-header">
           <h3 class="snippet-title">Next Link használata</h3>
@@ -746,40 +740,32 @@ var result = people
             Másolás
           </button>
         </div>
-        <pre><code>
-              &lt;Link className="btn" href="/mintaOldal">
-                MintaFelirat
-              &lt;/Link&gt;
-            </code></pre>
+        <pre><code>&lt;Link className="btn" href="/mintaOldal"&gt;
+  MintaFelirat
+&lt;/Link&gt;
+</code></pre>
         <div class="snippet-header">
           <h3 class="snippet-title">Elküldendő adat frissírése formban</h3>          
           <button class="copy-snippet-btn" onclick="copySnippet(this)">
             Másolás
           </button>
         </div>
-        <pre>
-          <code>
-            // ezt egy &lt;input-on belül
-                        onChange={(e) => setData({ ...data, newValami: Number(e.target.value) })}
-
-          </code>
-        </pre>
+        <pre><code>// ezt egy &lt;input-on belül
+onChange={(e) => setData({ ...data, newValami: Number(e.target.value) })}
+</code></pre>
                 <div class="snippet-header">
           <h3 class="snippet-title">Adatelküldés</h3>          
           <button class="copy-snippet-btn" onclick="copySnippet(this)">
             Másolás
           </button>
         </div>
-        <pre>
-          <code>
-            onClick={() => sendRating()}
-            //sendRating függvény meg csak egy szimpla axios.post(link, data);
-          </code>
-        </pre>
+        <pre><code>onClick={() => sendRating()}
+// sendRating függvény meg csak egy szimpla axios.post(link, data);
+</code></pre>
+      </div>
+    </div>
 
-        </div>
-
-        <div class="box" data-keywords="router route">
+        <div class="box" data-keywords="router route hooks global state zustand use state context store">
           <div class="box-header">
             <span class="box-title">Hookok, globalState</span>
           </div>
@@ -821,14 +807,13 @@ export const useGlobalStore = create&lt;GlobalStore&gt;()((set) =&gt; ({
                 Másolás
               </button>
             </div>
-            <pre><code>
-              useEffect(() => {
-                async function MintaData() {
-                  kód...
-                }
-                MintaData();
-              }, []);
-            </code></pre>
+            <pre><code>useEffect(() => {
+  async function MintaData() {
+    kód...
+  }
+  MintaData();
+}, []);
+</code></pre>
 
             <div class="snippet-header">
               <h3 class="snippet-title">Fontos!!! "use client" használata az oldal tetején</h3>
@@ -836,9 +821,7 @@ export const useGlobalStore = create&lt;GlobalStore&gt;()((set) =&gt; ({
                 Másolás
               </button>
             </div>
-            <pre><code>
-              "use client"
-            </code></pre>
+            <pre><code>"use client"</code></pre>
 
             <div class="snippet-header">
               <h3 class="snippet-title">Fontos!!! "use client" használata az oldal tetején</h3>
@@ -846,16 +829,15 @@ export const useGlobalStore = create&lt;GlobalStore&gt;()((set) =&gt; ({
                 Másolás
               </button>
             </div>
-            <pre><code>
-              export default function HomePage() {
+            <pre><code>export default function HomePage() {
 
-                kód...
+  kód...
 
-                return (
-                  JSX kód tartalma... pl HTML tagek for ciklusok hívások stb
-                )
-              }
-            </code></pre>
+  return (
+    JSX kód tartalma... pl HTML tagek for ciklusok hívások stb
+  )
+}
+</code></pre>
 
             <div class="snippet-header">
               <h3 class="snippet-title">globalStore használata example</h3>
@@ -899,7 +881,7 @@ setArray(apiLekeresResponse.data);</code></pre>
         </div>
 
 
-        <div class="box" data-keywords="redux context">
+        <div class="box" data-keywords="redux context state management react nextjs store global state">
           <div class="box-header">
             <span class="box-title">State Management</span>
             <button class="copy-btn" onclick="copySnippet(this)">Másolás</button>
@@ -913,7 +895,7 @@ setArray(apiLekeresResponse.data);</code></pre>
       <!-- Backend - Laravel -->
       <div id="backend-laravel" class="section">
         <h2>Backend - Laravel</h2>
-        <div class="box" data-keywords="artisan cli setup">
+        <div class="box" data-keywords="artisan cli setup migrate make model controller api route seed factory">
           <div class="box-header">
             <span class="box-title">Alapvető Artisan parancsok</span>
           </div>
@@ -957,7 +939,7 @@ setArray(apiLekeresResponse.data);</code></pre>
           </div>
         </div>
 
-        <div class="box" data-keywords="migration">
+        <div class="box" data-keywords="migration schema table create drop up down laravel eloquent">
           <div class="box-header">
             <span class="box-title">Migráció példa</span>
           </div>
@@ -997,7 +979,7 @@ return new class extends Migration
           </div>
         </div>
 
-        <div class="box" data-keywords="migration">
+        <div class="box" data-keywords="migration model eloquent fillable timestamps laravel">
           <div class="box-header">
             <span class="box-title">Model példa</span>
           </div>
@@ -1039,7 +1021,7 @@ class Member extends Model
           </div>
         </div>
 
-        <div class="box" data-keywords="resource json transformation">
+        <div class="box" data-keywords="resource json transformation eloquent api response format laravel">
           <div class="box-header">
             <span class="box-title">Resource-ok (Adat transzformáció)</span>
           </div>
@@ -1065,7 +1047,7 @@ class Member extends Model
           </div>
         </div>
 
-        <div class="box" data-keywords="relationship model eloquent">
+        <div class="box" data-keywords="relationship model eloquent one-to-many many-to-many belongsTo hasMany belongsToMany laravel">
           <div class="box-header">
             <span class="box-title">Kapcsolatok</span>
           </div>
@@ -1098,7 +1080,7 @@ Playlist.php
 public function songs() { return $this->belongsToMany(Song::class) }</code></pre>
           </div>
         </div>
-        <div class="box" data-keywords="seeder route api">
+        <div class="box" data-keywords="seeder route api laravel factory seed data database insert">
           <div class="box-header">
             <span class="box-title">Seeder</span>
           </div>
@@ -1159,7 +1141,7 @@ class DatabaseSeeder extends Seeder
 
         </div>
 
-        <div class="box" data-keywords="route api">
+        <div class="box" data-keywords="route api laravel routes apiResource get post put delete">
           <div class="box-header">
             <span class="box-title">Routing</span>
           </div>
@@ -1194,30 +1176,33 @@ Route::get('/user', [UserController::class, 'index']);</code></pre>
       <span class="box-title">Controller alapok</span>
     </div>
     <div class="box-content">
-      <p><strong>Doksi:</strong> <a href="https://learn.microsoft.com/aspnet/core/web-api" target="_blank">https://learn.microsoft.com/aspnet/core/web-api</a></p>
-      <p><code>[ApiController]</code></p>
-      <p><code>[Route("api")]</code></p>
-      <p><strong>öröklés:</strong> <code>ControllerBase</code></p>
-      <p><strong>adatbázis:</strong> <code>AdatbazisContext</code></p>
-      <p><strong>tipikus végpont:</strong> <code>/api/...</code></p>
+      <ul class="box-list">
+        <li><strong>Doksi:</strong> <a href="https://learn.microsoft.com/aspnet/core/web-api" rel="noopener noreferrer" target="_blank">ASP.NET Core Web API</a></li>
+        <li><code>[ApiController]</code></li>
+        <li><code>[Route("api")]</code></li>
+        <li><strong>öröklés:</strong> <code>ControllerBase</code></li>
+        <li><strong>adatbázis:</strong> <code>AdatbazisContext</code></li>
+        <li><strong>tipikus végpont:</strong> <code>/api/...</code></li>
+      </ul>
     </div>
   </div>
-
   <div class="box">
     <div class="box-header">
       <span class="box-title">GET - listázás / szűrés</span>
     </div>
     <div class="box-content">
-      <p><strong>Doksi:</strong> <a href="https://learn.microsoft.com/ef/core/querying/related-data/eager" target="_blank">https://learn.microsoft.com/ef/core/querying/related-data/eager</a></p>
-      <p><code>[HttpGet("...")]</code></p>
-      <p><strong>útvonal paraméter:</strong> <code>[FromRoute]</code></p>
-      <p><strong>query paraméter:</strong> <code>[FromQuery]</code></p>
-      <p><strong>kapcsolt tábla:</strong> <code>.Include(...)</code></p>
-      <p><strong>kapcsolt táblához extra kapcsolás:</strong> <code>.ThenInclude(...)</code></p>
-      <p><strong>szűrés:</strong> <code>.Where(...)</code></p>
-      <p><strong>alakítás:</strong> <code>.Select(...)</code></p>
-      <p><strong>nincs találat:</strong> <code>NotFound(...)</code></p>
-      <p><strong>siker:</strong> <code>Ok(...)</code></p>
+      <ul class="box-list">
+        <li><strong>Doksi:</strong> <a href="https://learn.microsoft.com/ef/core/querying/related-data/eager" rel="noopener noreferrer" target="_blank">EF Core kapcsolt adatok</a></li>
+        <li><code>[HttpGet("...")]</code></li>
+        <li><strong>Útvonal paraméter:</strong> <code>[FromRoute]</code></li>
+        <li><strong>Query paraméter:</strong> <code>[FromQuery]</code></li>
+        <li><strong>Kapcsolt tábla:</strong> <code>.Include(...)</code></li>
+        <li><strong>Kapcsolt táblához extra:</strong> <code>.ThenInclude(...)</code></li>
+        <li><strong>Szűrés:</strong> <code>.Where(...)</code></li>
+        <li><strong>Átalakítás:</strong> <code>.Select(...)</code></li>
+        <li><strong>Nincs találat:</strong> <code>NotFound(...)</code></li>
+        <li><strong>Siker:</strong> <code>Ok(...)</code></li>
+      </ul>
     </div>
   </div>
 
@@ -1226,12 +1211,14 @@ Route::get('/user', [UserController::class, 'index']);</code></pre>
       <span class="box-title">GET - egy elem</span>
     </div>
     <div class="box-content">
-      <p><strong>Doksi:</strong> <a href="https://learn.microsoft.com/ef/core/querying/" target="_blank">https://learn.microsoft.com/ef/core/querying/</a></p>
-      <p><code>[HttpGet(".../{id}")]</code></p>
-      <p><strong>paraméter:</strong> <code>[FromRoute]</code></p>
-      <p><strong>keresés:</strong> <code>.SingleOrDefault(...)</code></p>
-      <p><strong>ha nincs:</strong> <code>NotFound(...)</code></p>
-      <p><strong>ha van:</strong> <code>Ok(...)</code></p>
+      <ul class="box-list">
+        <li><strong>Doksi:</strong> <a href="https://learn.microsoft.com/ef/core/querying/" rel="noopener noreferrer" target="_blank">EF Core lekérdezések</a></li>
+        <li><code>[HttpGet(".../{id}")]</code></li>
+        <li><strong>Paraméter:</strong> <code>[FromRoute]</code></li>
+        <li><strong>Keresés:</strong> <code>.SingleOrDefault(...)</code></li>
+        <li><strong>Nincs találat:</strong> <code>NotFound(...)</code></li>
+        <li><strong>Van találat:</strong> <code>Ok(...)</code></li>
+      </ul>
     </div>
   </div>
 
@@ -1240,14 +1227,16 @@ Route::get('/user', [UserController::class, 'index']);</code></pre>
       <span class="box-title">POST - létrehozás</span>
     </div>
     <div class="box-content">
-      <p><strong>Doksi:</strong> <a href="https://learn.microsoft.com/aspnet/core/web-api" target="_blank">https://learn.microsoft.com/aspnet/core/web-api</a></p>
-      <p><code>[HttpPost("...")]</code></p>
-      <p><strong>body:</strong> <code>[FromBody]</code></p>
-      <p><strong>JSON → objektum:</strong> <code>JsonSerializer.Deserialize&lt;Tipus&gt;(...)</code></p>
-      <p><strong>hozzáadás:</strong> <code>.Add(...)</code></p>
-      <p><strong>mentés:</strong> <code>SaveChanges()</code></p>
-      <p><strong>sikeres létrehozás:</strong> <code>StatusCode(201,...)</code></p>
-      <p><strong>hibás kérés:</strong> <code>BadRequest(...)</code></p>
+      <ul class="box-list">
+        <li><strong>Doksi:</strong> <a href="https://learn.microsoft.com/aspnet/core/web-api" rel="noopener noreferrer" target="_blank">ASP.NET Core Web API</a></li>
+        <li><code>[HttpPost("...")]</code></li>
+        <li><strong>Body:</strong> <code>[FromBody]</code></li>
+        <li><strong>JSON → objektum:</strong> <code>JsonSerializer.Deserialize&lt;Tipus&gt;(...)</code></li>
+        <li><strong>Hozzáadás:</strong> <code>.Add(...)</code></li>
+        <li><strong>Mentés:</strong> <code>SaveChanges()</code></li>
+        <li><strong>Siker:</strong> <code>StatusCode(201,...)</code></li>
+        <li><strong>Hibás kérés:</strong> <code>BadRequest(...)</code></li>
+      </ul>
     </div>
   </div>
 
@@ -1256,13 +1245,15 @@ Route::get('/user', [UserController::class, 'index']);</code></pre>
       <span class="box-title">PUT - módosítás</span>
     </div>
     <div class="box-content">
-      <p><strong>Doksi:</strong> <a href="https://learn.microsoft.com/ef/core/saving/basic" target="_blank">https://learn.microsoft.com/ef/core/saving/basic</a></p>
-      <p><code>[HttpPut(".../{id}")]</code></p>
-      <p><strong>keresés:</strong> <code>.SingleOrDefault(...)</code></p>
-      <p><strong>módosítandó mezők:</strong> <code>elem.Tulajdonsag = ...</code></p>
-      <p><strong>frissítés:</strong> <code>Update(...)</code></p>
-      <p><strong>mentés:</strong> <code>SaveChanges()</code></p>
-      <p><strong>siker:</strong> <code>Ok(...)</code></p>
+      <ul class="box-list">
+        <li><strong>Doksi:</strong> <a href="https://learn.microsoft.com/ef/core/saving/basic" rel="noopener noreferrer" target="_blank">EF Core mentés</a></li>
+        <li><code>[HttpPut(".../{id}")]</code></li>
+        <li><strong>Keresés:</strong> <code>.SingleOrDefault(...)</code></li>
+        <li><strong>Módosítás:</strong> <code>elem.Tulajdonsag = ...</code></li>
+        <li><strong>Frissítés:</strong> <code>Update(...)</code></li>
+        <li><strong>Mentés:</strong> <code>SaveChanges()</code></li>
+        <li><strong>Siker:</strong> <code>Ok(...)</code></li>
+      </ul>
     </div>
   </div>
 
@@ -1271,12 +1262,14 @@ Route::get('/user', [UserController::class, 'index']);</code></pre>
       <span class="box-title">DELETE - törlés</span>
     </div>
     <div class="box-content">
-      <p><strong>Doksi:</strong> <a href="https://learn.microsoft.com/ef/core/saving/basic" target="_blank">https://learn.microsoft.com/ef/core/saving/basic</a></p>
-      <p><code>[HttpDelete(".../{id}")]</code></p>
-      <p><strong>keresés:</strong> <code>.SingleOrDefault(...)</code></p>
-      <p><strong>törlés:</strong> <code>.Remove(...)</code></p>
-      <p><strong>mentés:</strong> <code>SaveChanges()</code></p>
-      <p><strong>válasz:</strong> <code>Ok(...)</code> vagy <code>NoContent()</code></p>
+      <ul class="box-list">
+        <li><strong>Doksi:</strong> <a href="https://learn.microsoft.com/ef/core/saving/basic" rel="noopener noreferrer" target="_blank">EF Core mentés</a></li>
+        <li><code>[HttpDelete(".../{id}")]</code></li>
+        <li><strong>Keresés:</strong> <code>.SingleOrDefault(...)</code></li>
+        <li><strong>Törlés:</strong> <code>.Remove(...)</code></li>
+        <li><strong>Mentés:</strong> <code>SaveChanges()</code></li>
+        <li><strong>Válasz:</strong> <code>Ok(...)</code> vagy <code>NoContent()</code></li>
+      </ul>
     </div>
   </div>
 
@@ -1285,11 +1278,13 @@ Route::get('/user', [UserController::class, 'index']);</code></pre>
       <span class="box-title">DbContext alapok</span>
     </div>
     <div class="box-content">
-      <p><strong>Doksi:</strong> <a href="https://learn.microsoft.com/ef/core/dbcontext-configuration/" target="_blank">https://learn.microsoft.com/ef/core/dbcontext-configuration/</a></p>
-      <p><strong>öröklés:</strong> <code>DbContext</code></p>
-      <p><strong>táblák:</strong> <code>DbSet&lt;Tipus&gt;</code></p>
-      <p><strong>kapcsolat:</strong> <code>OnConfiguring(...)</code></p>
-      <p><strong>adatbázis:</strong> <code>UseMySQL(...)</code></p>
+      <ul class="box-list">
+        <li><strong>Doksi:</strong> <a href="https://learn.microsoft.com/ef/core/dbcontext-configuration/" rel="noopener noreferrer" target="_blank">EF Core DbContext</a></li>
+        <li><strong>öröklés:</strong> <code>DbContext</code></li>
+        <li><strong>táblák:</strong> <code>DbSet&lt;Tipus&gt;</code></li>
+        <li><strong>kapcsolat:</strong> <code>OnConfiguring(...)</code></li>
+        <li><strong>adatbázis:</strong> <code>UseMySQL(...)</code></li>
+      </ul>
     </div>
   </div>
 
@@ -1298,10 +1293,12 @@ Route::get('/user', [UserController::class, 'index']);</code></pre>
       <span class="box-title">OnModelCreating - index / seed</span>
     </div>
     <div class="box-content">
-      <p><strong>Doksi:</strong> <a href="https://learn.microsoft.com/ef/core/modeling/" target="_blank">https://learn.microsoft.com/ef/core/modeling/</a></p>
-      <p><strong>egyedi index:</strong> <code>.HasIndex(...).IsUnique()</code></p>
-      <p><strong>összetett index:</strong> <code>.HasIndex(x =&gt; new { ... })</code></p>
-      <p><strong>kezdő adatok:</strong> <code>.HasData(...)</code></p>
+      <ul class="box-list">
+        <li><strong>Doksi:</strong> <a href="https://learn.microsoft.com/ef/core/modeling/" rel="noopener noreferrer" target="_blank">EF Core modeling</a></li>
+        <li><strong>Egyedi index:</strong> <code>.HasIndex(...).IsUnique()</code></li>
+        <li><strong>Összetett index:</strong> <code>.HasIndex(x =&gt; new { ... })</code></li>
+        <li><strong>Kezdő adatok:</strong> <code>.HasData(...)</code></li>
+      </ul>
     </div>
   </div>
 
@@ -1310,10 +1307,12 @@ Route::get('/user', [UserController::class, 'index']);</code></pre>
       <span class="box-title">JSON-ből seed</span>
     </div>
     <div class="box-content">
-      <p><strong>Doksi:</strong> <a href="https://learn.microsoft.com/dotnet/api/system.text.json.jsonserializer" target="_blank">https://learn.microsoft.com/dotnet/api/system.text.json.jsonserializer</a></p>
-      <p><strong>fájl olvasás:</strong> <code>File.ReadAllText(...)</code></p>
-      <p><strong>lista deszerializálás:</strong> <code>Deserialize&lt;List&lt;Tipus&gt;&gt;(...)</code></p>
-      <p><strong>betöltés:</strong> <code>.HasData(...)</code></p>
+      <ul class="box-list">
+        <li><strong>Doksi:</strong> <a href="https://learn.microsoft.com/dotnet/api/system.text.json.jsonserializer" rel="noopener noreferrer" target="_blank">JsonSerializer</a></li>
+        <li><strong>Fájl olvasás:</strong> <code>File.ReadAllText(...)</code></li>
+        <li><strong>Lista deszerializálás:</strong> <code>Deserialize&lt;List&lt;Tipus&gt;&gt;(...)</code></li>
+        <li><strong>Betöltés seed-be:</strong> <code>.HasData(...)</code></li>
+      </ul>
     </div>
   </div>
 
@@ -1322,14 +1321,16 @@ Route::get('/user', [UserController::class, 'index']);</code></pre>
       <span class="box-title">Model - Data Annotations</span>
     </div>
     <div class="box-content">
-      <p><strong>Doksi:</strong> <a href="https://learn.microsoft.com/ef/core/modeling/entity-properties" target="_blank">https://learn.microsoft.com/ef/core/modeling/entity-properties</a></p>
-      <p><strong>táblanév:</strong> <code>[Table("...")]</code></p>
-      <p><strong>kötelező:</strong> <code>[Required]</code></p>
-      <p><strong>max hossz:</strong> <code>[StringLength(...)]</code></p>
-      <p><strong>értéktartomány:</strong> <code>[Range(...)]</code></p>
-      <p><strong>oszloptípus:</strong> <code>[Column(TypeName = "...")]</code></p>
-      <p><strong>kapcsolat:</strong> <code>SzerzoId</code> + navigációs property</p>
-      <p><strong>nem adatbázis mező:</strong> <code>[NotMapped]</code></p>
+      <ul class="box-list">
+        <li><strong>Doksi:</strong> <a href="https://learn.microsoft.com/ef/core/modeling/entity-properties" rel="noopener noreferrer" target="_blank">EF Core entity properties</a></li>
+        <li><strong>Táblanév:</strong> <code>[Table("...")]</code></li>
+        <li><strong>Kötelező:</strong> <code>[Required]</code></li>
+        <li><strong>Max hossz:</strong> <code>[StringLength(...)]</code></li>
+        <li><strong>Értéktartomány:</strong> <code>[Range(...)]</code></li>
+        <li><strong>Oszloptípus:</strong> <code>[Column(TypeName = "...")]</code></li>
+        <li><strong>Kapcsolat:</strong> <code>SzerzoId</code> + navigációs property</li>
+        <li><strong>Nem adatbázis mező:</strong> <code>[NotMapped]</code></li>
+      </ul>
     </div>
   </div>
 </div>
@@ -1339,13 +1340,17 @@ Route::get('/user', [UserController::class, 'index']);</code></pre>
           <h2>Backend - Next.js</h2>
           <div class="box">
             <div class="box-header">
-              használt források:
-              NextJS végpontok: https://nextjs.org/docs/app/guides/backend-for-frontend#nextrequest-and-nextresponse
-              Prisma operátorok: https://www.prisma.io/docs/orm/prisma-client/queries/crud
+              <span class="box-title">Használt források</span>
+            </div>
+            <div class="box-content">
+              <ul>
+                <li><a target="_blank" rel="noopener" href="https://nextjs.org/docs/app/guides/backend-for-frontend#nextrequest-and-nextresponse">NextJS végpontok</a></li>
+                <li><a target="_blank" rel="noopener" href="https://www.prisma.io/docs/orm/prisma-client/queries/crud">Prisma operátorok</a></li>
+              </ul>
             </div>
           </div>
 
-          <div class="box" data-keywords="next.js route">
+          <div class="box" data-keywords="next.js route prisma api rest get post put patch delete nextrequest nextresponse">
             <div class="box-header">
               <span class="box-title">REST végpontok</span>
             </div>
@@ -1356,9 +1361,7 @@ Route::get('/user', [UserController::class, 'index']);</code></pre>
               Másolás
             </button>
           </div>
-          <pre><code>
-            request: NextRequest, { params }: { params: Promise<{ id: string }> }    
-</code></pre>
+          <pre><code>request: NextRequest, { params }: { params: Promise<{ id: string }> }</code></pre>
               <div class="snippet-header">
                 <h3 class="snippet-title">standard GET</h3>
                 <button class="copy-snippet-btn" onclick="copySnippet(this)">
@@ -1390,12 +1393,11 @@ Route::get('/user', [UserController::class, 'index']);</code></pre>
                   Másolás
                 </button>
               </div>
-              <pre><code>
-                const body = await request.json();
-                const newOne = await prisma.table.create({
-                  data: body,
-                });
-    // + hibakezelés
+              <pre><code>const body = await request.json();
+const newOne = await prisma.table.create({
+  data: body,
+});
+// + hibakezelés
 </code></pre>
               <div class="snippet-header">
                 <h3 class="snippet-title">standard PATCH</h3>
@@ -1435,21 +1437,18 @@ Route::get('/user', [UserController::class, 'index']);</code></pre>
   <h3 class="snippet-title">+ sor hozzáadása</h3>
   <button class="copy-snippet-btn" onclick="copySnippet(this)">Másolás</button>
 </div>
-<pre>
-  <code>
-      const resWithNewData = res.map((e, i) => ({
-    ...e,
-    index: `${i + 1}.`,
-  }));
-  // utána ezt return nextrespone-ba, mint mindenhol máshol
-  </code>
-</pre>
+<pre><code>const resWithNewData = res.map((e, i) => ({
+  ...e,
+  index: `${i + 1}.`,
+}));
+// utána ezt return nextrespone-ba, mint mindenhol máshol
+</code></pre>
 
 
             </div>
           </div>
 
-          <div class="box" data-keywords="mongodb mongoose">
+          <div class="box" data-keywords="mongodb mongoose prisma mongo connection schema model database">
             <div class="box-header">
               <span class="box-title">MongoDB - Prisma</span>
             </div>
@@ -1671,26 +1670,24 @@ az összetartozó rekordokat.
               Másolás
             </button>
           </div>
-          <pre><code>
-            ### 6. feladat: A megadott járműtípussal elérhető utak lekérdezése
+          <pre><code>### 6. feladat: A megadott járműtípussal elérhető utak lekérdezése
 GET http://localhost:3000/api/journeys/112
 
 ### 7. feladat: Új utazási ajánlat hozzáadása
 POST http://localhost:3000/api/journeys
 content-type: application/json
-# Request body tartalma: (A következő üres sort ne törölje ki!) 
+# Request body tartalma: (A következő üres sort ne törölje ki!)
 
-{ 
-   "id": 12345, 
-   "vehicle_id": 1, 
-   "description": "A festői szépségű német főváros…", 
-   "departure": "2022-08-10T00:00:00.000Z", 
-   "pictureUrl": "https://pictures.com/berlin.jpg" 
-} 
+{
+  "id": 12345,
+  "vehicle_id": 1,
+  "description": "A festői szépségű német főváros…",
+  "departure": "2022-08-10T00:00:00.000Z",
+  "pictureUrl": "https://pictures.com/berlin.jpg"
+}
 
 ### 8. feladat: Utazási ajánlat törlése id alapján
 DELETE http://localhost:3000/api/journeys/333
-  
 </code></pre>
 
 <div class="snippet-header">
@@ -1699,9 +1696,7 @@ DELETE http://localhost:3000/api/journeys/333
               Másolás
             </button>
           </div>
-          <pre><code>
-            request: NextRequest, { params }: { params: Promise<{ id: string }> }    
-</code></pre>
+          <pre><code>request: NextRequest, { params }: { params: Promise<{ id: string }> }</code></pre>
 
 <div class="snippet-header">
             <h3 class="snippet-title">Végpontok</h3>
@@ -1709,9 +1704,7 @@ DELETE http://localhost:3000/api/journeys/333
               Másolás
             </button>
           </div>
-          <pre><code>
-            export async function GET()  
-</code></pre>
+          <pre><code>export async function GET()</code></pre>
 
 <div class="snippet-header">
             <h3 class="snippet-title">Test https. Végpontok</h3>
@@ -1719,26 +1712,24 @@ DELETE http://localhost:3000/api/journeys/333
               Másolás
             </button>
           </div>
-          <pre><code>
-            ### 6. feladat: A megadott járműtípussal elérhető utak lekérdezése
+          <pre><code>### 6. feladat: A megadott járműtípussal elérhető utak lekérdezése
 GET http://localhost:3000/api/journeys/112
 
 ### 7. feladat: Új utazási ajánlat hozzáadása
 POST http://localhost:3000/api/journeys
 content-type: application/json
-# Request body tartalma: (A következő üres sort ne törölje ki!) 
+# Request body tartalma: (A következő üres sort ne törölje ki!)
 
-{ 
-   "id": 12345, 
-   "vehicle_id": 1, 
-   "description": "A festői szépségű német főváros…", 
-   "departure": "2022-08-10T00:00:00.000Z", 
-   "pictureUrl": "https://pictures.com/berlin.jpg" 
-} 
+{
+  "id": 12345,
+  "vehicle_id": 1,
+  "description": "A festői szépségű német főváros…",
+  "departure": "2022-08-10T00:00:00.000Z",
+  "pictureUrl": "https://pictures.com/berlin.jpg"
+}
 
 ### 8. feladat: Utazási ajánlat törlése id alapján
 DELETE http://localhost:3000/api/journeys/333
-  
 </code></pre>
 
               <div class="snippet-header">
@@ -1849,7 +1840,7 @@ createMany - több rekord létrehozása egyszerre
 count - megszámolja a rekordokat</code></pre>
             </div>
           </div>
-          <div class="box" data-keywords="next.js">
+          <div class="box" data-keywords="next.js backend structure prisma api app routes file folder">
             <div class="box-header">
               <span class="box-title">Egyéb</span>
             </div>
@@ -1860,6 +1851,8 @@ count - megszámolja a rekordokat</code></pre>
               <img src="pics/next_backend_structure.png" alt="Nem jelent meg a kép, ezer bocsánat!" />
             </div>
           </div>
+        </div>
+      </div>
           <script src="script.js"></script>
 </body>
 
