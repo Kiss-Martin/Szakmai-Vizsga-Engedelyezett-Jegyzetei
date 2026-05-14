@@ -877,6 +877,64 @@ setArray(apiLekeresResponse.data);</code></pre>
 }, [dependencyValami]);</code></pre>
             <p>A useEffect hook minden alkalommal lefut, ha a "dependenyValami" frissül, üresen hagyott dependency array
               esetén csak az oldal betöltésekor fut le</p>
+
+              <div class="snippet-header">
+              <h3 class="snippet-title">Formban az újratöltés megakadályozása</h3>
+              <button class="copy-snippet-btn" onclick="copySnippet(this)">
+                Másolás
+              </button>
+            </div>
+            <pre><code>
+              &lt;form onSubmit={handleSubmit}&gt; oldal újratöltésének megakadályozása
+            </code></pre>
+
+            <div class="snippet-header">
+              <h3 class="snippet-title">Formban az újratöltés megakadályozása</h3>
+              <button class="copy-snippet-btn" onclick="copySnippet(this)">
+                Másolás
+              </button>
+            </div>
+            <pre><code>
+              async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+              event.preventDefault();
+
+              végpont kódja...
+
+              }
+            </code></pre>
+
+            <div class="snippet-header">
+              <h3 class="snippet-title">Oldalak közötti navigáció</h3>
+              <button class="copy-snippet-btn" onclick="copySnippet(this)">
+                Másolás
+              </button>
+            </div>
+            <pre><code>
+              const router = useRouter(); oldal közötti navigáció
+            </code></pre>
+
+            <div class="snippet-header">
+              <h3 class="snippet-title">Url-ből adatkiszedés</h3>
+              <button class="copy-snippet-btn" onclick="copySnippet(this)">
+                Másolás
+              </button>
+            </div>
+            <pre><code>
+              const searhParams = useSearchParams(); // url-ből adatok kiszedése
+            </code></pre>
+
+            <div class="snippet-header">
+              <h3 class="snippet-title">Url-ből adatkiszedés 2.0</h3>
+              <button class="copy-snippet-btn" onclick="copySnippet(this)">
+                Másolás
+              </button>
+            </div>
+            <pre><code>
+              const példaAdat = Number(searhParams.get("példaAdat"));
+            </code></pre>
+
+
+
           </div>
         </div>
 
