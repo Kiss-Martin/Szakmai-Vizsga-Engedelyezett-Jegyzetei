@@ -643,6 +643,7 @@ dgMinta.ItemsSource = adatok;
         <li><strong>Sima út:</strong> <code>routerLink="/utvonal"</code></li>
         <li><strong>Paraméter:</strong> <code>['/utvonal', id]</code></li>
         <li><strong>Aktív elem:</strong> <code>routerLinkActive="classnev"</code></li>
+        <li><strong>Pontos egyezés:</strong> <code>[routerLinkActiveOptions]="{ exact: true }"</code></li>
         <li><strong>Fontos:</strong> <code>RouterModule</code> importálása szükséges</li>
       </ul>
     </div>
@@ -683,6 +684,8 @@ dgMinta.ItemsSource = adatok;
         <li><strong>Módosítás:</strong> <code>put&lt;Tipus&gt;</code></li>
         <li><strong>Törlés:</strong> <code>delete()</code></li>
         <li><strong>Query param:</strong> <code>HttpParams → set(...)</code></li>
+        <li><strong>Teljes válasz:</strong> <code>{ observe: 'response' }</code></li>
+        <li><strong>Header olvasás:</strong> <code>res.headers.get('header-valtozónév')</code></li>
       </ul>
     </div>
   </div>
@@ -694,7 +697,8 @@ dgMinta.ItemsSource = adatok;
         <li><code>subscribe({ ... })</code></li>
         <li><strong>Siker:</strong> <code>next</code></li>
         <li><strong>Hiba:</strong> <code>error</code></li>
-        <li><strong>Navigálás:</strong> <code>navigate([...])</code></li>
+        <li><strong>Navigálás:</strong> <code>navigate([""])</code></li>
+        <li><strong>Query parammal:</strong> <code>navigate([""], { queryParams: { page: 6 } })</code></li>
       </ul>
     </div>
   </div>
@@ -712,6 +716,20 @@ dgMinta.ItemsSource = adatok;
         <li><strong>Esemény küldés:</strong> <code>emit(érték)</code></li>
         <li><strong>Szülőből átadás:</strong> <code>[adat]="változó"</code></li>
         <li><strong>Gyerek esemény figyelése:</strong> <code>(esemény)="kezelő($event)"</code></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="box">
+    <div class="box-header"> <span class="box-title">URL Paraméterek</span> </div>
+    <div class="box-content">
+      <ul class="box-list">
+        <li><strong>Doksi:</strong>
+          <a href="https://v20.angular.dev/guide/routing/common-router-tasks" rel="noopener noreferrer" target="_blank">Router tasks</a>
+        </li>
+        <li><strong>Fontos:</strong> <code>ActivatedRoute</code> injektálása szükséges</li>
+        <li><strong>Query param:</strong> <code>activatedRoute.queryParamMap.subscribe(p => p.get('qp-név'))</code></li>
+        <li><strong>Route param:</strong> <code>activatedRoute.snapshot.paramMap.get('rp-név')</code></li>
       </ul>
     </div>
   </div>
