@@ -726,6 +726,27 @@ dgMinta.ItemsSource = adatok;
             <span class="box-title">Általános</span>
           </div>
           <div class="box-content">
+
+            <div class="box">
+            <div class="box-header">
+              <span class="box-title">FELHASZNÁLT FORRÁSOK A REACT ÉS NEXT OLDALRÓL</span>
+            </div>
+            <div class="box-content">
+              <ul>
+                <li><a target="_blank" rel="noopener" href="https://react.dev/reference/react/Children#children-map">Frontend mapelés - syntax</a></li>
+                <li><a target="_blank" rel="noopener" href="https://react.dev/learn/responding-to-events#preventing-default-behavior">Prevent-default események</a></li>
+                <li><a target="_blank" rel="noopener" href="https://react.dev/reference/rsc/use-server#security">Változók</a></li>
+                <li><a target="_blank" rel="noopener" href="https://nextjs.org/docs/app/getting-started/linking-and-navigating">Navigálás</a></li>
+                <li><a target="_blank" rel="noopener" href="https://nextjs.org/docs/app/getting-started/fetching-data">Fetchelés</a></li>
+                <li><a target="_blank" rel="noopener" href="https://nextjs.org/docs/app/api-reference/functions/use-search-params">SearchParams használata</a></li>
+                <li><a target="_blank" rel="noopener" href="https://nextjs.org/docs/app/api-reference/functions/use-router#useroute">UseRouter használata</a></li>
+                <li><a target="_blank" rel="noopener" href="https://react.dev/learn/responding-to-events#recap">onClick - handleClick használata</a></li>
+                <li><a target="_blank" rel="noopener" href="https://react.dev/reference/react-dom/components/input#controlling-an-input-with-a-state-variable">onChange - használata</a></li>
+                <li><a target="_blank" rel="noopener" href="https://react.dev/learn/conditional-rendering#conditionally-returning-jsx">Feltételes kód JSX-ben</a></li>
+              </ul>
+            </div>
+          </div>
+
         <div class="snippet-header">
           <h3 class="snippet-title">Végpontok elérése pl GET</h3>
           <button class="copy-snippet-btn" onclick="copySnippet(this)">
@@ -824,7 +845,7 @@ export const useGlobalStore = create&lt;GlobalStore&gt;()((set) =&gt; ({
             <pre><code>"use client"</code></pre>
 
             <div class="snippet-header">
-              <h3 class="snippet-title">Fontos!!! "use client" használata az oldal tetején</h3>
+              <h3 class="snippet-title">Az oldal kerete</h3>
               <button class="copy-snippet-btn" onclick="copySnippet(this)">
                 Másolás
               </button>
@@ -838,6 +859,16 @@ export const useGlobalStore = create&lt;GlobalStore&gt;()((set) =&gt; ({
   )
 }
 </code></pre>
+
+<div class="snippet-header">
+              <h3 class="snippet-title">Hibatárolás</h3>
+              <button class="copy-snippet-btn" onclick="copySnippet(this)">
+                Másolás
+              </button>
+            </div>
+            <pre><code>
+              const [hiba, setHiba] = useState&lt;string&gt;("");
+            </code></pre>
 
             <div class="snippet-header">
               <h3 class="snippet-title">globalStore használata example</h3>
@@ -895,7 +926,7 @@ setArray(apiLekeresResponse.data);</code></pre>
               </button>
             </div>
             <pre><code>
-              async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+              async function handleSubmit(event: FormEvent&lt;HTMLFormElement&gt;) {
               event.preventDefault();
 
               végpont kódja...
@@ -914,7 +945,7 @@ setArray(apiLekeresResponse.data);</code></pre>
             </code></pre>
 
             <div class="snippet-header">
-              <h3 class="snippet-title">Url-ből adatkiszedés</h3>
+              <h3 class="snippet-title">URL-ből adatkiszedés</h3>
               <button class="copy-snippet-btn" onclick="copySnippet(this)">
                 Másolás
               </button>
@@ -930,13 +961,82 @@ setArray(apiLekeresResponse.data);</code></pre>
               </button>
             </div>
             <pre><code>
-              const példaAdat = Number(searhParams.get("példaAdat"));
+              const példaAdat = Number(searhParams.get("példaÁtadottAdat"));
+            </code></pre>
+
+            <div class="snippet-header">
+              <h3 class="snippet-title">Syntax - mapelesnél</h3>
+              <button class="copy-snippet-btn" onclick="copySnippet(this)">
+                Másolás
+              </button>
+            </div>
+            <pre><code>
+              {mintaAdatok.map((iterátor) => ())} // fontos a key={mintaAdatok.mintaAdat} HTML tag-en belül
+            </code></pre>
+
+            <div class="snippet-header">
+              <h3 class="snippet-title">URL-be a változó átadása</h3>
+              <button class="copy-snippet-btn" onclick="copySnippet(this)">
+                Másolás
+              </button>
+            </div>
+            <pre><code>
+              function FunctionName(átandandó-paraméter-neve pl-id: típus) {
+              router.push(`/mintaOldalNeve?mintaVáltozó=${átandandó-paraméter-neve}`);
+              }
             </code></pre>
 
 
+            <div class="snippet-header">
+              <h3 class="snippet-title">Axios error kilvasása</h3>
+              <button class="copy-snippet-btn" onclick="copySnippet(this)">
+                Másolás
+              </button>
+            </div>
+            <pre><code>
+              error.response?.data?.message
+            </code></pre>
 
+            <div class="snippet-header">
+              <h3 class="snippet-title">Axios error</h3>
+              <button class="copy-snippet-btn" onclick="copySnippet(this)">
+                Másolás
+              </button>
+            </div>
+            <pre><code>
+              axios.isAxiosError(error)              
+            </code></pre>
+
+            <div class="snippet-header">
+              <h3 class="snippet-title">Feltételes kód JSX-ben</h3>
+              <button class="copy-snippet-btn" onclick="copySnippet(this)">
+                Másolás
+              </button>
+            </div>
+            <pre><code>
+              {változó && &lt;div&gt;{változó}&lt;/div&gt;} //pl hiba
+            </code></pre>
+
+            <div class="snippet-header">
+              <h3 class="snippet-title">Importálandók nextből-reactból</h3>
+              <button class="copy-snippet-btn" onclick="copySnippet(this)">
+                Másolás
+              </button>
+            </div>
+            <pre><code>
+              import axios from "axios";
+              import Image from "next/image";
+              import Link from "next/link";
+              import { useSearchParams } from "next/navigation";
+              import { useEffect, useState } from "react";
+              import { useRouter } from "next/navigation";
+              import axios, { isAxiosError } from "axios";
+            </code></pre>
           </div>
         </div>
+
+        
+         
 
 
         <div class="box" data-keywords="redux context state management react nextjs store global state">
