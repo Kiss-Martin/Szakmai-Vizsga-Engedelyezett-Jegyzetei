@@ -806,38 +806,13 @@ onSubmit(form: any) {
     </div>
   </div>
 
-  <div class="box" data-keywords="angular form template ngSubmit input binding model">
-    <div class="box-header">
-      <span class="box-title">Form - HTML template (1-2 adat)</span>
-      <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
-    </div>
-    <div class="box-intro" style="font-size: 0.9em; color: var(--text-secondary); margin-bottom: 10px;">
-      <strong>Doksi:</strong> <a href="https://v20.angular.dev/guide/templates/binding" rel="noopener noreferrer" target="_blank">Angular binding</a> • <a href="https://v20.angular.dev/api/forms/FormsModule" rel="noopener noreferrer" target="_blank">FormsModule</a>
-    </div>
-    <div class="box-content">
-      <pre><code>&lt;form (ngSubmit)="onSubmit(form)" #form="ngForm"&gt;
-  &lt;input 
-    type="text" 
-    name="name" 
-    [(ngModel)]="item.name" 
-    placeholder="Név"
-    required
-  /&gt;
-  
-  &lt;input 
-    type="email" 
-    name="email" 
-    [(ngModel)]="item.email" 
-    placeholder="Email"
-    required
-  /&gt;
-  
-  &lt;button type="submit" [disabled]="!form.valid"&gt;Küldés&lt;/button&gt;
-&lt;/form&gt;</code></pre>
-    </div>
-  </div>
+</div>
 
-            <div class="box">
+      <!-- Frontend - Next -->
+      <div id="frontend-next" class="section">
+        <h2>Frontend - Next</h2>
+
+        <div class="box">
             <div class="box-header">
               <span class="box-title">FELHASZNÁLT FORRÁSOK A REACT ÉS NEXT OLDALRÓL</span>
             </div>
@@ -857,8 +832,10 @@ onSubmit(form: any) {
             </div>
           </div>
 
-        <div class="snippet-header">
-          <h3 class="snippet-title">Végpontok elérése pl GET</h3>
+        <div class="box">
+          <div class="box-content">
+            <div class="snippet-header">
+              <h3 class="snippet-title">Végpontok elérése pl GET</h3>
           <button class="copy-snippet-btn" onclick="copySnippet(this)">
             Másolás
           </button>
@@ -893,8 +870,8 @@ onChange={(e) => setData({ ...data, newValami: Number(e.target.value) })}
         <pre><code>onClick={() => sendRating()}
 // sendRating függvény meg csak egy szimpla axios.post(link, data);
 </code></pre>
-      </div>
-    </div>
+          </div>
+        </div>
 
         <div class="box" data-keywords="router route hooks global state zustand use state context store">
           <div class="box-header">
