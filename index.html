@@ -688,6 +688,7 @@ dgMinta.ItemsSource = adatok;
         <li><strong>Teljes válasz:</strong> <code>{ observe: 'response' }</code></li>
         <li><strong>Header olvasás:</strong> <code>res.headers.get('header-valtozónév')</code></li>
       </ul>
+      
     </div>
   </div>
   <div class="box">
@@ -734,17 +735,107 @@ dgMinta.ItemsSource = adatok;
       </ul>
     </div>
   </div>
-</div>
 
-      <!-- Frontend - Next -->
-      <div id="frontend-next" class="section">
-        <h2>Frontend - Next</h2>
+  <div class="box" data-keywords="angular http get list all items array api service">
+    <div class="box-header">
+      <span class="box-title">GET - Service metódus</span>
+      <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+    </div>
+    <div class="box-intro" style="font-size: 0.9em; color: var(--text-secondary); margin-bottom: 10px;">
+      <strong>Doksi:</strong> <a href="https://v20.angular.dev/guide/http/making-requests" rel="noopener noreferrer" target="_blank">Angular HTTP</a>
+    </div>
+    <div class="box-content">
+      <pre><code>getAll() {
+  return this.http.get&lt;Item[]&gt;(`${this.apiUrl}/items`);
+}</code></pre>
+    </div>
+  </div>
 
-        <div class="box" data-keywords="next nextjs axios api get post link use state use effect server client">
-          <div class="box-header">
-            <span class="box-title">Általános</span>
-          </div>
-          <div class="box-content">
+  <div class="box" data-keywords="angular http get by id route params subscription component">
+    <div class="box-header">
+      <span class="box-title">GET by ID - Service + Subscribe</span>
+      <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+    </div>
+    <div class="box-intro" style="font-size: 0.9em; color: var(--text-secondary); margin-bottom: 10px;">
+      <strong>Doksi:</strong> <a href="https://v20.angular.dev/guide/http/making-requests" rel="noopener noreferrer" target="_blank">Angular HTTP</a> • <a href="https://v20.angular.dev/guide/routing/common-router-tasks" rel="noopener noreferrer" target="_blank">Router params</a>
+    </div>
+    <div class="box-content">
+      <pre><code>// Service
+getDataById(id: number) {
+  return this.http.get&lt;Item&gt;(`${this.apiUrl}/items/${id}`);
+}
+
+// Component - Subscribe
+this.route.paramMap.subscribe(params => {
+  const id = Number(params.get('id'));
+  if (!Number.isNaN(id) && id > 0) {
+    this.api.getDataById(id).subscribe(data => {
+      this.item = data;
+    });
+  }
+});</code></pre>
+    </div>
+  </div>
+
+  <div class="box" data-keywords="angular http post create new item form submit subscribe component">
+    <div class="box-header">
+      <span class="box-title">POST - Form adatokkal + ID-ra</span>
+      <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+    </div>
+    <div class="box-intro" style="font-size: 0.9em; color: var(--text-secondary); margin-bottom: 10px;">
+      <strong>Doksi:</strong> <a href="https://v20.angular.dev/guide/http/making-requests" rel="noopener noreferrer" target="_blank">Angular HTTP</a>
+    </div>
+    <div class="box-content">
+      <pre><code>// Service
+createItem(id: number, data: Item) {
+  return this.http.post&lt;Item&gt;(`${this.apiUrl}/items/${id}`, data);
+}
+
+// Component - Subscribe form adatokkal
+onSubmit(form: any) {
+  const id = 5; // vagy a route param-ból
+  this.api.createItem(id, form.value).subscribe({
+    next: (data) => {
+      this.router.navigate(['/items', data.id]);
+    },
+    error: (err) => {
+      console.error('Hiba:', err);
+    }
+  });
+}</code></pre>
+    </div>
+  </div>
+
+  <div class="box" data-keywords="angular form template ngSubmit input binding model">
+    <div class="box-header">
+      <span class="box-title">Form - HTML template (1-2 adat)</span>
+      <button class="copy-btn" onclick="copyBox(this)">Másolás</button>
+    </div>
+    <div class="box-intro" style="font-size: 0.9em; color: var(--text-secondary); margin-bottom: 10px;">
+      <strong>Doksi:</strong> <a href="https://v20.angular.dev/guide/templates/binding" rel="noopener noreferrer" target="_blank">Angular binding</a> • <a href="https://v20.angular.dev/api/forms/FormsModule" rel="noopener noreferrer" target="_blank">FormsModule</a>
+    </div>
+    <div class="box-content">
+      <pre><code>&lt;form (ngSubmit)="onSubmit(form)" #form="ngForm"&gt;
+  &lt;input 
+    type="text" 
+    name="name" 
+    [(ngModel)]="item.name" 
+    placeholder="Név"
+    required
+  /&gt;
+  
+  &lt;input 
+    type="email" 
+    name="email" 
+    [(ngModel)]="item.email" 
+    placeholder="Email"
+    required
+  /&gt;
+  
+  &lt;button type="submit" [disabled]="!form.valid"&gt;Küldés&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+    </div>
+  </div>
 
             <div class="box">
             <div class="box-header">
@@ -1044,18 +1135,6 @@ setArray(apiLekeresResponse.data);</code></pre>
               import axios, { isAxiosError } from "axios";
             </code></pre>
           </div>
-        </div>
-
-        
-         
-
-
-        <div class="box" data-keywords="redux context state management react nextjs store global state">
-          <div class="box-header">
-            <span class="box-title">State Management</span>
-            <button class="copy-btn" onclick="copySnippet(this)">Másolás</button>
-          </div>
-          <div class="box-content">// Ide írd a jegyzetet</div>
         </div>
       </div>
 
